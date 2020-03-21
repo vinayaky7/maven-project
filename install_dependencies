@@ -1,0 +1,19 @@
+Hello 
+
+please install java jdk from here
+
+https://www.tecmint.com/install-java-on-centos-rhel-fedora/  
+
+mention java path in below file
+
+/root/.bash_profile
+
+source  /root/.bash_profile
+   
+echo $JAVA_HOME
+
+java -version
+
+Please install maven by this link
+
+https://www.tecmint.com/install-apache-maven-on-centos-7/  

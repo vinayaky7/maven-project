@@ -1,23 +1,15 @@
 pipeline {
     agent { label 'Linux' }
     tools {
-        maven '/usr/local/src/apache-maven/bin'
-        jdk '/opt/jdk-13/bin'
+        maven '3.5.4'
+        jdk 'jdk13'
+    }
+    environment {
+        MAVEN_HOME = /usr/local/src/apache-maven/
     }
     stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "MAVEN_HOME = ${MAVEN_HOME}"
-                '''
-            }
+        stage(Maven') {
+           sh '${MAVEN_HOME}/bin/mvn clean install'
         }
-
-        stage ('Build') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true clean install' 
-            }
-        }
-    }
+   }
 }

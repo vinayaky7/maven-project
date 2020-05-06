@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                cp -rf /var/lib/jenkins/workspace/mypipeline /tmp/mystorage
             }
         }
         stage('Test') {

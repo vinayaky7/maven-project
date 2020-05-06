@@ -1,12 +1,24 @@
 pipeline {
+    agent { label 'Linux' }
     
-    build(
-        exec_node: 'Linux',
-        scm_tool: 'git',
-        scm_repo: 'andromeda99/maven-project',
-        build_tool: 'mvn',
-        build_args: 'clean install',
-        jdk_version:'1.8.0_242',
-        mvn_version:'Maven_3.5.4'
-    )
+    tools { 
+        maven 'Maven 3.5.4' 
+        jdk 'jdk13' 
+    }
+    
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "MAVEN_HOME = ${MAVEN_HOME}"
+                ''' 
+            }
+        }
+        stage ('Build') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+            }
+        }
+    }
 }

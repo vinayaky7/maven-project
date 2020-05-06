@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Linux' }
+    agent any
     
     tools { 
         maven 'Maven 3.5.4' 
@@ -17,7 +17,7 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                sh 'mvn -Dmaven.test.failure.ignore=true clean install' 
             }
         }
     }

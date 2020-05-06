@@ -1,23 +1,12 @@
 pipeline {
     agent any
-    
-    tools { 
+    tools {
         maven 'Maven 3.5.4' 
-        jdk 'jdk13' 
     }
-    
     stages {
-        stage ('Initialize') {
+        stage('Build') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "MAVEN_HOME = ${MAVEN_HOME}"
-                ''' 
-            }
-        }
-        stage ('Build') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true clean install' 
+                sh 'mvn package'
             }
         }
     }

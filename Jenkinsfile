@@ -10,6 +10,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'pwd'
+                sh 'cp -rf /var/lib/jenkins/workspace/mypipeline/webapp/target /tmp/mystorage'
             }
         }
     }

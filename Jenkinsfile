@@ -1,8 +1,8 @@
 pipeline {
     agent { label 'Linux' }
     tools {
-        maven 'Maven 3.5.4'
-        jdk 'jdk13'
+        maven '/usr/local/src/apache-maven/bin'
+        jdk '/opt/jdk-13/bin'
     }
     stages {
         stage ('Initialize') {

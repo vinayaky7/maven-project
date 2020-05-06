@@ -1,13 +1,11 @@
 pipeline {
-    agent { label 'Linux' }
-    
     environment {
-        MAVEN_HOME = /usr/local/src/apache-maven/
+        MAVEN_HOME = tool('M3')
     }
-    
+
     stages {
         stage(Maven') {
-           sh '${MAVEN_HOME}/bin/mvn clean install'
+           sh '${MAVEN_HOME}/bin/mvn -B verify'
         }
-   }
+    }
 }

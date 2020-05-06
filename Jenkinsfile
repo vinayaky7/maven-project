@@ -1,11 +1,12 @@
 pipeline {
-    environment {
-        MAVEN_HOME = /usr/local/src/apache-maven
-    }
-
-    stages {
-        stage(Maven') {
-           sh '${MAVEN_HOME}/bin/mvn clean install'
-        }
-    }
+    
+    build(
+        exec_node: 'Linux',
+        scm_tool: 'git',
+        scm_repo: 'andromeda99/maven-project',
+        build_tool: 'mvn',
+        build_args: 'clean install',
+        jdk_version:'1.8.0_242',
+        mvn_version:'Maven_3.5.4'
+    )
 }

@@ -6,11 +6,19 @@ pipeline {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
         }
-        stage('Test') {
+        stage('Testing') {
             steps {
                 echo 'Testing..'
                 sh 'pwd'
-                sh 'sudo cp -rf /var/lib/jenkins/workspace/mypipeline/webapp/target /tmp/mystorage'
+                sh 'sudo cp -rf webapp/target /tmp/mystorage'
+            }
+        }
+        stage('Deployment') {
+            steps {
+                echo 'Deployment..'
+                sh 'sudo yum install httpd -y'
+                sh 'sudo systemctl start httpd'
+                sh 'sudo cp -rf webapp /var/www/html'
             }
         }
     }

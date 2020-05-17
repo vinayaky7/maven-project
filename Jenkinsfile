@@ -7,6 +7,7 @@ pipeline {
             git branch: 'master',
                 credentialsId: 'https-git-creds',
                 url: 'https://gitlab.com/andromeda99/maven-project.git'
+            }
         }
         stage('Build') {
             steps {

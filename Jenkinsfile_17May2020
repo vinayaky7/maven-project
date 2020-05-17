@@ -1,5 +1,6 @@
 pipeline {
-    agent any
+    agent {Label 'jenkins-slave'}
+    
     stages {
         stage('Build') {
             steps {

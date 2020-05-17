@@ -1,14 +1,6 @@
 pipeline {
     agent any
     stages {
-        
-        stage('Git Checkout') {
-        steps {
-            git branch: 'master',
-                credentialsId: 'aamirsaras@gmail.com', 'aamir1986'
-                url: 'https://gitlab.com/andromeda99/maven-project.git'
-            }
-        }
         stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'

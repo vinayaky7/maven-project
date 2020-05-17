@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'pwd'
-                sh 'sudo scp -i /root/aws.pem -o -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/mypipeline/webapp ec2-user@172.31.17.107:/tmp/my_storage/'
+                sh 'sudo scp -i /root/aws.pem -o StrictHostKeyChecking=no -r /var/lib/jenkins/workspace/mypipeline/webapp ec2-user@172.31.17.107:/tmp/my_storage/'
             }
         }
         stage('Deployment') {

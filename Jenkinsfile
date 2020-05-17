@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'pwd'
-                sh 'sudo cp -rf webapp/target /tmp/mystorage'
+                sh 'sudo scp -i /root/aws.pem -r /var/lib/jenkins/workspace/mypipeline/webapp ec2-user@172.31.17.107:/tmp/my_storage/'
             }
         }
         stage('Deployment') {

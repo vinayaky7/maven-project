@@ -1,3 +1,4 @@
+#/bin/bash
 
 echo "Scanning in Progess..."
 
@@ -5,21 +6,24 @@ sleep 5
 
 echo "Scanning completed. Please follow below link."
 
-echo "http://13.58.220.102:8080/"
-
 echo "Awaiting Next Stage"
 
 echo "Testing the code"
 
+x=$RANDOM
+y=$RANDOM
+
 sudo docker build -t myweb:v1.0 .
 
-sudo docker run -itd -p 8888:80 -v ${WORKSPACE}/webapp/:/var/www/html myweb:v1.0
+sudo docker run -itd --name webserver$x -p $y:80 -v ${WORKSPACE}/webapp/:/var/www/html myweb:v1.0
 
-#sudo elinks http://172.17.0.2/src/main/webapp/index.jsp
+sudo elinks http://Your_Public_IP:$y/src/main/webapp/index.jsp
 
-#sudo docker stop mywebserver && docker rm mywebserver
+sudo docker stop webserver$x && sudo docker rm webserver$x
 
 echo "Testing was successful...Uploading the  artifacts to Nexus..."
+
+echo "Uploading artifacts to Nexus"
 
 sudo scp -i /root/aws.pem -o StrictHostKeyChecking=no -r ${WORKSPACE}/webapp/target ec2-user@jenkins-testing:/tmp/my_nexus/
 

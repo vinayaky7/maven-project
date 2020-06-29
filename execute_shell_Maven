@@ -1,0 +1,23 @@
+#/bin/bash
+
+echo "Scanning in Progess..."
+
+sleep 5
+
+echo "Scanning completed. Please follow below link."
+
+echo "http://13.58.220.102:8080/"
+
+echo "Awaiting Next Stage"
+
+echo "Testing the code"
+
+sudo scp -i /root/aws.pem -o StrictHostKeyChecking=no -r /var/lib/jenkins/webapp ec2-user@jenkins-testing:/tmp/my_storage/
+
+sudo elinks http://jenkins-testing/webapp/target/webapp/index.jsp
+
+echo "Testing was successful...Uploading the  artifacts to Nexus..."
+
+sudo scp -i /root/aws.pem -o StrictHostKeyChecking=no -r /var/lib/jenkins/webapp/target ec2-user@jenkins-testing:/tmp/my_nexus/
+
+echo "Artifacts uploaded successfully..."

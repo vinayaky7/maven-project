@@ -12,12 +12,10 @@ echo "Awaiting Next Stage"
 
 echo "Testing the code"
 
-sudo scp -i /root/aws.pem -o StrictHostKeyChecking=no -r ${WORKSPACE}/webapp ec2-user@jenkins-testing:/tmp/my_storage/
-
-sudo elinks http://jenkins-testing/webapp/target/webapp/index.jsp
+sudo scp -i id.rsa -o StrictHostKeyChecking=no -r ${WORKSPACE}/webapp root@www.server.radical.com:/var/www/html
 
 echo "Testing was successful...Uploading the  artifacts to Nexus..."
 
-sudo scp -i /root/aws.pem -o StrictHostKeyChecking=no -r /var/lib/jenkins/webapp/target ec2-user@jenkins-testing:/tmp/my_nexus/
+sudo scp -i id.rsa -o StrictHostKeyChecking=no -r ${WORKSPACE}/webapp/target/webapp.war root@www.server.radical.com:/tmp/artifact_storage
 
 echo "Artifacts uploaded successfully..."

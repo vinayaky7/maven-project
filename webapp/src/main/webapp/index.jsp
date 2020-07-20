@@ -7,7 +7,7 @@
 <br />
 <br />
 <br />
-<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate">Testing completed in DEV!!!</h1></marquee>
+<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate">Running from Jenkinsfile on  declaration pipeline...!!!</h1></marquee>
 </body>
 </html>
 

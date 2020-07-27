@@ -19,7 +19,7 @@ pipeline {
                 echo 'Testing..'
                 sh 'ls -la'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/SAN_STORAGE/volumes/my_second_volume/_data/'
-                sh 'docker run -itd --name webserver${BUILD_NUMBER} -p ${BUILD_NUMBER}:80 -v my_second_volume:/var/www/html aamirs/webserver_final_version:v1.0'
+                sh 'sudo docker run -itd --name webserver${BUILD_NUMBER} -p ${BUILD_NUMBER}:80 -v my_second_volume:/var/www/html aamirs/webserver_final_version:v1.0'
                 sh 'sudo sh -x docker.sh'
             }
         }

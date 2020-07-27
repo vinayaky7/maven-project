@@ -1,5 +1,5 @@
-def x = "$RANDOM"
-def y = "$RANDOM"
+def x = "12345"
+def y = "7777"
 pipeline {
     agent {label 'docker'}
     

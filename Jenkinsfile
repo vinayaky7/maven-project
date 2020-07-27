@@ -21,7 +21,7 @@ pipeline {
                 sh 'y=$RANDOM'
                 sh 'pwd'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/SAN_STORAGE/volumes/my_second_volume/_data/'
-                sh 'sudo docker run -itd --name webserver -p 9999:80 -v my_second_volume:/var/www/html aamirs/webserver_final_version:v1.0'
+                sh 'sudo docker run -itd --name webserver${env.BUILD_NUMBER} -p ${env.BUILD_NUMBER}:80 -v my_second_volume:/var/www/html aamirs/webserver_final_version:v1.0'
             }
         }
         stage('Deployment') {

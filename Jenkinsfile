@@ -19,7 +19,7 @@ pipeline {
                 echo 'Testing..'
                 sh 'ls -la'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/SAN_STORAGE/volumes/my_second_volume/_data/'
-                sh 'sudo sh docker.sh'
+                sh 'sudo sh -x docker.sh'
             }
         }
         stage('Deployment') {

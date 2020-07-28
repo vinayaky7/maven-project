@@ -1,12 +1,13 @@
 pipeline {
-    agent {label 'slave01'}
+    agent {label 'docker'}
     
     stages {
         stage('Git Checkout') {
         steps {
-            git branch: 'master',
-                credentialsId: 'gitlab_sshkey',
                 url: 'git@gitlab.com:andromeda99/maven-project.git'
+            git branch: 'dev',
+                credentialsId: 'git-https-creds',
+                url: 'https://gitlab.com/andromeda99/maven-project.git'
             }
         }
         stage('Build') {
@@ -17,16 +18,15 @@ pipeline {
         stage('Testing') {
             steps {
                 echo 'Testing..'
-                sh 'pwd'
-                sh 'sudo scp -i id.rsa -o StrictHostKeyChecking=no -r ${WORKSPACE}/webapp root@www.server.radical.com:/var/www/html'
+                sh 'ls -la'
+                sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/SAN_STORAGE/volumes/my_second_volume/_data/'
+                sh 'sudo docker run -itd --name webserver${BUILD_NUMBER} -p ${BUILD_NUMBER}:80 -v my_second_volume:/var/www/html aamirs/webserver_final_version:v1.0'
+                sh 'sudo sh -x docker.sh'
             }
         }
         stage('Deployment') {
             steps {
                 echo 'Deployment..'
-                sh 'sudo yum install httpd -y'
-                sh 'sudo systemctl start httpd'
-                sh 'sudo cp -rf webapp /var/www/html'
             }
         }
     }

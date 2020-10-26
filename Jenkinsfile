@@ -1,5 +1,5 @@
 pipeline {
-    agent {Label 'slavenode-linux'}
+    agent {Label 'slavenode'}
     
     stages {
         stage('Build') {

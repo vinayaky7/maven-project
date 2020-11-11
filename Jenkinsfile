@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t myweb:v1.0 .'
+                sh 'sudo docker build -t myweb:v1.0 .'
             }
         }
         stage('Testing') {

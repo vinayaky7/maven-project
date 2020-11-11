@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'pwd'
-                sh 'sudo scp -i id.rsa -o StrictHostKeyChecking=no -r ${WORKSPACE}/webapp root@testing-webserver:/var/www/html'
+                sh 'sudo sh execute_shell_with_docker'
             }
         }
         stage('Nexus Upload') {

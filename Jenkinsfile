@@ -24,7 +24,7 @@ pipeline {
                 echo 'Testing..'
                 sh 'ls -la'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/myefs/docker_volume/'
-                sh 'sudo docker run -itd --name webserver${BUILD_NUMBER} -p ${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v1.0'
+                sh 'sudo docker run -itd --network=my_isolated_network --ip=192.168.2.111 --name webserver${BUILD_NUMBER} -p ${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v1.0'
                 
             }
         }

@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Git Checkout') {
         steps {
-            git branch: 'dev',
-                credentialsId: 'git-creds-https',
+            git branch: 'master',
+                credentialsId: 'git-https-creds',
                 url: 'https://gitlab.com/andromeda99/maven-project.git'
             }
         }

@@ -1,10 +1,10 @@
 pipeline {
-    agent {label 'docker'}
+    agent {label 'ansible'}
     
     stages {
         stage('Git Checkout') {
         steps {
-            git branch: 'dev',
+            git branch: 'dev-ansible',
                 credentialsId: 'git-creds-https',
                 url: 'https://gitlab.com/andromeda99/maven-project.git'
             }
@@ -12,6 +12,12 @@ pipeline {
         stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
+            }
+        }
+        stage('Configuring HTTPD Server') {
+            steps {
+                sh 'ansible-playbook ansible/myrole/deployweb.yml'
+                sh 'ansible-playbook ansible/docker.yaml'
             }
         }
         stage('Build Docker Image') {

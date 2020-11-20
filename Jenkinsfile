@@ -16,8 +16,8 @@ pipeline {
         }
         stage('Configuring HTTPD Server') {
             steps {
-                sh 'ansible-playbook ansible/myrole/deployweb.yml'
-                sh 'ansible-playbook ansible/docker.yaml'
+                sh 'sudo ansible-playbook ansible/myrole/deployweb.yml'
+                sh 'sudo ansible-playbook ansible/docker.yaml'
             }
         }
         stage('Build Docker Image') {

@@ -1,0 +1,34 @@
+---
+- name: inline secret variable demonstration
+  hosts: webservers
+  gather_facts: false
+
+  vars:
+    my_secret_var: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          30616361616238653533623234393434383031306562316466346363643638636135323839376365
+          3833666431303635313537383135373731623531376232360a346161396136376363633966646561
+          63353661396565316561383733316436353662326332313733336434316161636437646364643732
+          3663663439613930340a303031616637663763316462383530616466363533346366666366333432
+          6332
+  tasks:
+    - name: print the secure variable
+      debug:
+        msg: "My pass is {{my_secret_var}}"
+
+    - name: print the secure variable
+      debug:
+        var: my_secret_var
+
+
+    - name: Using command to print my_secret
+      command: /usr/bin/echo "My pass is {{my_secret_var}}"
+      register: shell_result
+    - debug:
+        var: shell_result
+
+    - name: Using shell to print my_secret
+      shell: echo "My pass is {{my_secret_var}}"
+      register: shell_output
+    - debug:
+        var: shell_output

@@ -3,6 +3,6 @@
   tasks:
 #  vars: 
 #    base_port: 8888
-    - include_vars: ansible/myrole/vars/name_vars.yml
+    - include_vars: vars/name_vars.yml
   roles: 
     - ansible/myrole

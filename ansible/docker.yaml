@@ -36,7 +36,6 @@
     with_items:
     - docker run -itd  --name=test_machine320"{{ random_number }}" centos
     - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  myweb:v1.0
-    - curl -kv http://3.16.56.59:320"{{ random_number }}"/webapp/target/webapp/index_dev.jsp
     register: shell_result
   - debug:
       var: shell_result
@@ -44,4 +43,4 @@
     shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
     register: shell_result
   - debug:
-      msg: curl -kv http://"{{ shell_result.stdout }}":320"{{ random_number }}"/webapp/target/webapp/index_dev.jsp
+      msg: curl -kv http://{{ shell_result.stdout }}:320{{ random_number }}/webapp/target/webapp/index_dev.jsp

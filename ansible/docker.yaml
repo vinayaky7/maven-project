@@ -1,13 +1,14 @@
 ---
 - name: This sets up a Docker server
   hosts: ansibleclient1
-  remote_user: ec2-user
-  become: true
-  become_method: sudo
   vars:
       vol: /tmp/myefs/docker_volume/
-      random_number: "{{ 100 | random }}"
+
   tasks:
+  - name: set fact here
+    set_fact:
+      random_number: "{{ 100 | random }}"
+    run_once: yes
   - name: Installing Docker
     yum:
       name: docker
@@ -32,6 +33,12 @@
     with_items:
     - docker run -itd  --name=test_machine320"{{ random_number }}" centos
     - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  myweb:v1.0
+    - curl -kv http://3.16.56.59:320"{{ random_number }}"/webapp/target/webapp/index_dev.jsp
     register: shell_result
   - debug:
       var: shell_result
+  - name: Storing value
+    shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
+    register: shell_result
+  - debug:
+      msg: curl -kv http://"{{ shell_result.stdout }}":320"{{ random_number }}"/webapp/target/webapp/index_dev.jsp

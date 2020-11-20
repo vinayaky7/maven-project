@@ -39,7 +39,7 @@
     register: shell_result
   - debug:
       var: shell_result
-  - name: Storing value
+  - name: Testing URL
     shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
     register: shell_result
   - debug:

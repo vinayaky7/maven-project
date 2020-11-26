@@ -28,7 +28,7 @@
     file:
       path: mysnippet{{ random_number }}
       state: directory
-      mode: "u=rwx,g=r,o=r"
+      mode: "u=rwx,g=rx,o=rx"
   - name: Pulling Dockerfile as a snippet
     args:
       chdir: mysnippet{{ random_number }}

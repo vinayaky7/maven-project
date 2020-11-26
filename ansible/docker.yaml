@@ -24,8 +24,12 @@
     service:
       name: docker
       enabled: yes
+  - name: Creating a DIR for Dockefile snippet
+    shell: mkdir mysnippet"{{ random_number }}"
+    register: shell_result
+  - debug:
+      var: shell_result
   - name: Pulling Dockerfile as a snippet
-    command: /usr/bin/mkdir mysnippet"{{ random_number }}"
     args:
       chdir: mysnippet"{{ random_number }}"
     shell: git clone https://gitlab.com/snippets/2041720.git

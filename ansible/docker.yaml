@@ -26,12 +26,12 @@
       enabled: yes
   - name: Creating a DIR for Dockefile snippet
     file:
-      path: mysnippet"{{ random_number }}"
+      path: mysnippet{{ random_number }}
       state: directory
       mode: "u=rwx,g=r,o=r"
   - name: Pulling Dockerfile as a snippet
     args:
-      chdir: mysnippet"{{ random_number }}"
+      chdir: mysnippet{{ random_number }}
     shell: git clone https://gitlab.com/snippets/2041720.git
     register: shell_result
   - debug:

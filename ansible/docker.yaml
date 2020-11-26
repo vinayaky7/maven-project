@@ -25,13 +25,16 @@
       name: docker
       enabled: yes
   - name: Pulling Dockerfile as a snippet
+    command: /usr/bin/mkdir mysnippet"{{ random_number }}"
+    args:
+      chdir: mysnippet"{{ random_number }}"
     shell: git clone https://gitlab.com/snippets/2041720.git
     register: shell_result
   - debug:
       var: shell_result
   - name: Build Docker Image
     args:
-      chdir: 2041720
+      chdir: mysnippet"{{ random_number }}"/2041720
     shell: docker build -t myweb:v1.0 .
     register: shell_result
   - debug:

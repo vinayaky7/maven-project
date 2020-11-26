@@ -14,6 +14,11 @@ pipeline {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
         }
+        stage('Preparing volume for Containers') {
+            steps {
+                sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/myefs/docker_volume/'
+            }
+        }
         stage('Configuring Docker Server for testing') {
             steps {
                 //sh 'ansible-playbook ansible/myrole/deployweb.yml'

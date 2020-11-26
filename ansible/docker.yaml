@@ -38,7 +38,7 @@
       var: shell_result
   - name: Build Docker Image
     args:
-      chdir: mysnippet"{{ random_number }}"/2041720
+      chdir: mysnippet{{ random_number }}/2041720
     shell: docker build -t myweb:v1.0 .
     register: shell_result
   - debug:

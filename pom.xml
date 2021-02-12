@@ -175,6 +175,12 @@
       </dependency>
 
       <dependency>
+        <groupId>axion</groupId>
+        <artifactId>axion</artifactId>
+        <version>1.0-M3-dev</version>
+      </dependency>
+
+      <dependency>
         <groupId>javax.servlet.jsp</groupId>
         <artifactId>jsp-api</artifactId>
         <version>2.2</version>

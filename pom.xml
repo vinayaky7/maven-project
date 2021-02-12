@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example.maven-project</groupId>
+  <groupId>com.hsbc.example.com</groupId>
   <artifactId>maven-project</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -22,8 +22,8 @@
 
   <repositories>
     <repository>
-      <id>maven-snapshots</id>
-      <url>http://3.15.33.5:8081/repository/maven-snapshots/</url>
+      <id>maven-central</id>
+      <url>http://3.15.33.5:8081/repository/maven-central/</url>
     </repository>
   </repositories>
 

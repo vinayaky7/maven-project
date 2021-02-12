@@ -21,11 +21,11 @@
   </modules>
 
   <distributionManagement>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <name>maven-snapshots</name>
-      <url>http://3.15.33.5:8081/repository/maven-snapshots/</url>
-    </snapshotRepository>
+    <site>
+      <id>site-server</id>
+      <name>Test Project Site</name>
+      <url>file:///tmp/maven-project-site</url>
+    </site>
   </distributionManagement>
 
   <build>
@@ -171,8 +171,14 @@
 
       <dependency>
         <groupId>avalon</groupId>
-        <artifactId>avalon-activation</artifactId>
+        <artifactId>avalon</artifactId>
         <version>1.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>jsp-api</artifactId>
+        <version>2.2</version>
       </dependency>
 
       <dependency>

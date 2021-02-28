@@ -6,10 +6,9 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
                     } catch(Exception e) {
-                        echo "Exception received"
-                        echo e.toString()
+                        echo "Exception received" + e
                         } 
                 }
 
@@ -47,3 +46,4 @@ pipeline {
         }
     }
 }
+

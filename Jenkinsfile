@@ -2,22 +2,17 @@ pipeline {
     agent {label 'linux'}
     
     stages {
-        stage('Git Checkout') {
+        stage('Build') {
             steps {
                 script {
                     try {
-                        git branch: 'radical-jan-2021',
-                            credentialsId: 'git-https-creds',
-                            url: 'https://gitlab.com/andromeda99/maven-project.git'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
                     } catch(Exception e) {
-                        echo "Excetion received" + e
-                        }
+                        echo "Exception received"
+                        echo e
+                        } 
                 }
-            }
-        }
-        stage('Build') {
-            steps {
-                sh '/usr/local/src/apache-maven/bin/mvn clean install'
+
             }
         }
         stage('Scanning') {
@@ -52,3 +47,4 @@ pipeline {
         }
     }
 }
+

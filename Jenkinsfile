@@ -9,7 +9,7 @@ pipeline {
                         sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
                     } catch(Exception e) {
                         echo "Exception received"
-                        echo e
+                        echo e.toString()
                         } 
                 }
 
@@ -47,4 +47,3 @@ pipeline {
         }
     }
 }
-

@@ -1,12 +1,18 @@
 pipeline {
-    agent {label 'docker'}
+    agent {label 'linux'}
     
     stages {
         stage('Git Checkout') {
-        steps {
-            git branch: 'master',
-                credentialsId: 'git-creds-https',
-                url: 'https://gitlab.com/andromeda99/maven-project.git'
+            steps {
+                script {
+                    try {
+                        git branch: 'radical-jan-2021',
+                            credentialsId: 'git-https-creds',
+                            url: 'https://gitlab.com/andromeda99/maven-project.git'
+                    } catch(Exception e) {
+                        echo "Excetion received" + e
+                        }
+                }
             }
         }
         stage('Build') {
@@ -14,25 +20,34 @@ pipeline {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
         }
-        stage('Build Docker Image') {
+        stage('Scanning') {
             steps {
-                sh 'sudo docker build -t myweb:v1.0 .'
+                echo 'Scanning in progress.'
+                
             }
         }
         stage('Testing') {
             steps {
                 echo 'Testing..'
-                sh 'ls -la'
-                sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/myefs/docker_volume/'
-                sh 'sudo docker run -itd  --network=mynetwork --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v1.0'
-                sh 'sudo docker ps'
-                sh 'curl -kv http://3.19.142.109:300${BUILD_NUMBER}/webapp/target/webapp/index_dev.jsp'
-                
+                sh 'pwd'
+                sh 'sudo sh testing.sh'
+            }
+        }
+        stage('Nexus Upload') {
+            steps {
+                echo 'Uploading artifact to Nexus.'
             }
         }
         stage('Deployment') {
             steps {
                 echo 'Deployment..'
+                sh 'sudo yum install httpd -y'
+                sh 'sudo yum install elinks -y'
+                sh 'sudo systemctl start httpd'
+                sh 'sudo systemctl enable httpd'
+                sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /var/www/html'
+                sh 'sudo elinks http://34.221.125.136/webapp'
+
             }
         }
     }

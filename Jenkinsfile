@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Preparing volume for Containers') {
             steps {
-                sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/myefs/docker_volume/'
+                sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
         }
         stage('Configuring Docker Server for testing') {

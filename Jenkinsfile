@@ -23,10 +23,10 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh 'ls -la'
-                sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/myefs/docker_volume/'
+                sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
                 sh 'sudo docker run -itd  --network=mynetwork --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v1.0'
                 sh 'sudo docker ps'
-                sh 'curl -kv http://3.19.142.109:300${BUILD_NUMBER}/webapp/target/webapp/index_dev.jsp'
+                sh 'curl -kv http://3.19.142.109:300${BUILD_NUMBER}/webapp/index_dev.jsp'
                 
             }
         }

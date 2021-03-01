@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'ansible'}
+    agent {label 'linux'}
     
     stages {
         stage('Git Checkout') {

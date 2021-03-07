@@ -13,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
 		sh 'echo ${image_name}'
-                sh 'sudo docker build -t ${image_name}:v${image_ver} .'
+                sh 'sudo docker build -t image_name:vimage_ver .'
             }
         }
         stage('Testing') {
@@ -21,10 +21,10 @@ pipeline {
                 echo 'Testing..'
                 sh 'ls -la'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
-                sh 'sudo docker run -itd  --network=mynetwork --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ ${image_name}:v${image_ver}'
+                sh 'sudo docker run -itd  --network=mynetwork --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ image_name:vimage_ver'
                 sh 'sudo docker ps'
-                sh 'curl -kv http://${IP}:${BUILD_NUMBER}/webapp/index_dev.jsp'
-                sh 'elinks http://${IP}:${BUILD_NUMBER}/webapp/`'
+                sh 'curl -kv http://IP:${BUILD_NUMBER}/webapp/index_dev.jsp'
+                sh 'elinks http://IP:${BUILD_NUMBER}/webapp/`'
             }
         }
         stage('Deployment') {

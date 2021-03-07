@@ -12,6 +12,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
+		sh 'echo ${image_name}'
                 sh 'sudo docker build -t ${image_name}:v${image_ver} .'
             }
         }

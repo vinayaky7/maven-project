@@ -1,3 +1,6 @@
+def image_name="myweb"
+def image_ver="3.0"
+def IP="34.221.125.136"
 pipeline {
     agent {label 'docker'}
     
@@ -16,7 +19,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'sudo docker build -t myweb:v1.0 .'
+                sh 'sudo docker build -t ${image_name}:v${image_ver} .'
             }
         }
         stage('Testing') {
@@ -24,10 +27,10 @@ pipeline {
                 echo 'Testing..'
                 sh 'ls -la'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
-                sh 'sudo docker run -itd  --network=mynetwork --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v1.0'
+                sh 'sudo docker run -itd  --network=mynetwork --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ ${image_name}:v${image_ver}'
                 sh 'sudo docker ps'
-                sh 'curl -kv http://3.19.142.109:300${BUILD_NUMBER}/webapp/index_dev.jsp'
-                
+                sh 'curl -kv http://${IP}:${BUILD_NUMBER}/webapp/index_dev.jsp'
+                sh 'elinks http://${IP}:${BUILD_NUMBER}/webapp/`'
             }
         }
         stage('Deployment') {

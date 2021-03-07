@@ -2,16 +2,9 @@ def image_name="myweb"
 def image_ver="3.0"
 def IP="34.221.125.136"
 pipeline {
-    agent {label 'docker'}
+    agent {label 'linux'}
     
     stages {
-        stage('Git Checkout') {
-        steps {
-            git branch: 'dev',
-                credentialsId: 'git-creds-https',
-                url: 'https://gitlab.com/andromeda99/maven-project.git'
-            }
-        }
         stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'

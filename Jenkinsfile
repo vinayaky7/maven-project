@@ -23,8 +23,8 @@ pipeline {
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
                 sh 'sudo docker run -itd  --network=my_network --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v3.0'
                 sh 'sudo docker ps'
-                sh 'curl -kv http://34.221.125.136:${BUILD_NUMBER}/webapp/index_dev.jsp'
-                sh 'elinks http://34.221.125.136:${BUILD_NUMBER}/webapp/'
+                sh 'curl -kv http://34.221.125.136:300${BUILD_NUMBER}/webapp/index_dev.jsp'
+                sh 'elinks http://34.221.125.136:300${BUILD_NUMBER}/webapp/'
             }
         }
         stage('Deployment') {

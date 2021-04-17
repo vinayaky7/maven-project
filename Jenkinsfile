@@ -1,12 +1,24 @@
 pipeline {
     //agent {label 'linux'}
-    agent any
-    
+    agent {
+        node {
+            label 'master'
+            customWorkspace '/tmp/myefs/myworkspace/my_scripted_pipeline'
+        }
+    }
     stages {
+        stage('Git Checkout') {
+        steps {
+            git branch: 'dev-local-deploy',
+                credentialsId: 'git-https-creds',
+                url: 'https://gitlab.com/andromeda99/maven-project.git'
+            }
+        }
         stage('Build') {
             steps {
                 script {
                     try {
+                        echo "${my_env}"
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
                     } catch(Exception e) {
                         echo "Exception received" + e
@@ -41,12 +53,9 @@ pipeline {
                 sh 'sudo systemctl start httpd'
                 sh 'sudo systemctl enable httpd'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /var/www/html'
-                sh 'sudo curl -kv  http://54.146.82.16/webapp'
+                sh 'sudo curl -kv  http://54.146.82.16//webapp'
 
             }
         }
     }
 }
-
-
-

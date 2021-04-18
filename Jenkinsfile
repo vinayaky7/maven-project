@@ -2,7 +2,7 @@ pipeline {
     //agent {label 'linux'}
     agent {
         node {
-            label 'master'
+            label 'linux'
             customWorkspace '/tmp/myefs/myworkspace/my_scripted_pipeline'
         }
     }

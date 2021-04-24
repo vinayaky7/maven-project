@@ -54,7 +54,7 @@ pipeline {
                 sh 'sudo systemctl enable httpd'
                 sh 'sudo rm -rf /var/www/html/*'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /var/www/html'
-                sh 'sudo elinks  http://54.146.82.16/webapp/target/webapp/'
+                sh 'sudo elinks  http://34.201.161.235/webapp/target/webapp/'
 
             }
         }

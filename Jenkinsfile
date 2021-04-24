@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        echo "${my_env}"
+                        //echo "${my_env}"
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
                     } catch(Exception e) {
                         echo "Exception received" + e

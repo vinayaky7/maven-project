@@ -52,6 +52,7 @@ pipeline {
                 sh 'sudo yum install elinks -y'
                 sh 'sudo systemctl start httpd'
                 sh 'sudo systemctl enable httpd'
+                sh 'sudo rm -rf /var/www/html/*'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /var/www/html'
                 sh 'sudo elinks  http://54.146.82.16/webapp/target/webapp/'
 

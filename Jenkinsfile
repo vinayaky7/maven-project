@@ -3,7 +3,7 @@ pipeline {
     agent {
         node {
             label 'linux'
-            customWorkspace '/tmp/myefs/myworkspace/my_scripted_pipeline'
+            //customWorkspace '/tmp/myefs/myworkspace/my_scripted_pipeline'
         }
     }
     stages {

@@ -13,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
 		sh 'echo ${image_name}'
-                sh 'sudo docker build -t myweb:v3.0 .'
+                sh "sudo docker build -t $image_name:image_ver ."
             }
         }
         stage('Testing') {
@@ -23,7 +23,7 @@ pipeline {
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
                 sh 'sudo docker run -itd  --network=my_network --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v3.0'
                 sh 'sudo docker ps'
-                sh 'curl -kv http://34.201.161.235:300${BUILD_NUMBER}/webapp/index_dev.jsp'
+                sh "curl -kv http://$IP:300${BUILD_NUMBER}/webapp/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/webapp/"
             }
         }

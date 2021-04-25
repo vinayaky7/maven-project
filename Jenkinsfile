@@ -1,6 +1,6 @@
 def image_name="myweb"
 def image_ver="3.0"
-def IP="34.221.125.136"
+def IP="34.201.161.235"
 pipeline {
     agent {label 'linux'}
     
@@ -24,7 +24,7 @@ pipeline {
                 sh 'sudo docker run -itd  --network=my_network --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v3.0'
                 sh 'sudo docker ps'
                 sh 'curl -kv http://34.201.161.235:300${BUILD_NUMBER}/webapp/index_dev.jsp'
-                sh 'elinks http://34.201.161.235:300${BUILD_NUMBER}/webapp/'
+                sh "elinks http://$IP:300${BUILD_NUMBER}/webapp/"
             }
         }
         stage('Deployment') {

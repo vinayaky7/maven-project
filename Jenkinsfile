@@ -1,5 +1,5 @@
 def image_name="myweb"
-def image_ver="3.0"
+def image_version="3.0"
 def IP="34.201.161.235"
 pipeline {
     agent {label 'linux'}
@@ -13,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
 		sh 'echo ${image_name}'
-                sh "sudo docker build -t $image_name:image_ver ."
+                sh "sudo docker build -t $image_name:$image_version ."
             }
         }
         stage('Testing') {

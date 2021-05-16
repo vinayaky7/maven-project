@@ -4,7 +4,7 @@
 
 ### Please use correct command in the user_data_ansible_client.txt file to mount EFS volume.
 
-### Please add AWS Access key & Secret Access Key in Jenkins Credentials using AWS Ec2 Plugin. The credentials are added in the Jenkinsfile
+### Please add AWS Access key & Secret Access Key in Jenkins Credentials using AWS EC2 Plugin. The credentials are added in the Jenkinsfile as a label "myawscreds". So make sure you add credentials in Jenkins as a same Label.
 
 ### Please update /etc/ansible/hosts file to disable host key verification for Testing/UAT/Dev VM to avoid discrepancy in the playbooks. Please follow below sample line which you must add against every Host you need to disable host key verification.
 

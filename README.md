@@ -10,5 +10,7 @@
 
 ### my-dev-box ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
+#### Please update aws ec2 run-instances command with correct arguments before running it to avoid errors. We have used a specific IP of the testvm-dev "172.31.28.91" whose entry already exist in the /etc/ansible/hosts file & /etc/hosts file of the Ansible Master which is our Jenkins-Slave. Please update the IP as per your VPC & Subnet.
+
 
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+#Below ssh public key belongs to jenkins user on Jenkins Slave Node which will ssh to client machine & will be be pasted in /home/ec2-user/.ssh/authorized_keys file on the client
 
 hostnamectl set-hostname my-dev-box
 

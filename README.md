@@ -6,9 +6,20 @@
 
 #### Please add AWS Access key & Secret Access Key in Jenkins Credentials using AWS EC2 Plugin. The credentials are added in the Jenkinsfile as a label "myawscreds". So make sure you add credentials in Jenkins as a same Label.
 
-#### Please update /etc/ansible/hosts file to disable host key verification for Testing/UAT/Dev VM to avoid discrepancy in the playbooks. Please follow below sample line which you must add against every Host you need to disable host key verification.
+#### Please update /etc/ansible/hosts & /etc/ansible/ansible.cfg file to disable host key verification for Testing/UAT/Dev VM to avoid discrepancy in the playbooks. Please follow below sample line which you must add in /etc/ansible/host against every Host you need to disable host key verification.
+
+/etc/ansible/hosts
 
 ### my-dev-box ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+/etc/ansible/ansible.cfg
+
+[defaults]
+
+log_path = ./ansible.log
+
+host_key_checking = False
+
 
 #### Please update aws ec2 run-instances command with correct arguments before running it to avoid errors. We have used a specific IP of the testvm-dev "172.31.28.91" whose entry already exist in the /etc/ansible/hosts file & /etc/hosts file of the Ansible Master which is our Jenkins-Slave. Please update the IP as per your VPC & Subnet. Please follow below sample files.
 

@@ -20,7 +20,7 @@
 
 172.31.62.73 ansibleclient1
 
-172.31.28.91  my-dev-box
+172.31.28.91  testvm-dev
 
 [root@jenkins-slave ~]# cat /etc/ansible/hosts
 
@@ -30,7 +30,7 @@ Ex 2: A collection of hosts belonging to the 'webservers' group
 
 ansibleclient1
 
-my-dev-box ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+testvm-dev ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 alpha.example.org
 

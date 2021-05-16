@@ -16,6 +16,10 @@
     yum:
       name: docker
       state: present
+  - name: Installing Git
+    yum:
+      name: git
+      state: present
   - name: Start Docker Service
     service:
       name: docker

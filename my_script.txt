@@ -1,0 +1,9 @@
+#!/bin/bash
+
+hostnamectl set-hostname my-dev-box
+
+mkdir /tmp/myefs
+
+mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-a4617111.efs.us-east-1.amazonaws.com:/ /tmp/myefs
+
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCjlQB0gmw1wn8D/ZIVbRLaJs19mqUKZuqPr6Ny+8iuCkADEElwzeBxXZbCjUaIZ3IWJTWJ1xzS5DisSGuFj2NYXixP3xSS4Tge0+Tzwwobwd15Zf3xMkdBUUGhkVTMytcLoR4KzvDRU+m0vhczulNyT08jblSVsI2El1WqNjL7PAGjTfK1sH6kT3Xrp62ZFJQoxruIl8edn1G4C7MXsW5IAbXmYW4jt9coL7ImBwquJ6eetf7U4i5DxDgaSUoTbfywC64R23+2XlHPGu1otGlW8Y7Y6neRqDu7pG/BTI3qso2ovkzR5EMjsaUiEY7owc+9dQBm1fkiedCyGJx+60Gv Jenkins agent key" >> /home/ec2-user/.ssh/authorized_keys

@@ -1,3 +1,5 @@
+## Please follow below steps to use aws cli command line utility on jenkins infra
+
 #### Please find user_data_ansible_client.txt file in this branch for user data & then run the aws cli command to launch the instance accordingly. The user data contains informations such setting Hostname, Mounting EFS volume, Copying Jenkins-Master/Slave's public key on clients /home/ec2-user/.ssh/authorized_keys file to initiate passowordless authentication between Ansible Master & the client. 
 
 #### Please make sure to use the same Hostname in Ansible Playbook as mentioned in the user_data_ansible_client.txt file.

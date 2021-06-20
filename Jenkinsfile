@@ -1,6 +1,6 @@
 def image_name="myweb"
-def image_version="3.0"
-def IP="34.230.87.151"
+def image_version="2.0"
+def IP="54.161.207.156"
 pipeline {
     agent {label 'linux'}
     
@@ -21,7 +21,7 @@ pipeline {
                 echo 'Testing..'
                 sh 'ls -la'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
-                sh 'sudo docker run -itd  --network=my_network --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:3.0'
+                sh 'sudo docker run -itd  --network=my_network --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:2.0'
                 sh 'sudo docker ps'
                 sh "curl -kv http://$IP:300${BUILD_NUMBER}/webapp/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/webapp/"

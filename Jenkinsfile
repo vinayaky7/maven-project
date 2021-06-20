@@ -53,7 +53,7 @@ pipeline {
                 sh 'sudo systemctl start httpd'
                 sh 'sudo systemctl enable httpd'
                 sh 'sudo rm -rf /var/www/html/*'
-                sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /var/www/html'
+                sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
                 sh 'sudo elinks  http://54.161.207.156/webapp/'
 
             }

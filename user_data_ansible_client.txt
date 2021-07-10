@@ -5,6 +5,6 @@ hostnamectl set-hostname testvm-dev
 
 mkdir /tmp/myefs
 
-mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-a4617111.efs.us-east-1.amazonaws.com:/ /tmp/myefs
+mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-8464da30.efs.us-east-1.amazonaws.com:/ /tmp/myefs
 
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCjlQB0gmw1wn8D/ZIVbRLaJs19mqUKZuqPr6Ny+8iuCkADEElwzeBxXZbCjUaIZ3IWJTWJ1xzS5DisSGuFj2NYXixP3xSS4Tge0+Tzwwobwd15Zf3xMkdBUUGhkVTMytcLoR4KzvDRU+m0vhczulNyT08jblSVsI2El1WqNjL7PAGjTfK1sH6kT3Xrp62ZFJQoxruIl8edn1G4C7MXsW5IAbXmYW4jt9coL7ImBwquJ6eetf7U4i5DxDgaSUoTbfywC64R23+2XlHPGu1otGlW8Y7Y6neRqDu7pG/BTI3qso2ovkzR5EMjsaUiEY7owc+9dQBm1fkiedCyGJx+60Gv Jenkins agent key" >> /home/ec2-user/.ssh/authorized_keys
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDB+4/DYRHzt4yqgZs5/MfOoiXMFMqFQpDn8fPKI8xlnlWN21ZwI0TfVvvImmhjQaA9QdjOOrBAM73AJFcAfhJed3HVG+fQzwesOLYTL4je3uRL58/1BMsG/7VTdvGCpLJ1lU7OaJ2NDkPzKJJBDdn7IzFpNUbCWYjqnJhxQKiNCow9W8/dBehWdc0PT4l4xW5FJQH+UkHMN7n45sDlQZG1zB8KRgJUrMJ6CxousegmfgGD0FtXizczA4vOELR48kTlqYze2lyy4bdqgrEvqsJyEH5ZcBJhbJjlG5+heqSC393u5m5mjY/Cysh9JS3nYU9oEB4S7MA06gIpfOjVRgz/ Jenkins agent key" >> /home/ec2-user/.ssh/authorized_keys

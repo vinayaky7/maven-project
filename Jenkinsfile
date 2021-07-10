@@ -31,7 +31,7 @@ pipeline {
                     sh "pwd"
                     sh 'ls -la'
                     sh 'aws configure set region us-east-1'
-                    def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.88.111 ")
+                    def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.89.55 ")
                         
                         //println(mycode.getClass())
                         def key1 = mycode.toString()
@@ -40,16 +40,16 @@ pipeline {
                         
                             echo "Test VM already exist"
 
-                            sh 'aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.88.111'
+                            sh 'aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.89.55'
                             
                         }
                             else {
 
                                 echo "VM does not exist. Launching it now..."
                                 //sh 'ssh-keygen -R my-dev-box'
-                                sh 'aws ec2 run-instances  --image-id ami-0d5eff06f840b45e9 --count 1 --instance-type t2.micro --key-name devops_weekend_may_2021 --private-ip-address 172.31.88.111 --security-group-ids mysg --user-data file://user_data_ansible_client.txt'
+                                sh 'aws ec2 run-instances  --image-id ami-0d5eff06f840b45e9 --count 1 --instance-type t2.micro --key-name devops_weekend_may_2021 --private-ip-address 172.31.89.55 --security-group-ids mysg --user-data file://user_data_ansible_client.txt'
 
-                                sh 'aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.88.111'
+                                sh 'aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.89.55'
                                 
                                 sh 'sleep 60'
                                 

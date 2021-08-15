@@ -3,7 +3,7 @@ pipeline {
     agent {
         node {
             label 'linux'
-            //customWorkspace '/tmp/myefs/myworkspace/my_scripted_pipeline'
+            customWorkspace '/tmp/myefs/myworkspace/my_declarative_pipeline'
         }
     }
     stages {
@@ -54,7 +54,9 @@ pipeline {
                 sh 'sudo systemctl enable httpd'
                 sh 'sudo rm -rf /var/www/html/*'
                 sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
-                sh 'sudo elinks  http://54.161.207.156/webapp/'
+                sh 'sudo elinks  http://34.217.96.90/webapp/'
+                sh 'sudo elinks  http://34.217.96.90/webapp/index_dev.jsp'
+                sh 'sudo curl -kv http://34.217.96.90/webapp/index_dev.jsp'
 
             }
         }

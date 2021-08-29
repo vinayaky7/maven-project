@@ -1,6 +1,6 @@
 def image_name="myweb"
 def image_version="2.0"
-def IP="54.161.207.156"
+def IP="34.217.96.90"
 pipeline {
     agent {label 'linux'}
     

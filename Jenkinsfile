@@ -52,7 +52,7 @@ pipeline {
                                 echo "VM does not exist. Launching it now..."
                                 //sh 'ssh-keygen -R my-dev-box'
 
-                                sh 'aws ec2 run-instances  --image-id ami-083ac7c7ecf9bb9b0 --count 1 --instance-type t2.micro --key-name devops_july_12pm_oregon --private-ip-address 172.31.16.111 --security-group-ids sg-02d2833b9ac0fb5a5 --subnet-id subnet-09b7ce28  --user-data file://user_data_ansible_client.txt'
+                                sh 'aws ec2 run-instances  --image-id ami-083ac7c7ecf9bb9b0 --count 1 --instance-type t2.micro --key-name devops_july_12pm_oregon --private-ip-address 172.31.16.111 --security-group-ids sg-02d2833b9ac0fb5a5 --subnet-id subnet-423fac3a  --user-data file://user_data_ansible_client.txt'
 
                                 sh 'aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.16.111'
 

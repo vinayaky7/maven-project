@@ -5,6 +5,6 @@ hostnamectl set-hostname testvm-dev
 
 mkdir /tmp/myefs
 
-mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-6668b51d.efs.us-east-2.amazonaws.com:/ /tmp/myefs
+mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-44f10f42.efs.us-west-2.amazonaws.com:/ /tmp/myefs
 
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDd/H2lyR1MlITc7WxS8vRMfstsB23zEBXb3gPNJRR9bSCPXUlCz0qTLAJWCvI0284ANZdDAYsWBUTELg3TR2pWVAjChQ7338XFHqKBu4gm6+jeIgUi6TVOABr2gKiBtv3a9S6lLeqlIa++P/rGDTLWxOB4j7KuwE6qwrfkfBLwMRTzKx9M6p0gWGCeXs7+GxENHGv0Pe6Mg89+yO/BghN12T9LPWvYTUQcgmhXw4Ckux3Qozml2gRrnB+Pp/K/Hu3gU2glq6No/HcygHARBWY3cbxPDqWNiP3c28Ls0TNIijvfPvVU5NPsRDjhCQShDJa5w+7SN1hagneDwp+NYqW/ Jenkins agent key" >> /home/ec2-user/.ssh/authorized_keys

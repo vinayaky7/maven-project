@@ -1,7 +1,7 @@
 FROM centos
 MAINTAINER "Aamir M. Shaikh"
 RUN yum install httpd -y
-RUN  yum install git -y && yum install java -y && yum install unzip -y && yum install elinks -y
+RUN  yum install git -y && yum install java -y && yum install unzip -y
 COPY testing.sh /var/www/html
 COPY /webapp/target/webapp.war /var/www/html
 WORKDIR /var/www/html

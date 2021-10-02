@@ -1,9 +1,9 @@
 FROM centos
 MAINTAINER "Aamir M. Shaikh"
 RUN yum install httpd -y
-RUN  yum install git -y
+RUN  yum install -y git \ java\ elinks 
 COPY testing.sh /var/www/html
-#COPY . /var/www/html
+COPY /webapp/target/webapp.war /var/www/html
 WORKDIR /var/www/html
 RUN touch index.php
 RUN echo "Hello Radical" >> /var/www/html/index.php

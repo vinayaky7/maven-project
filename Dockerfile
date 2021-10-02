@@ -1,7 +1,13 @@
 FROM centos
 MAINTAINER "Aamir M. Shaikh"
 RUN yum install httpd -y
-RUN  yum install -y git \ java\ elinks 
+RUN  yum install -y \
+    git \
+    python-yaml \
+    python-jinja2 \
+    python-pycurl \
+    elinks \
+    java 
 COPY testing.sh /var/www/html
 COPY /webapp/target/webapp.war /var/www/html
 WORKDIR /var/www/html

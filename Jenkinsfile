@@ -28,6 +28,7 @@ pipeline {
                 sh 'sudo docker ps'
                 sh 'sudo docker images'
                 sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
+                sh "elinks http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index.php"
         

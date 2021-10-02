@@ -4,7 +4,7 @@ RUN yum install httpd -y
 RUN  yum install -y \
     git \
     elinks \
-    java 
+    unzip 
 COPY testing.sh /var/www/html
 COPY /webapp/target/webapp.war /var/www/html
 WORKDIR /var/www/html

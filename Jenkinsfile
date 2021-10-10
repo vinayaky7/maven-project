@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sh "pwd"
                     sh 'ls -la'
-                    sh 'aws configure set region us-west-2'
+                    sh 'aws configure set region us-east-2'
 
                     def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.41.209 ")
 

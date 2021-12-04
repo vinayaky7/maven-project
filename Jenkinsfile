@@ -31,6 +31,9 @@ pipeline {
                         echo "${test1}"
                         echo "${arr}"
                         echo "${hahahah}"
+                        for (int i = 0; i < arr.size(); i++) {
+                            sh "echo Hello ${arr[i]}"
+                        }
 
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
                     } catch(Exception e) {

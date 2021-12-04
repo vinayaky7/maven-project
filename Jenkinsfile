@@ -1,3 +1,4 @@
+
 pipeline {
     //agent {label 'linux'}
     agent {
@@ -6,6 +7,13 @@ pipeline {
             customWorkspace '/tmp/myefs/myworkspace/workspace/declarative_pipeline'
         }
     }
+
+    environment {
+    TEST = "radical"
+    arr = "[aamir, radical, jordan]"
+    hahahah = "Webhook created from pipline"
+    }
+
     stages {
         stage('Git Checkout') {
         steps {
@@ -18,7 +26,12 @@ pipeline {
             steps {
                 script {
                     try {
-                        //echo "${my_env}"
+                        def test1 = "radical1"
+                        echo "${TEST}"
+                        echo "${test1}"
+                        echo "${arr}"
+                        echo "${hahahah}"
+
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
                     } catch(Exception e) {
                         echo "Exception received" + e

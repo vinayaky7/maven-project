@@ -1,4 +1,3 @@
-
 pipeline {
     //agent {label 'linux'}
     agent {
@@ -71,9 +70,9 @@ pipeline {
                 sh 'sudo systemctl enable httpd'
                 sh 'sudo rm -rf /var/www/html/*'
                 sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
-                sh 'sudo elinks  http://13.59.29.181/webapp/'
-                sh 'sudo elinks  http://13.59.29.181/webapp/index_dev.jsp'
-                sh 'sudo curl -kv http://13.59.29.181/webapp/index_dev.jsp'
+                sh 'sudo elinks  http://18.218.9.82/webapp/'
+                sh 'sudo elinks  http://18.218.9.82/webapp/index_dev.jsp'
+                sh 'sudo curl -kv http://18.218.9.82/webapp/index_dev.jsp'
 
             }
         }

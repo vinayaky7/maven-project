@@ -17,6 +17,11 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
   </properties>
 
+  <repository>
+      <id>maven-central</id>
+      <url>http://18.221.20.95:8081/repository/maven-central/</url>
+ </repository>
+
   <modules>
     <module>webapp</module>
   </modules>
@@ -211,9 +216,6 @@
     <maven>3.0.3</maven>
   </prerequisites>
 
-  <repository>
-      <id>maven-central</id>
-      <url>http://18.221.20.95:8081/repository/maven-central/</url>
-</repository>
+
 
 </project>

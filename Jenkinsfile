@@ -1,8 +1,11 @@
-def image_name="myweb"
-def image_version="1.0"
-def IP="18.218.9.82"
 pipeline {
     agent {label 'linux'}
+
+    environment {
+        def image_name="myweb"
+        def image_version="1.0"
+        def IP="18.218.9.82"
+    }
     
     stages {
         stage('Build') {

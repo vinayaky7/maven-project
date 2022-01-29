@@ -69,9 +69,9 @@ pipeline {
                     sh 'sudo systemctl enable httpd'
                     sh 'sudo rm -rf /var/www/html/*'
                     sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
-                    sh 'sudo elinks  http://{Node_IP}/webapp/'
-                    sh 'sudo elinks  http://{Node_IP}2/webapp/index_dev.jsp'
-                    sh 'sudo curl -kv http://{Node_IP}/webapp/index_dev.jsp'
+                    sh 'sudo elinks  http://${Node_IP}/webapp/'
+                    sh 'sudo elinks  http://${Node_IP}/webapp/index_dev.jsp'
+                    sh 'sudo curl -kv http://${Node_IP}/webapp/index_dev.jsp'
                 }
 
             }

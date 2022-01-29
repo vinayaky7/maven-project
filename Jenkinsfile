@@ -61,18 +61,19 @@ pipeline {
         }
         stage('Deployment') {
             steps {
-                echo 'Deployment..'
-                sh 'sudo yum install httpd -y'
-                sh 'sudo yum install elinks -y'
-                sh 'sudo systemctl start httpd'
-                sh 'sudo systemctl enable httpd'
-                sh 'sudo rm -rf /var/www/html/*'
-                sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
-                sh 'host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}''
-                sh 'Node_IP=`host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'`'
-                sh 'sudo elinks  http://{Node_IP}/webapp/'
-                sh 'sudo elinks  http://{Node_IP}2/webapp/index_dev.jsp'
-                sh 'sudo curl -kv http://{Node_IP}/webapp/index_dev.jsp'
+                script {
+                    echo 'Deployment..'
+                    sh 'sudo yum install httpd -y'
+                    sh 'sudo yum install elinks -y'
+                    sh 'sudo systemctl start httpd'
+                    sh 'sudo systemctl enable httpd'
+                    sh 'sudo rm -rf /var/www/html/*'
+                    sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
+                    def Node_IP = sh returnStdout: true, script: 'host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}''
+                    sh 'sudo elinks  http://{Node_IP}/webapp/'
+                    sh 'sudo elinks  http://{Node_IP}2/webapp/index_dev.jsp'
+                    sh 'sudo curl -kv http://{Node_IP}/webapp/index_dev.jsp'
+                }
 
             }
         }

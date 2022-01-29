@@ -20,6 +20,9 @@ echo "export PATH=${MAVEN_HOME}/bin:${PATH}" >> /root/.bashrc
 cd /root
 bash && source /root/.bashrc 
 
+#Create EFS Dir
+mkdir /tmp/myefs
+
 
 
 

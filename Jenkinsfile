@@ -4,7 +4,7 @@ pipeline {
     environment {
         def image_name="myweb"
         def image_version="1.0"
-        def IP="18.218.9.82"
+        def IP="3.141.15.51"
     }
     
     stages {

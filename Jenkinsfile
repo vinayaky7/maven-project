@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-    Node_IP = ""
+    Node_IP = "3.141.15.51"
     TEST = "radical"
     arr = "[aamir, radical, jordan]"
     hahahah = "Webhook created from pipline"
@@ -69,7 +69,6 @@ pipeline {
                     sh 'sudo systemctl enable httpd'
                     sh 'sudo rm -rf /var/www/html/*'
                     sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
-                    def Node_IP = sh returnStdout: true, script: "host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'"
                     sh 'sudo elinks  http://{Node_IP}/webapp/'
                     sh 'sudo elinks  http://{Node_IP}2/webapp/index_dev.jsp'
                     sh 'sudo curl -kv http://{Node_IP}/webapp/index_dev.jsp'

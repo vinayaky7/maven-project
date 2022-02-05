@@ -29,7 +29,7 @@ log_path = ./ansible.log
 host_key_checking = False
 
 
-#### Please update aws ec2 run-instances command with correct arguments before running it to avoid errors. We have used a specific IP of the testvm-dev "172.31.28.91" whose entry already exist in the /etc/ansible/hosts file & /etc/hosts file of the Ansible Master which is our Jenkins-Slave. Please update the IP as per your VPC & Subnet. Please follow below sample files.  
+#### Please update aws ec2 run-instances command with correct arguments before running it to avoid errors. We have used a specific IP of the testvm-dev "172.31.32.111" whose entry already exist in the /etc/ansible/hosts file & /etc/hosts file of the Ansible Master which is our Jenkins-Slave. Please update the IP as per your VPC & Subnet. Please follow below sample files.  
 
 #### Please use below link to get proper image id for your region. Image ID's are based on speciic regions.
 
@@ -43,7 +43,7 @@ https://aws.amazon.com/amazon-linux-ami/
 
 172.31.62.73 ansibleclient1
 
-172.31.28.91  testvm-dev
+172.31.32.111  testvm-dev
 
 [root@jenkins-slave ~]# cat /etc/ansible/hosts
 

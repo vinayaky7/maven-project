@@ -8,7 +8,7 @@
 <br />
 <br />
 <h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate">CI Completed!!!</h1></marquee>
-<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate">Testing on slave node!!!</h1></marquee>
+<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate">Testing CD on slave node!!!</h1></marquee>
 </body>
 </html>
 

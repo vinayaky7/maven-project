@@ -1,3 +1,4 @@
+/* groovylint-disable CompileStatic */
 pipeline {
     //agent {label 'linux'}
     agent {
@@ -8,19 +9,18 @@ pipeline {
     }
 
     environment {
-    Node_IP = "3.141.15.51"
+    Node_IP = "35.88.252.20"
     TEST = "radical"
-    arr = "[aamir, radical, jordan]"
-    hahahah = "Webhook created from pipline"
+    sTring = "Webhook created from pipline"
     }
 
     stages {
         stage('Git Checkout') {
-        steps {
-            git branch: 'dev-local-deploy',
-                credentialsId: 'git-https-creds',
-                url: 'https://gitlab.com/andromeda99/maven-project.git'
-            }
+            steps {
+                git branch: 'dev-local-deploy',
+                    credentialsId: 'git-https-creds',
+                    url: 'https://gitlab.com/andromeda99/maven-project.git'
+                }
         }
         stage('Build') {
             steps {
@@ -29,11 +29,9 @@ pipeline {
                         def test1 = "radical1"
                         echo "${TEST}"
                         echo "${test1}"
-                        echo "${arr}"
-                        echo "${hahahah}"
-                        
-
+                        echo "${sTring}"
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
+
                     } catch(Exception e) {
                         echo "Exception received" + e
                         } 

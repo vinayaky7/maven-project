@@ -2,9 +2,9 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        def image_name="myweb"
-        def image_version="1.0"
-        def IP="3.141.15.51"
+        def image_name="radical_devops_dec_2021"
+        def image_version="1.1.1"
+        def IP="35.88.252.20"
     }
     
     stages {

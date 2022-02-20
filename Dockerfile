@@ -1,4 +1,4 @@
-FROM centos
+FROM centos:centos7
 MAINTAINER "Aamir M. Shaikh"
 RUN yum install httpd -y
 RUN  yum install git -y && yum install java -y && yum install unzip -y

@@ -31,7 +31,7 @@ pipeline {
                     sh "pwd"
                     sh 'ls -la'
                     // Please use below command to set your region which your using to create the instance
-                    sh 'aws configure set region us-east-2'
+                    sh 'aws configure set region us-west-2'
 
                     // Please use below IP from the subnet you wish to create the instance
 
@@ -57,7 +57,7 @@ pipeline {
 
                             // Please use image id from the link mentioned on Gitlab -> dev-ansible branch. The image id's are speciic to regions.
 
-                                sh 'aws ec2 run-instances  --image-id ami-0b59bfac6be064b78 --count 1 --instance-type t2.micro --key-name Radical-devops-Ohio-2pm-Oct-Nov-2021 --private-ip-address 172.31.32.111 --security-group-ids sg-00b3ec0f383ea5cc7 --subnet-id subnet-0a9d689d781836e73  --user-data file://user_data_ansible_client.txt'
+                                sh 'aws ec2 run-instances  --image-id ami-06cffe063efe892ad --count 1 --instance-type t2.micro --key-name radical-devops-oregon-12pm-dec-2021 --private-ip-address 172.31.32.111 --security-group-ids sg-0a1a50c23e913fb03 --subnet-id subnet-098ffbbed0fb03a97  --user-data file://user_data_ansible_client.txt'
 
                                 sh 'aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.32.111'
 

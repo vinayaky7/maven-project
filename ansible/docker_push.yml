@@ -6,10 +6,9 @@
   become_method: sudo
   vars:
     vol: /tmp/myefs/docker_volume/
-    link: http://52.11.101.98:32096/webapp/index_dev.jsp
-    image: "{{ lookup('env', 'IMAGE') }}"
-    repo: aamirs/radical-private-repo
-    ver: v3.0
+    IMAGE: "{{ lookup('env', 'IMAGE') }}"
+    DockerHub_repo: "{{ lookup('env', 'DockerHub_repo') }}"
+    VER: "{{ lookup('env', 'VER') }}"
   tasks:
   - name: set fact here
     set_fact:
@@ -46,7 +45,7 @@
   - name: Build Docker Image
     args:
       chdir: mysnippet{{ random_number }}/2041720
-    shell: docker build -t {{ image }} .
+    shell: docker build -t {{ IMAGE }}:{{ VER }} .
     register: shell_result
   - debug:
       var: shell_result
@@ -64,7 +63,7 @@
   - debug:
       msg: Testing URL is http://{{ shell_result.stdout }}:320{{ random_number }}/webapp/index_dev.jsp
   - name: Checking if the above link is working as expected
-    ansible.builtin.raw: curl -kv {{ link }}
+    ansible.builtin.raw: curl -kv http://{{ shell_result.stdout }}:320{{ random_number }}/webapp/index_dev.jsp
     register: diff_cmd
     failed_when: diff_cmd.rc == 1 or diff_cmd.rc >= 2
   - debug:
@@ -85,8 +84,8 @@
   - name: Pushing docker image to DockerHub Private Repository
     command: "{{ item }}"
     with_items:
-    - docker tag {{ image  }} aamirs/radical-private-repo:v3.0
-    - docker push aamirs/radical-private-repo:v3.0
+    - docker tag {{ IMAGE  }}:{{ VER}} {{ DockerHub_repo }}:{{ VER}}
+    - docker push {{ DockerHub_repo }}:{{ VER}}
     when: diff_cmd.rc == 0
     register: shell_result
   - debug:

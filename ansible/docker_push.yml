@@ -1,6 +1,9 @@
 ---
 - name: This sets up a Docker server
-  hosts: ansibleclient1
+  hosts: testvm-dev
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
   vars:
     vol: /tmp/myefs/docker_volume/
     link: http://52.11.101.98/webapp/index_dev.jsp

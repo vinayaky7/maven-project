@@ -1,0 +1,90 @@
+---
+- name: This sets up a Docker server
+  hosts: ansibleclient1
+  vars:
+    vol: /tmp/myefs/docker_volume/
+    link: http://52.11.101.98/webapp/index_dev.jsp
+    image: "{{ lookup('env', 'IMAGE') }}"
+    repo: aamirs/radical-private-repo
+    ver: v3.0
+  tasks:
+  - name: set fact here
+    set_fact:
+      random_number: "{{ 100 | random }}"
+    run_once: yes
+  - name: Installing Docker
+    yum:
+      name: docker
+      state: present
+  - name: Installing Git
+    yum:
+      name: git
+      state: present
+  - name: Start Docker Service
+    service:
+      name: docker
+      state: started
+  - name: Enable Docker Service
+    service:
+      name: docker
+      enabled: yes
+  - name: Creating a DIR for Dockefile snippet
+    file:
+      path: mysnippet{{ random_number }}
+      state: directory
+      mode: "u=rwx,g=rx,o=rx"
+  - name: Pulling Dockerfile as a snippet
+    args:
+      chdir: mysnippet{{ random_number }}
+    shell: git clone https://gitlab.com/snippets/2041720.git
+    register: shell_result
+  - debug:
+      var: shell_result
+  - name: Build Docker Image
+    args:
+      chdir: mysnippet{{ random_number }}/2041720
+    shell: docker build -t {{ image }} .
+    register: shell_result
+  - debug:
+      var: shell_result
+  - name: Creating test container
+    command: "{{ item }}"
+    with_items:
+    - docker run -itd  --name=test_machine320"{{ random_number }}" centos
+    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  myweb:v1.0
+    register: shell_result
+  - debug:
+      var: shell_result
+  - name: Testing
+    shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
+    register: shell_result
+  - debug:
+      msg: Testing URL is http://{{ shell_result.stdout }}:320{{ random_number }}/webapp/index_dev.jsp
+  - name: Checking if the above link is working as expected
+    ansible.builtin.raw: curl -kv {{ link }}
+    register: diff_cmd
+    failed_when: diff_cmd.rc == 1 or diff_cmd.rc >= 2
+  - debug:
+      var: diff_cmd
+  - name: Installing pip
+    yum:
+      name: pip
+      state: present
+  - name: Installing docker-py
+    shell: pip install docker-py
+  - name: Log into DockerHub
+    docker_login:
+      username: aamirs
+      password: Jordan@20180
+    register: shell_result
+  - debug:
+      var: shell_result
+  - name: Pushing docker image to DockerHub Private Repository
+    command: "{{ item }}"
+    with_items:
+    - docker tag {{ image  }} aamirs/radical-private-repo:v3.0
+    - docker push aamirs/radical-private-repo:v3.0
+    when: diff_cmd.rc == 0
+    register: shell_result
+  - debug:
+      var: shell_result

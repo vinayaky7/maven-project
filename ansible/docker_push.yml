@@ -6,7 +6,7 @@
   become_method: sudo
   vars:
     vol: /tmp/myefs/docker_volume/
-    link: http://52.11.101.98/webapp/index_dev.jsp
+    link: http://52.11.101.98:32096/webapp/index_dev.jsp
     image: "{{ lookup('env', 'IMAGE') }}"
     repo: aamirs/radical-private-repo
     ver: v3.0

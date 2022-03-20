@@ -6,6 +6,7 @@
   become_method: sudo
   vars:
       vol: /tmp/myefs/docker_volume/
+      image: "{{ lookup('env', 'IMAGE') }}"
 
   tasks:
   - name: set fact here
@@ -43,7 +44,7 @@
   - name: Build Docker Image
     args:
       chdir: mysnippet{{ random_number }}/2041720
-    shell: docker build -t myweb:v1.0 .
+    shell: docker build -t {{ image }} .
     register: shell_result
   - debug:
       var: shell_result

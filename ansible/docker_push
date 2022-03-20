@@ -1,0 +1,35 @@
+- hosts: ansibleclient1
+  vars:
+    link: http://52.11.101.98/webapp/index_dev.jsp
+    image: "{{ lookup('env', 'IMAGE') }}"
+    repo: aamirs/radical-private-repo
+    ver: v3.0
+  tasks:
+  - name: Fail task when both files are identical
+    ansible.builtin.raw: curl -kv {{ link }}
+    register: diff_cmd
+    failed_when: diff_cmd.rc == 1 or diff_cmd.rc >= 2
+  - debug:
+      var: diff_cmd
+  - name: Installing pip
+    yum:
+      name: pip
+      state: present
+  - name: Installing docker-py
+    shell: pip install docker-py
+  - name: Log into DockerHub
+    docker_login:
+      username: aamirs
+      password: Jordan@20180
+    register: shell_result
+  - debug:
+      var: shell_result
+  - name: Pushing docker image to DockerHub Private Repository
+    command: "{{ item }}"
+    with_items:
+    - docker tag {{ image  }} aamirs/radical-private-repo:v3.0
+    - docker push aamirs/radical-private-repo:v3.0
+    when: diff_cmd.rc == 0
+    register: shell_result
+  - debug:
+      var: shell_result

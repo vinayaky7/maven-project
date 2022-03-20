@@ -76,7 +76,7 @@ pipeline {
             steps {
                 
                 //sh 'ansible-playbook ansible/myrole/deployweb.yml'
-                sh 'ansible-playbook ansible/docker.yaml'
+                sh 'ansible-playbook ansible/docker_push.yml'
             }
         }
         stage('Deployment') {

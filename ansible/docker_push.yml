@@ -4,6 +4,8 @@
   remote_user: ec2-user
   become: true
   become_method: sudo
+  vars_files:
+       - docker_token.yml
   vars:
     vol: /tmp/myefs/docker_volume/
     IMAGE: "{{ lookup('env', 'IMAGE') }}"
@@ -77,7 +79,7 @@
   - name: Log into DockerHub
     docker_login:
       username: aamirs
-      password: Jordan@20180
+      password: "{{ docker_pass }}"
     register: shell_result
   - debug:
       var: shell_result

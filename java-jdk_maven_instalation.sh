@@ -12,16 +12,13 @@ echo "export PATH=$PATH:/opt/jdk-13/bin" >> /root/.bashrc
 # Install Maven
 cd /usr/local/src
 rm -rf apache-maven*
-wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz
-tar -xf apache-maven-3.8.4-bin.tar.gz
-mv apache-maven-3.8.4/ apache-maven/
+wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+tar -xf apache-maven-3.8.5-bin.tar.gz
+mv apache-maven-3.8.5/ apache-maven/
 echo "export MAVEN_HOME=/usr/local/src/apache-maven" >> /root/.bashrc
 echo "export PATH=${MAVEN_HOME}/bin:${PATH}" >> /root/.bashrc
 cd /root
 bash && source /root/.bashrc 
-
-#Create EFS Dir
-mkdir /tmp/myefs
 
 
 

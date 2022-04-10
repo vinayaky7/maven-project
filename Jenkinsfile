@@ -1,38 +1,77 @@
+/* groovylint-disable CompileStatic */
 pipeline {
-    agent {label 'docker'}
-    
+    //agent {label 'linux'}
+    agent {
+        node {
+            label 'linux'
+            customWorkspace '/tmp/myefs/myworkspace/workspace/declarative_pipeline'
+        }
+    }
+
+    environment {
+    Node_IP = "35.88.252.20"
+    TEST = "radical"
+    sTring = "Webhook created from pipline"
+    }
+
     stages {
         stage('Git Checkout') {
-        steps {
-            git branch: 'master',
-                credentialsId: 'git-creds-https',
-                url: 'https://gitlab.com/andromeda99/maven-project.git'
-            }
+            steps {
+                git branch: 'dev-local-deploy',
+                    credentialsId: 'git-https-creds',
+                    url: 'https://gitlab.com/andromeda99/maven-project.git'
+                }
         }
         stage('Build') {
             steps {
-                sh '/usr/local/src/apache-maven/bin/mvn clean install'
+                script {
+                    try {
+                        def test1 = "radical1"
+                        echo "${TEST}"
+                        echo "${test1}"
+                        echo "${sTring}"
+                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
+
+                    } catch(Exception e) {
+                        echo "Exception received" + e
+                        } 
+                }
+
             }
         }
-        stage('Build Docker Image') {
+        stage('Scanning') {
             steps {
-                sh 'sudo docker build -t myweb:v1.0 .'
+                echo 'Scanning in progress.'
+                
             }
         }
         stage('Testing') {
             steps {
                 echo 'Testing..'
-                sh 'ls -la'
-                sh 'sudo cp -rf ${WORKSPACE}/webapp /tmp/myefs/docker_volume/'
-                sh 'sudo docker run -itd  --network=mynetwork --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/var/www/html/ myweb:v1.0'
-                sh 'sudo docker ps'
-                sh 'curl -kv http://3.19.142.109:300${BUILD_NUMBER}/webapp/target/webapp/index_dev.jsp'
-                
+                sh 'pwd'
+                sh 'sudo sh testing.sh'
+            }
+        }
+        stage('Nexus Upload') {
+            steps {
+                echo 'Uploading artifact to Nexus.'
             }
         }
         stage('Deployment') {
             steps {
-                echo 'Deployment..'
+                script {
+                    echo 'Deployment..'
+                    sh 'sudo yum install httpd -y'
+                    sh 'sudo yum install elinks -y'
+                    sh 'sudo systemctl start httpd'
+                    sh 'sudo systemctl enable httpd'
+                    sh 'sudo rm -rf /var/www/html/*'
+                    sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
+                    sh 'sudo elinks  http://${Node_IP}/webapp/'
+                    sh 'sudo elinks  http://${Node_IP}/webapp/index_dev.jsp'
+                    sh 'sudo curl -kv http://${Node_IP}/webapp/index_dev.jsp'
+                }
+
             }
         }
     }

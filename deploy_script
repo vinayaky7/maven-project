@@ -1,9 +1,29 @@
 #/bin/bash
 
-echo "Hello World"
+# Please replace below IP with your Nodes's IP
 
-echo "Hello World"
+whoami
 
-cp -rf /tmp/myworkspaces/webapp/target/webapp.war /tmp/myPackages
+ls -l
 
-sudo scp -i /root/aws.pem -r /tmp/myworkspaces/webapp ec2-user@testvm:/tmp
+pwd
+
+echo "Static Code Testing initiated"
+
+sh scanning.sh 
+
+echo "Scanning completed."
+
+sudo yum install httpd -y
+
+sudo systemctl start httpd
+
+sudo systemctl enable httpd 
+
+sudo rsync -avt ${WORKSPACE}/webapp/target/webapp/* /var/www/html
+
+sudo rsync -avt ${WORKSPACE}/webapp/target/webapp.war /var/www/html
+
+sudo yum install elinks -y
+
+elinks http://34.209.250.122/index_dev.jsp

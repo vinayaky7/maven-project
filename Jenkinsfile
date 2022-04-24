@@ -22,6 +22,20 @@ pipeline {
                     url: 'https://gitlab.com/andromeda99/maven-project.git'
                 }
         }
+
+        stage('Nexus Upload') {
+            steps {
+                script {
+                    try {
+                        sh 'dae'
+                    } catch(Exception e) {
+                        echo "Exception received " + e.toString()
+                        sh 'exit 1'
+                    }
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
@@ -33,7 +47,8 @@ pipeline {
                         sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
 
                     } catch(Exception e) {
-                        echo "Exception received" + e.toString()
+                        echo "Exception received " + e.toString()
+                        sh 'exit 1'   
                         } 
                 }
 
@@ -52,11 +67,7 @@ pipeline {
                 sh 'sudo sh testing.sh'
             }
         }
-        stage('Nexus Upload') {
-            steps {
-                echo 'Uploading artifact to Nexus.'
-            }
-        }
+        
         stage('Deployment') {
             steps {
                 script {

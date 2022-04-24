@@ -9,7 +9,7 @@ pipeline {
     }
 
     environment {
-    Node_IP = "35.88.252.20"
+    Node_IP = "34.209.250.122"
     TEST = "radical"
     sTring = "Webhook created from pipline"
     }

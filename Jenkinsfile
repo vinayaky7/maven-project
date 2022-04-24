@@ -11,7 +11,7 @@ pipeline {
     environment {
     Node_IP = "34.209.250.122"
     TEST = "Radical"
-    sTring = "Webhook created from pipline"
+    sTring = "Webhook created from pipline job"
     }
 
     stages {

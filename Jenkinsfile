@@ -30,7 +30,7 @@ pipeline {
                         echo "${TEST}"
                         echo "${test1}"
                         echo "${sTring}"
-                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean instal'
 
                     } catch(Exception e) {
                         echo "Exception received" + e

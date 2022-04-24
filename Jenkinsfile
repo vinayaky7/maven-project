@@ -23,19 +23,6 @@ pipeline {
                 }
         }
 
-        stage('Nexus Upload') {
-            steps {
-                script {
-                    try {
-                        sh 'dae'
-                    } catch(Exception e) {
-                        echo "Exception received " + e.toString()
-                        sh 'exit 1'
-                    }
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
@@ -67,7 +54,18 @@ pipeline {
                 sh 'sudo sh testing.sh'
             }
         }
-        
+        stage('Nexus Upload') {
+            steps {
+                script {
+                    try {
+                        sh 'dae'
+                    } catch(Exception e) {
+                        echo "Exception received " + e.toString()
+                        sh 'exit 1'
+                    }
+                }
+            }
+        }
         stage('Deployment') {
             steps {
                 script {

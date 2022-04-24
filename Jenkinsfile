@@ -31,7 +31,7 @@ pipeline {
                         echo "${TEST}"
                         echo "${test1}"
                         echo "${sTring}"
-                        sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
 
                     } catch(Exception e) {
                         echo "Exception received " + e.toString()
@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'dae'
+                        sh 'date'
                     } catch(Exception e) {
                         echo "Exception received " + e.toString()
                         sh 'exit 1'
@@ -84,4 +84,4 @@ pipeline {
             }
         }
     }
-}
+

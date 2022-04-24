@@ -10,7 +10,7 @@ pipeline {
 
     environment {
     Node_IP = "34.209.250.122"
-    TEST = "radical"
+    TEST = "Radical"
     sTring = "Webhook created from pipline"
     }
 

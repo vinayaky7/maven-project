@@ -41,7 +41,7 @@ pipeline {
 
                     // Please use below IP from the subnet you wish to create the instance
 
-                    def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances | grep radical_bastion")
+                    def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances | grep radical_bastion-1")
 
                     
                         
@@ -53,7 +53,7 @@ pipeline {
                             echo "Test VM already exist"
 
 
-                            sh 'aws ec2 describe-instances | grep radical_bastion'
+                            sh 'aws ec2 describe-instances | grep radical_bastion-1'
                             
                         }
                             else {
@@ -65,7 +65,7 @@ pipeline {
 
                                 sh 'aws ec2 run-instances  --image-id ami-0ca285d4c2cda3300 --count 1 --instance-type t2.micro --key-name radical-devops-march-2022-oregon --security-group-ids sg-0946003082685286d --subnet-id subnet-082e9a36b73ccb48e  --user-data file://user_data_ansible_client.txt'
 
-                                sh 'aws ec2 describe-instances | grep radical_bastion'
+                                sh 'aws ec2 describe-instances | grep radical_bastion-1'
 
                                 
                                 //sh 'sleep 60'
@@ -77,7 +77,7 @@ pipeline {
                 }
             }
         }
-        
+
         /*stage('Configuring Docker Server for testing') {
             steps {
                 

@@ -18,16 +18,19 @@ pipeline {
                 url: 'https://gitlab.com/andromeda99/maven-project.git'
             }
         }
-        stage('Build') {
+
+        /*stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
         }
+
         stage('Preparing volume for Containers') {
             steps {
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
-        }
+        }*/
+
         stage('Launching a Testing VM') {
             steps {
                 script {
@@ -74,6 +77,7 @@ pipeline {
                 }
             }
         }
+        
         /*stage('Configuring Docker Server for testing') {
             steps {
                 
@@ -81,6 +85,7 @@ pipeline {
                 sh 'ansible-playbook ansible/docker_push.yml'
             }
         }
+
         stage('Deployment') {
             steps {
                 echo 'Deployment..'

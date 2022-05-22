@@ -75,7 +75,7 @@ pipeline {
 
                                 sh "echo ${bastion_ip}"
 
-                                sh "aws ec2 create-tags --resources ${bastion_id} --tags Key=Name,Value=${bastion_name}"
+                                sh "aws ec2 create-tags --resources "${bastion_id}" --tags Key=Name,Value="${bastion_name}""
 
                                 def bastion_check = sh(returnStatus: true, script: "aws ec2 describe-instances | grep ${bastion_name}")
 

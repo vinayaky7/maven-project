@@ -74,7 +74,9 @@ pipeline {
 
                                 //def bastion_ip = bastion_ip1.toString()
 
-                                println bastion_ip1.toString()
+                                //println bastion_ip1.toString()
+
+                                sh "echo ${bastion_ip1}"
 
 
                                 //sh 'sleep 60'

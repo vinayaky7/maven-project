@@ -63,11 +63,13 @@ pipeline {
 
                             // Please use image id from the link mentioned on Gitlab -> dev-ansible branch. The image id's are speciic to regions.
 
-                                sh 'aws ec2 run-instances  --image-id ami-0ca285d4c2cda3300 --count 1 --instance-type t2.micro --key-name radical-devops-march-2022-oregon --security-group-ids sg-0946003082685286d --subnet-id subnet-082e9a36b73ccb48e  --user-data file://user_data_ansible_client.txt'
+                                //sh 'aws ec2 run-instances  --image-id ami-0ca285d4c2cda3300 --count 1 --instance-type t2.micro --key-name radical-devops-march-2022-oregon --security-group-ids sg-0946003082685286d --subnet-id subnet-082e9a36b73ccb48e  --user-data file://user_data_ansible_client.txt'
 
-                                sh 'aws ec2 describe-instances | grep radical_bastion-1'
+                                // Find instance id that does not have a Tag
+                                def mycode1 = sh(returnStatus: true, script: "aws ec2 describe-instances --query 'Reservations[].Instances[?!not_null(Tags[?Key == `Name`].Value)] | []'.InstanceId | sed 's/[][]//g' | tr -d '"'")
 
-                                
+                                sh "echo ${mycode1}"
+
                                 //sh 'sleep 60'
                                 
                             }

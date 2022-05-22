@@ -71,13 +71,11 @@ pipeline {
 
                                 sh "echo ${bastion_id}"
 
-                                def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --instance-ids i-0c78df804ad93d553 --query Reservations[].Instances[] --output text | grep PRIVATEIPADDRESSES | awk '{print \$4}'")
+                                def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --instance-ids ${bastion_id} --query Reservations[].Instances[] --output text | grep PRIVATEIPADDRESSES | awk '{print \$4}'")
 
                                 sh "echo ${bastion_ip}"
 
-                                sh "sudo echo ${bastion_ip} ${bastion_ip} >> /etc/hosts "
-
-                                sh "cat /etc/hosts"
+                    
 
 
 

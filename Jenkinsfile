@@ -71,7 +71,7 @@ pipeline {
 
                                 sh "echo ${bastion_id}"
 
-                                def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --instance-ids '${bastion_id}' --query Reservations[].Instances[] --output text | grep PRIVATEIPADDRESSES | awk '{print \$4}'")
+                                def bastion_ip = sh(returnStdout: true, script: aws ec2 describe-instances --instance-ids ${bastion_id} --query Reservations[].Instances[] --output text | grep PRIVATEIPADDRESSES | awk '{print \$4}' )
 
                                 echo ${bastion_ip}
 

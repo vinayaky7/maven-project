@@ -9,7 +9,7 @@ pipeline {
     }
 
     environment {
-    Node_IP = "34.209.250.122"
+    Node_IP = "18.188.143.4"
     TEST = "Radical"
     sTring = "Webhook created from pipline job"
     }
@@ -27,6 +27,7 @@ pipeline {
             steps {
                 script {
                     try {
+                        sh "whoami"
                         def test1 = "radical1"
                         echo "${TEST}"
                         echo "${test1}"

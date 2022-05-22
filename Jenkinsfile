@@ -7,6 +7,7 @@ pipeline {
         IMAGE = "myweb"
         VER = "radical-${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
+        bastion_name = "radical-bastion"
     }
 
     
@@ -41,7 +42,7 @@ pipeline {
 
                     // Please use below IP from the subnet you wish to create the instance
 
-                    def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances | grep radical_bastion-1")
+                    def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances | grep radical_bastion")
 
                     
                         
@@ -53,7 +54,7 @@ pipeline {
                             echo "Test VM already exist"
 
 
-                            sh 'aws ec2 describe-instances | grep radical_bastion-1'
+                            sh 'aws ec2 describe-instances | grep radical_bastion'
                             
                         }
                             else {
@@ -70,13 +71,28 @@ pipeline {
 
                                 sh "echo ${bastion_id}"
 
-                                def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --instance-ids i-0c78df804ad93d553 --query Reservations[].Instances[] --output text | grep PRIVATEIPADDRESSES | awk '{print \$4}'")
+                                def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --instance-ids i-0c78df804ad93d553 --query Reservations[].Instances[] --output text | grep PRIVATEIPADDRESSES | awk '{print \$4}'")
 
-                                //def bastion_ip = bastion_ip1.toString()
+                                sh "echo ${bastion_ip}"
 
-                                //println bastion_ip1.toString()
+                                def bastion_tag = sh(returnStatus: true, script: "aws ec2 create-tags --resources ${bastion_id} --tags Key=Name,Value=${bastion_name}")
 
-                                sh "echo ${bastion_ip1}"
+                                def bastion_check = sh(returnStatus: true, script: "aws ec2 describe-instances | grep radical_bastion")
+
+                                def key2 = bastion_check.toString()
+
+                                if (key2 == "0") {
+                        
+                                echo "${bastion_name} is now Tagged..."
+                            
+                                }
+                                    else {
+                                        echo "${bastion_name} is still not Tagged..."
+                                    }
+
+
+
+                                
 
 
                                 //sh 'sleep 60'

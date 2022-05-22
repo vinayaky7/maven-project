@@ -32,7 +32,7 @@ pipeline {
                         echo "${TEST}"
                         echo "${test1}"
                         echo "${sTring}"
-                        sh '/usr/local/src/apache-maven/bin/mvn clean instal'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
 
                     } catch(Exception e) {
                         echo "Exception received because of --- " + e.toString()

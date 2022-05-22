@@ -77,18 +77,18 @@ pipeline {
 
                                 def bastion_tag = sh(returnStatus: true, script: "aws ec2 create-tags --resources ${bastion_id} --tags Key=Name,Value=${bastion_name}")
 
-                                def bastion_check = sh(returnStatus: true, script: "aws ec2 describe-instances | grep radical_bastion")
+                                def bastion_check = sh(returnStatus: true, script: "aws ec2 describe-instances | grep ${bastion_name}")
 
                                 def key2 = bastion_check.toString()
 
                                 if (key2 == "0") {
                         
-                                echo "${bastion_name} is now Tagged..."
+                                    echo "${bastion_name} is now Tagged..."
                             
                                 }
                                     else {
                                         echo "${bastion_name} is still not Tagged..."
-                                    }
+                                }
 
 
 

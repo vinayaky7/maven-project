@@ -72,9 +72,9 @@ pipeline {
 
                                 def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --instance-ids i-0c78df804ad93d553 | jq -C .Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress")
 
-                                def bastion_ip = bastion_ip1.toString()
+                                //def bastion_ip = bastion_ip1.toString()
 
-                                sh "echo ${bastion_ip}"
+                                sh "echo ${bastion_ip1}"
 
                                 //sh 'sleep 60'
                                 

@@ -59,7 +59,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'dat'
+                        sh 'date'
                     } catch(Exception e) {
                         echo "Exception received " + e.toString()
                         sh 'exit 1'

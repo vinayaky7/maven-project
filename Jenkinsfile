@@ -76,7 +76,7 @@ pipeline {
 
                                 println bastion_ip1.toString()
 
-                                echo "${bastion_ip1}" | tr -d '"'
+                                echo "${bastion_ip1}" | sed 's/"//g'
 
                                 //sh 'sleep 60'
                                 

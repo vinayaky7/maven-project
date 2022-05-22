@@ -60,12 +60,12 @@ pipeline {
 
                             // Please use image id from the link mentioned on Gitlab -> dev-ansible branch. The image id's are speciic to regions.
 
-                                sh 'aws ec2 run-instances  --image-id ami-06cffe063efe892ad --count 1 --instance-type t2.micro --key-name radical-devops-oregon-12pm-dec-2021 --private-ip-address 172.31.32.111 --security-group-ids sg-0a1a50c23e913fb03 --subnet-id subnet-098ffbbed0fb03a97  --user-data file://user_data_ansible_client.txt'
+                                sh 'aws ec2 run-instances  --image-id ami-0ca285d4c2cda3300 --count 1 --instance-type t2.micro --key-name radical-devops-march-2022-oregon --security-group-ids sg-0946003082685286d --subnet-id subnet-082e9a36b73ccb48e  --user-data file://user_data_ansible_client.txt'
 
-                                sh 'aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.32.111'
+                                sh 'aws ec2 describe-instances | grep radical_bastion'
 
                                 
-                                sh 'sleep 60'
+                                //sh 'sleep 60'
                                 
                             }
 

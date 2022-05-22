@@ -32,22 +32,24 @@ pipeline {
                         echo "${TEST}"
                         echo "${test1}"
                         echo "${sTring}"
-                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean instal'
 
                     } catch(Exception e) {
-                        echo "Exception received " + e.toString()
+                        echo "Exception received because of --- " + e.toString()
                         sh 'exit 1'   
                         } 
                 }
 
             }
         }
+
         stage('Scanning') {
             steps {
                 echo 'Scanning in progress.'
                 
             }
         }
+
         stage('Testing') {
             steps {
                 echo 'Testing..'
@@ -55,6 +57,7 @@ pipeline {
                 sh 'sudo sh testing.sh'
             }
         }
+
         stage('Nexus Upload') {
             steps {
                 script {
@@ -67,6 +70,7 @@ pipeline {
                 }
             }
         }
+
         stage('Deployment') {
             steps {
                 script {

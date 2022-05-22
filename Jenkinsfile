@@ -66,7 +66,7 @@ pipeline {
                                 //sh 'aws ec2 run-instances  --image-id ami-0ca285d4c2cda3300 --count 1 --instance-type t2.micro --key-name radical-devops-march-2022-oregon --security-group-ids sg-0946003082685286d --subnet-id subnet-082e9a36b73ccb48e  --user-data file://user_data_ansible_client.txt'
 
                                 // Find instance id that does not have a Tag
-                                def mycode1 = sh(returnStatus: true, script: aws ec2 describe-instances --query 'Reservations[].Instances[?!not_null(Tags[?Key == `Name`].Value)] | []'.InstanceId | sed 's/[][]//g' | tr -d '"')
+                                def mycode1 = sh(returnStatus: true, script: ' aws ec2 describe-instances --query 'Reservations[].Instances[?!not_null(Tags[?Key == `Name`].Value)] | []'.InstanceId | sed 's/[][]//g' | tr -d '"' ')
 
                                 sh "echo ${mycode1}"
 

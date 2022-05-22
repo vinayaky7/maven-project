@@ -70,7 +70,7 @@ pipeline {
 
                                 sh "echo ${bastion_id}"
 
-                                def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --instance-ids i-0c78df804ad93d553 --query Reservations[].Instances[] --output text | grep PRIVATEIPADDRESSES | awk '{print \'$4}' ")
+                                def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --instance-ids i-0c78df804ad93d553 --query Reservations[].Instances[] --output text | grep PRIVATEIPADDRESSES | awk '{print \$4}'")
 
                                 //def bastion_ip = bastion_ip1.toString()
 

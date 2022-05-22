@@ -75,24 +75,9 @@ pipeline {
 
                                 sh "echo ${bastion_ip}"
 
-                                sh """
-                                
-                                aws ec2 create-tags --resources ${bastion_id} --tags Key=Name,Value=${bastion_name}
+                                sh "sudo echo ${bastion_ip} ${bastion_ip} >> /etc/hosts "
 
-                                """
-
-                                def bastion_check = sh(returnStatus: true, script: "aws ec2 describe-instances | grep ${bastion_name}")
-
-                                def key2 = bastion_check.toString()
-
-                                if (key2 == "0") {
-                        
-                                    echo "${bastion_name} is now Tagged..."
-                            
-                                }
-                                    else {
-                                        echo "${bastion_name} is still not Tagged..."
-                                }
+                                sh "cat /etc/hosts"
 
 
 

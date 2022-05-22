@@ -68,7 +68,9 @@ pipeline {
                                 // Find instance id that does not have a Tag
                                 def mycode1 = sh(returnStatus: true, script: "aws ec2 describe-instances --query 'Reservations[].Instances[?!not_null(Tags[?Key == `Name`].Value)] | []'.InstanceId | sed 's/[][]//g'")
 
-                                sh "echo ${mycode1}"
+                                def key2 = mycode1.toString()
+
+                                sh "echo ${key2}"
 
                                 //sh 'sleep 60'
                                 

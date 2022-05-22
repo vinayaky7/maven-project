@@ -38,7 +38,7 @@ pipeline {
 
                     // Please use below IP from the subnet you wish to create the instance
 
-                    def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.32.111")
+                    def mycode = sh(returnStatus: true, script: "aws ec2 describe-instances | grep radical_bastion")
 
                     
                         
@@ -50,7 +50,7 @@ pipeline {
                             echo "Test VM already exist"
 
 
-                            sh 'aws ec2 describe-instances --filters Name=instance-type,Values=t2.micro --query Reservations[].Instances[].NetworkInterfaces[].PrivateIpAddresses[].PrivateIpAddress | grep 172.31.32.111'
+                            sh 'aws ec2 describe-instances | grep radical_bastion'
                             
                         }
                             else {
@@ -74,7 +74,7 @@ pipeline {
                 }
             }
         }
-        stage('Configuring Docker Server for testing') {
+        /*stage('Configuring Docker Server for testing') {
             steps {
                 
                 //sh 'ansible-playbook ansible/myrole/deployweb.yml'
@@ -85,6 +85,6 @@ pipeline {
             steps {
                 echo 'Deployment..'
             }
-        }
+        }*/
     }
 }

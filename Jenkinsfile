@@ -70,7 +70,7 @@ pipeline {
 
                                 //def key2 = mycode1.toString()
 
-                                sh "echo ${key2}"
+                                sh "echo ${mycode1}"
 
                                 //sh 'sleep 60'
                                 

@@ -4,8 +4,8 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('myawscreds')
         AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
-        IMAGE = "myweb"
-        VER = "radical-${env.JOB_NAME}-${env.BUILD_ID}"
+        IMAGE = "radicalMarch2022"
+        VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_name = "radical-bastion"
     }

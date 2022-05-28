@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        /stage('Build') {
+        stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }

@@ -2,7 +2,7 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        def image_name="radical_devops_April_2022"
+        def image_name="radical_devops_april_2022"
         def image_version="1.1.0"
         def IP="18.188.143.4"
     }

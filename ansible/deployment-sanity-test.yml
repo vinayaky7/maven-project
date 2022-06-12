@@ -43,7 +43,8 @@
     command: "{{ item }}"
     with_items:
     - docker run -itd  --name=test_machine320"{{ random_number }}" centos
-    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  {{ DockerHub_repo }}:{{ VER}}
+    #- docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  {{ DockerHub_repo }}:{{ VER}}
+    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80  {{ DockerHub_repo }}:{{ VER}}
     register: shell_result
   - debug:
       var: shell_result

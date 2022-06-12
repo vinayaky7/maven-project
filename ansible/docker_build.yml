@@ -47,7 +47,7 @@
   - debug:
       var: shell_result
 
-    - name: Installing pip
+  - name: Installing pip
     yum:
       name: pip
       state: present

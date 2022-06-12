@@ -36,7 +36,7 @@
   - name: Build Docker Image
     args:
       chdir: {{ WORKSPACE }}
-    shell: docker build -t {{ IMAGE }}:{{ VER }} . --build-arg WORKSPACE={{ WORKSPACE }}
+    shell: docker build -t {{ IMAGE }}:{{ VER }} .
     register: shell_result
   - debug:
       var: shell_result

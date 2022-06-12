@@ -34,6 +34,8 @@
       enabled: yes
 
   - name: Build Docker Image
+    args:
+      chdir: {{ WORKSPACE }}
     shell: docker build -t {{ IMAGE }}:{{ VER }} . --build-arg WORKSPACE={{ WORKSPACE }}
     register: shell_result
   - debug:

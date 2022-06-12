@@ -37,12 +37,38 @@
     args:
       chdir: "{{ WORKSPACE }}"
     shell: docker build -t {{ IMAGE }}:{{ VER }} .
+    register: shell_result_docker_build
+  - debug:
+      var: shell_result_docker_build
+
+  - name: Checking Docker Image
+    shell: docker images
     register: shell_result
   - debug:
       var: shell_result
 
-  - name: Checking Docker Image
-    shell: docker images
+    - name: Installing pip
+    yum:
+      name: pip
+      state: present
+
+  - name: Installing docker-py
+    shell: pip install docker-py
+
+  - name: Log into DockerHub
+    docker_login:
+      username: aamirs
+      password: "{{ docker_pass }}"
+    register: shell_result
+  - debug:
+      var: shell_result
+      
+  - name: Pushing docker image to DockerHub Private Repository
+    command: "{{ item }}"
+    with_items:
+    - docker tag {{ IMAGE  }}:{{ VER}} {{ DockerHub_repo }}:{{ VER}}
+    - docker push {{ DockerHub_repo }}:{{ VER}}
+    when: shell_result_docker_build.rc == 0
     register: shell_result
   - debug:
       var: shell_result

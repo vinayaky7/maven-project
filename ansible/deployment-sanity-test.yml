@@ -39,33 +39,11 @@
       name: docker
       enabled: yes
 
-  - name: Creating a DIR for Dockefile snippet
-    file:
-      path: mysnippet{{ random_number }}
-      state: directory
-      mode: "u=rwx,g=rx,o=rx"
-
-  - name: Pulling Dockerfile as a snippet
-    args:
-      chdir: mysnippet{{ random_number }}
-    shell: git clone https://gitlab.com/snippets/2041720.git
-    register: shell_result
-  - debug:
-      var: shell_result
-
-  - name: Build Docker Image
-    args:
-      chdir: mysnippet{{ random_number }}/2041720
-    shell: docker build -t {{ IMAGE }}:{{ VER }} . --build-arg WORKSPACE={{ WORKSPACE }}
-    register: shell_result
-  - debug:
-      var: shell_result
-
   - name: Creating test container
     command: "{{ item }}"
     with_items:
     - docker run -itd  --name=test_machine320"{{ random_number }}" centos
-    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  {{ IMAGE }}:{{ VER }}
+    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  {{ DockerHub_repo }}:{{ VER}}
     register: shell_result
     when: shell_result.rc == 0
   - debug:
@@ -79,36 +57,9 @@
 
   - name: Checking if the above link is working as expected
     ansible.builtin.raw: curl -kv http://{{ shell_result.stdout }}:320{{ random_number }}/webapp/index_dev.jsp
-    register: diff_cmd
+    register: url_check
     failed_when: diff_cmd.rc == 1 or diff_cmd.rc >= 2
   - debug:
-      var: diff_cmd
-
-  - name: Installing pip
-    yum:
-      name: pip
-      state: present
-
-  - name: Installing docker-py
-    shell: pip install docker-py
-
-  - name: Log into DockerHub
-    docker_login:
-      username: aamirs
-      password: "{{ docker_pass }}"
-    register: shell_result
-  - debug:
-      var: shell_result
-      
-  - name: Pushing docker image to DockerHub Private Repository
-    command: "{{ item }}"
-    with_items:
-    - docker tag {{ IMAGE  }}:{{ VER}} {{ DockerHub_repo }}:{{ VER}}
-    - docker push {{ DockerHub_repo }}:{{ VER}}
-    when: diff_cmd.rc == 0
-    register: shell_result
-  - debug:
-      var: shell_result
-
+      var: url_check
 
 

@@ -45,7 +45,6 @@
     - docker run -itd  --name=test_machine320"{{ random_number }}" centos
     - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  {{ DockerHub_repo }}:{{ VER}}
     register: shell_result
-    when: shell_result.rc == 0
   - debug:
       var: shell_result
 
@@ -58,7 +57,6 @@
   - name: Checking if the above link is working as expected
     ansible.builtin.raw: curl -kv http://{{ shell_result.stdout }}:320{{ random_number }}/webapp/index_dev.jsp
     register: url_check
-    failed_when: diff_cmd.rc == 1 or diff_cmd.rc >= 2
   - debug:
       var: url_check
 

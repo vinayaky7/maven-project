@@ -9,6 +9,7 @@
   vars:
     vol: /tmp/myefs/docker_volume/
     IMAGE: "{{ lookup('env', 'IMAGE') }}"
+    WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
     DockerHub_repo: "{{ lookup('env', 'DockerHub_repo') }}"
     VER: "{{ lookup('env', 'VER') }}"
 
@@ -55,7 +56,7 @@
   - name: Build Docker Image
     args:
       chdir: mysnippet{{ random_number }}/2041720
-    shell: docker build -t {{ IMAGE }}:{{ VER }} .
+    shell: docker build -t {{ IMAGE }}:{{ VER }} . --build-arg WORKSPACE={{ WORKSPACE }}
     register: shell_result
   - debug:
       var: shell_result

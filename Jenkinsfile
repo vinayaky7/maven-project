@@ -95,13 +95,13 @@ pipeline {
             }
         }
 
-        /*stage('Configuring Docker Server for testing') {
+        stage('Deployment - Sanity test') {
             steps {
                 
                 //sh 'ansible-playbook ansible/myrole/deployweb.yml'
                 sh 'ansible-playbook ansible/docker_push.yml'
             }
-        }*/
+        }
 
         stage('Deployment') {
             steps {

@@ -99,7 +99,7 @@ pipeline {
             steps {
                 
                 //sh 'ansible-playbook ansible/myrole/deployweb.yml'
-                sh 'ansible-playbook ansible/docker_push.yml'
+                sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
         }
 

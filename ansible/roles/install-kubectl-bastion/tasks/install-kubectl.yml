@@ -42,6 +42,28 @@
     register: shell_result
   - debug:
       var: shell_result
+
+  - name: Updating kubeconfig on the bastion 
+    shell: aws eks update-kubeconfig --region us-west-2 --name myeks
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Setting Kubectl context to the desired environment
+    shell: kubectl config set-context --current --namespace={{ namespace }}
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Checking kubectl with set context
+    shell: kubectl get deployment
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
   
+
 
   

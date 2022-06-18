@@ -1,0 +1,12 @@
+---
+  
+  - name: Checking kubectl with set context
+    shell: kubectl get deployment
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  
+
+  

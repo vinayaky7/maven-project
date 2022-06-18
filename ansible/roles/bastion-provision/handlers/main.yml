@@ -1,6 +1,2 @@
 ---
 # handlers file for myrole
-- name: Start Httpd
-  service: 
-      name=httpd 
-      state=started

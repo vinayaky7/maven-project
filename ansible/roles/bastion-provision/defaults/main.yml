@@ -1,6 +1,7 @@
 ---
 # defaults file for myrole
 user: ec2-user
+WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
 aws_access_key_id: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           38643534613662366363323661373031376561653833346364633135326562643933633361323566

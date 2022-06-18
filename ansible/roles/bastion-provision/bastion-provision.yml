@@ -6,8 +6,9 @@
 
   vars:
     JOB: "{{ lookup('env', 'JOB') }}"
+    WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
 
   roles:
-    - /var/lib/jenkins/workspace/{{JOB}}/ansible/roles/bastion-provision
+    - "{{WORKSPACE}}"/ansible/roles/bastion-provision
    #- /root/maven-project/ansible/roles/bastion-provision
     

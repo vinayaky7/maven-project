@@ -7,6 +7,7 @@ pipeline {
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_name = "radical-bastion"
         JOB = "${env.JOB_NAME}"
+        WORKSPACE = "${WORKSPACE}"
     }
 
     

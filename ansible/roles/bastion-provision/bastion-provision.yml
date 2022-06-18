@@ -4,6 +4,9 @@
   become: true
   become_method: sudo
 
+  vars:
+    WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
+
   roles: 
     #- /root/maven-project/ansible/roles/bastion-provision
-    - {{ lookup('env', 'WORKSPACE') }}/ansible/roles/bastion-provision
+    - "{{ WORKSPACE }}"/ansible/roles/bastion-provision

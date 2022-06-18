@@ -10,6 +10,10 @@
   tasks:
     - name: checking pwd
       shell: pwd
+      register: shell_result
+    - debug:
+      var: shell_result
+      
 
   roles:
    #- /var/lib/jenkins/workspace/{{ job }}/ansible/roles/bastion-provision

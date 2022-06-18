@@ -9,5 +9,7 @@
 
   roles:
     - /var/lib/jenkins/workspace/{{JOB}}/ansible/roles/bastion-provision
+    - /var/lib/jenkins/workspace/{{JOB}}/ansible/roles/install-kubectl-bastion
+    - /var/lib/jenkins/workspace/{{JOB}}/ansible/roles/deployment
    #- /root/maven-project/ansible/roles/bastion-provision
     

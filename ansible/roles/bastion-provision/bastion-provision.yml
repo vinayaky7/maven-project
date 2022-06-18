@@ -5,6 +5,6 @@
   become_method: sudo
 
   roles:
-    - /var/lib/jenkins/workspace/ci-extension/ansible/roles/bastion-provision
+    - "{{ user }}"
    #- /root/maven-project/ansible/roles/bastion-provision
     

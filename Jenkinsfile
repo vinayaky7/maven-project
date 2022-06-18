@@ -32,12 +32,12 @@ pipeline {
             }
         }*/
 
-        stage('Building Docker image') {
+        /*stage('Building Docker image') {
             steps {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }
+        }*/
 
         stage('Launching a Bastion VM via Terraform') {
             steps {
@@ -94,12 +94,12 @@ pipeline {
             }
         }
 
-        stage('Deployment - Sanity test on testvm') {
+        /*stage('Deployment - Sanity test on testvm') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }
+        }*/
 
         stage('Deployment') {
             steps {

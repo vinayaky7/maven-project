@@ -7,7 +7,11 @@
   vars:
     job: "{{ lookup('env', 'env.JOB_NAME') }}"
 
+  tasks:
+    - name: checking pwd
+      shell: pwd
+
   roles:
-    - /var/lib/jenkins/workspace/{{ job }}/ansible/roles/bastion-provision
+   # - /var/lib/jenkins/workspace/{{ job }}/ansible/roles/bastion-provision
    #- /root/maven-project/ansible/roles/bastion-provision
     

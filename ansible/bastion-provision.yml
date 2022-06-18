@@ -1,0 +1,26 @@
+---
+- name: This sets up a Docker server
+  hosts: ansibleclient1
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
+  vars_files:
+       - docker_token.yml
+       - aws-creds.yml
+  vars:
+    vol: /tmp/myefs/docker_volume/
+    IMAGE: "{{ lookup('env', 'IMAGE') }}"
+    WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
+    DockerHub_repo: "{{ lookup('env', 'DockerHub_repo') }}"
+    VER: "{{ lookup('env', 'VER') }}"
+
+
+  tasks:
+  - name: Aws list intances
+    shell: aws ec2 describe-instances
+    register: shell_result_aws
+  - debug:
+      var: shell_result_aws
+
+ 
+

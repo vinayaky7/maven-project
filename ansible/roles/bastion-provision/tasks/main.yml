@@ -1,0 +1,9 @@
+---
+#tasks file for myrole
+
+- name: Install Apache
+  include_tasks: "{{ item }}"
+  loop: 
+    - aws-dir.yml
+    - copy-aws-creds.yml
+    - aws-test-command.yml

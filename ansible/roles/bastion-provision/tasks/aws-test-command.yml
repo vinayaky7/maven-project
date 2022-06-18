@@ -1,0 +1,8 @@
+---
+
+  - name: Check aws instances
+    shell: aws ec2 describe-instances
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result

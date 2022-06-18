@@ -98,7 +98,7 @@ pipeline {
                 
                 //sh 'ansible-playbook ansible/myrole/deployweb.yml'
                 //sh 'ansible-playbook ansible/deployment-sanity-test.yml'
-                sh 'ansible-playbook ansible/bastion-provision.yml'
+                sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml'
             }
         }
 

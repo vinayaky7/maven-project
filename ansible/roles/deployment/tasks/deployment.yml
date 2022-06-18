@@ -1,7 +1,16 @@
 ---
   
+  - name: Copying deploymemnt files
+    copy:
+      src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/deployment.yml
+      dest: /home/{{ user }}/
+    register: shell_result_deployment_file
+  - debug:
+      var: shell_result_deployment_file
+
   - name: Checking if previous deployment is present
     shell: kubectl get deployment | grep frontend
+    when: shell_result_deployment_file.rc == 0
     become: false
     register: shell_result_k8s
     ignore_errors: True

@@ -8,7 +8,7 @@
     WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
 
   include_role:
-    name: {{ WORKSPACE }}/ansible/roles/bastion-provision
+    name: "{{ WORKSPACE }}"/ansible/roles/bastion-provision
 
   #roles:
   #- /root/maven-project/ansible/roles/bastion-provision

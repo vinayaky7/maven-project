@@ -5,4 +5,5 @@
   become_method: sudo
 
   roles: 
-    - /root/maven-project/ansible/roles/bastion-provision
+    #- /root/maven-project/ansible/roles/bastion-provision
+    - "{{ lookup('env', 'WORKSPACE') }}"/ansible/roles/bastion-provision

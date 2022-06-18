@@ -24,7 +24,7 @@
   - debug:
       var: shell_result_check_deployment
 
-  - name: Checking if previous deployment is present
+  - name: Creating a deployment
     shell: kubectl create -f deployment.yml
     when: shell_result_check_deployment.rc != 0
     become: false
@@ -32,7 +32,7 @@
   - debug:
       var: shell_result
 
-  - name: Checking if previous deployment is present
+  - name: Applying a rolling update on existing deployment
     shell: kubectl apply -f deployment.yml
     when: shell_result_check_deployment.rc == 0
     become: false

@@ -12,7 +12,7 @@
       shell: pwd
       register: shell_result
     - debug:
-      var: shell_result
+        var: shell_result
       
 
   roles:

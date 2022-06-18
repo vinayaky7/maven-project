@@ -1,21 +1,10 @@
 ---
 - hosts: webservers
-  remote_user: ec2-user
+  remote_user: "{{ user }}"
   become: true
   become_method: sudo
 
-  vars:
-    job: "{{ lookup('env', 'env.JOB_NAME') }}"
-
-  tasks:
-    - name: checking pwd
-      shell: pwd
-      register: shell_result
-    - debug:
-        var: shell_result
-      
-
   roles:
-   #- /var/lib/jenkins/workspace/{{ job }}/ansible/roles/bastion-provision
+    - /var/lib/jenkins/workspace/ci-extension/ansible/roles/bastion-provision
    #- /root/maven-project/ansible/roles/bastion-provision
     

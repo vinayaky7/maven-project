@@ -1,7 +1,23 @@
 ---
   
-  - name: Checking kubectl with set context
-    shell: kubectl get deployment
+  - name: Checking if previous deployment is present
+    shell: kubectl get deployment | grep frontend
+    become: false
+    register: shell_result_k8s
+  - debug:
+      var: shell_result_k8s
+
+  - name: Checking if previous deployment is present
+    shell: kubectl create -f deployment.yml
+    when: shell_result_k8s.rc != 0
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Checking if previous deployment is present
+    shell: kubectl apply -f deployment.yml
+    when: shell_result_k8s.rc == 0
     become: false
     register: shell_result
   - debug:

@@ -32,13 +32,13 @@ pipeline {
             }
         }*/
 
-        /*stage('Building Docker image') {
+        stage('Building Docker image') {
             steps {
                 
                 //sh 'ansible-playbook ansible/myrole/deployweb.yml'
                 //sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }*/
+        }
 
         stage('Launching a Bastion VM via Terraform') {
             steps {

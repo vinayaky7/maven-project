@@ -18,17 +18,17 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        /*stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
-        }
+        }*/
 
-        stage('Preparing volume for Containers') {
+        /*stage('Preparing volume for Containers') {
             steps {
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
-        }
+        }*/
 
         /*stage('Building Docker image') {
             steps {

@@ -16,6 +16,11 @@
 
 
   tasks:
+  - name:
+    copy:
+      src: .aws/credentials
+      dest: /home/ec2-user
+      
   - name: Aws list intances
     shell: aws ec2 describe-instances
     register: shell_result_aws

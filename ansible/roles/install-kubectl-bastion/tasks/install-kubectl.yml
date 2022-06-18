@@ -1,0 +1,60 @@
+---
+  
+  - name: Install Kubectl
+    args:
+      chdir: /home/{{ user }}/
+    shell: curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.22.6/2022-03-09/bin/linux/amd64/kubectl
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Install SHA-256
+    args:
+      chdir: /home/{{ user }}/
+    shell: curl -o kubectl.sha256 https://s3.us-west-2.amazonaws.com/amazon-eks/1.22.6/2022-03-09/bin/linux/amd64/kubectl.sha256
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Check SHA-256 sum
+    args:
+      chdir: /home/{{ user }}/
+    shell: openssl sha1 -sha256 kubectl
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Change kubectl perm
+    args:
+      chdir: /home/{{ user }}/
+    shell: chmod +x ./kubectl
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Create workspace for USER
+    args:
+      chdir: /home/{{ user }}/
+    shell: mkdir -p /home/{{ user }}/bin && cp ./kubectl /home/{{ user }}/bin/kubectl && export PATH=$PATH:/home/{{ user }}/bin
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Export kubectl path
+    args:
+      chdir: /home/{{ user }}/
+    shell: echo 'export PATH=$PATH:/home/{{ user }}/bin' >> /home/{{ user }}/.bashrc
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Testing Kubectl
+    args:
+      chdir: /home/{{ user }}/
+    shell: kubectl version --short --client
+    register: shell_result
+  - debug:
+      var: shell_result
+  
+
+  

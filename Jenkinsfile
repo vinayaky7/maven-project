@@ -35,8 +35,7 @@ pipeline {
         stage('Building Docker image') {
             steps {
                 
-                //sh 'ansible-playbook ansible/myrole/deployweb.yml'
-                //sh 'ansible-playbook ansible/docker_build.yml'
+                sh 'ansible-playbook ansible/docker_build.yml'
             }
         }
 

@@ -8,17 +8,25 @@
   - debug:
       var: shell_result_deployment_file
 
+  - name: Copying Service deployment files
+    copy:
+      src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/service.yml
+      dest: /home/{{ user }}/
+    register: shell_result_svc_file
+  - debug:
+      var: shell_result_svc_file
+
   - name: Checking if previous deployment is present
     shell: kubectl get deployment | grep frontend
     become: false
-    register: shell_result_k8s
+    register: shell_result_check_deployment
     ignore_errors: True
   - debug:
-      var: shell_result_k8s
+      var: shell_result_check_deployment
 
   - name: Checking if previous deployment is present
     shell: kubectl create -f deployment.yml
-    when: shell_result_k8s.rc != 0
+    when: shell_result_check_deployment.rc != 0
     become: false
     register: shell_result
   - debug:
@@ -26,11 +34,50 @@
 
   - name: Checking if previous deployment is present
     shell: kubectl apply -f deployment.yml
-    when: shell_result_k8s.rc == 0
+    when: shell_result_check_deployment.rc == 0
     become: false
     register: shell_result
   - debug:
       var: shell_result
+
+  - name: Checking Load Balancer service
+    shell: kubectl get svc | grep myfrontend-service
+    become: false
+    register: shell_result_check_svc
+    ignore_errors: True
+  - debug:
+      var: shell_result_check_svc
+
+  - name: Checking Load Balancer service
+    shell: kubectl create -f service.yml
+    when: shell_result_check_svc.rc != 0
+    become: false
+    register: shell_result_svc_deploy
+  - debug:
+      var: shell_result_svc_deploy
+
+  - name: Checking if Load Balancer exist 
+    shell: kubectl get svc | grep myfrontend-service | awk '{print $4}'
+    when: shell_result_check_svc.rc == 0
+    become: false
+    register: shell_result_lb_link_exist
+    ignore_errors: True
+  - debug:
+      var: shell_result_lb_link_exist
+
+  - name: Testing Load Balancer Link
+    shell: curl -kv http://{{ shell_result_lb_link_exist.stdout }}/index_dev.jsp
+    when: shell_result_check_svc.rc == 0
+    become: false
+    register: shell_result_lb_link
+  - debug:
+      var: shell_result_lb_link
+
+
+
+
+  
+
 
   
 

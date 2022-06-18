@@ -4,28 +4,39 @@
   remote_user: ec2-user
   become: true
   become_method: sudo
-  vars_files:
-       - docker_token.yml
-       - aws-creds.yml
+
   vars:
-    vol: /tmp/myefs/docker_volume/
-    IMAGE: "{{ lookup('env', 'IMAGE') }}"
-    WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
-    DockerHub_repo: "{{ lookup('env', 'DockerHub_repo') }}"
-    VER: "{{ lookup('env', 'VER') }}"
+    user: ec2-user
 
 
   tasks:
-  - name:
+  - name: Copy aws credentials
     copy:
-      src: .aws/credentials
-      dest: /home/ec2-user
-      
-  - name: Aws list intances
-    shell: aws ec2 describe-instances
-    register: shell_result_aws
+      src: aws/credentials
+      dest: /home/{{ user }}/.aws/
+    register: shell_result
   - debug:
-      var: shell_result_aws
+      var: shell_result
 
- 
+  - name: copy aws config
+    copy:
+      src: aws/config
+      dest: /home/{{ user }}/.aws/
+    register: shell_result
+  - debug:
+      var: shell_result
 
+  - name: Change user perm
+    args:
+      chdir: /home/{{ user }}/
+    shell: chown -R {{ user }}.{{ user }} .aws
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Check aws instances
+    shell: aws ec2 describe-instances
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result

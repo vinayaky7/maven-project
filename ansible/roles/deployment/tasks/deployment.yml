@@ -4,6 +4,7 @@
     shell: kubectl get deployment | grep frontend
     become: false
     register: shell_result_k8s
+    ignore_errors: True
   - debug:
       var: shell_result_k8s
 

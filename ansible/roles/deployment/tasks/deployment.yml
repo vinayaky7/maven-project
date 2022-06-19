@@ -8,7 +8,7 @@
       mode: 0755
     register: shell_result
   - debug:
-    var: shell_result
+      var: shell_result
 
   - name: Copying Service deployment file to bastion
     copy:

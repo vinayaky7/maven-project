@@ -74,6 +74,7 @@
     shell: kubectl get deployment
     become: false
     register: shell_result
+    ignore_errors: True
   - debug:
       var: shell_result
   

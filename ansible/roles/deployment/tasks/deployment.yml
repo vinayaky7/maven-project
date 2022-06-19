@@ -48,7 +48,7 @@
   - debug:
       var: shell_result_check_svc
 
-  - name: Checking Load Balancer service
+  - name: Creating a Load Balancer service
     shell: kubectl create -f service.yml
     when: shell_result_check_svc.rc != 0
     become: false

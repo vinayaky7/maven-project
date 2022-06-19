@@ -3,7 +3,8 @@ pipeline {
 
     environment {
         IMAGE = "radical-april-2022"
-        VER = "${env.JOB_NAME}-${env.BUILD_ID}"
+        //VER = "${env.JOB_NAME}-${env.BUILD_ID}"
+        VER = "${env.JOB_NAME}-final"
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_name = "radical-bastion"
         JOB = "${env.JOB_NAME}"

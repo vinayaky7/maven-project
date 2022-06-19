@@ -21,24 +21,24 @@ pipeline {
             }
         }
 
-        /*stage('Build') {
+        stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
-        }*/
+        }
 
-        /*stage('Preparing volume for Containers') {
+        stage('Preparing volume for Containers') {
             steps {
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
-        }*/
+        }
 
-        /*stage('Building Docker image') {
+        stage('Building Docker image') {
             steps {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }*/
+        }
 
         stage('Launching a Bastion VM via Terraform') {
             steps {
@@ -95,12 +95,12 @@ pipeline {
             }
         }
 
-        /*stage('Deployment - Sanity test on testvm') {
+        stage('Deployment - Sanity test on testvm') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }*/
+        }
 
         stage('Deployment') {
             steps {

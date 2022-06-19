@@ -1,14 +1,16 @@
 ---
-  
-  - name: Copying deploymemnt files
-    copy:
-      src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/deployment.yml
-      dest: /home/{{ user }}/
-    register: shell_result_deployment_file
+  - name: Copying deployment template to bastion
+    template: 
+      src: deployment.yml.j2
+      dest: /home/{{ user }}/deployment.yml
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0755
+    register: shell_result
   - debug:
-      var: shell_result_deployment_file
+    var: shell_result
 
-  - name: Copying Service deployment files
+  - name: Copying Service deployment file to bastion
     copy:
       src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/service.yml
       dest: /home/{{ user }}/
@@ -16,7 +18,7 @@
   - debug:
       var: shell_result_svc_file
 
-  - name: Checking if previous deployment is present
+  - name: Checking if previous deployment exist
     shell: kubectl get deployment | grep frontend
     become: false
     register: shell_result_check_deployment

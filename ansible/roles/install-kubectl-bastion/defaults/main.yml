@@ -1,5 +1,6 @@
 ---
 # defaults file for myrole
+eks_cluster: "{{ lookup('env', 'eks_cluster') }}"
 user: ec2-user
 WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
 job: "{{ lookup('env', 'JOB') }}"

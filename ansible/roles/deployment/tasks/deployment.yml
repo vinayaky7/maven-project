@@ -38,6 +38,14 @@
     shell: kubectl apply -f deployment.yml
     when: shell_result_check_deployment.rc == 0
     become: false
+    register: shell_result_rolling_update
+  - debug:
+      var: shell_result_rolling_update
+
+  - name: Applying a rolling update on existing deployment
+    shell: kubectl describe deployment frontend
+    when: shell_result_rolling_update.rc == 0
+    become: false
     register: shell_result
   - debug:
       var: shell_result

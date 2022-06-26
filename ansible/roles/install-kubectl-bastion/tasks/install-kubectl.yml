@@ -57,7 +57,7 @@
       var: shell_result
 
   - name: Updating kubeconfig on the bastion 
-    shell: aws eks update-kubeconfig --region us-west-2 --name myeks
+    shell: aws eks update-kubeconfig --region {{ region }} --name myeks
     become: false
     register: shell_result
   - debug:

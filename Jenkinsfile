@@ -3,7 +3,7 @@ pipeline {
     agent {
         node {
             label 'linux'
-            customWorkspace '/tmp/myefs/myworkspace/workspace/'
+            customWorkspace '/tmp/myefs/myworkspace/workspace/${env.JOB_NAME}/'
         }
     }
 
@@ -31,7 +31,9 @@ pipeline {
                         echo "${TEST}"
                         echo "${test1}"
                         echo "${sTring}"
+
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
+                        
 
                     } catch(Exception e) {
                         echo "Exception received because of --- " + e.toString()

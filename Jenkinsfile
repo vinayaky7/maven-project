@@ -3,7 +3,7 @@ pipeline {
     agent {
         node {
             label 'linux'
-            customWorkspace '/tmp/myefs/myworkspace/'
+            customWorkspace '/tmp/myefs/myworkspace/workspace/'
         }
     }
 

@@ -1,19 +1,18 @@
-/* groovylint-disable CompileStatic */
 pipeline {
-    //agent {label 'linux'}
+
     agent {
         node {
             label 'linux'
-            customWorkspace '/tmp/myefs/myworkspace/workspace/declarative_pipeline'
+            customWorkspace '/tmp/myefs/myworkspace/'
         }
     }
 
     environment {
-    Node_IP = "18.188.143.4"
+    Node_IP = "54.185.162.231"
     TEST = "Radical"
     sTring = "Webhook created from pipline job"
     }
-
+    
     stages {
         stage('Git Checkout') {
             steps {
@@ -46,6 +45,7 @@ pipeline {
         stage('Scanning') {
             steps {
                 echo 'Scanning in progress.'
+                
                 
             }
         }
@@ -83,11 +83,13 @@ pipeline {
                     sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
                     sh 'sudo elinks  http://${Node_IP}/webapp/'
                     sh 'sudo elinks  http://${Node_IP}/webapp/index_dev.jsp'
+                    sh 'sudo elinks  http://${Node_IP}/webapp/index.html'
                     sh 'sudo curl -kv http://${Node_IP}/webapp/index_dev.jsp'
                 }
 
             }
         }
+        
     }
 }
 

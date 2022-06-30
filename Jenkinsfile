@@ -32,7 +32,7 @@ pipeline {
                         echo "${test1}"
                         echo "${sTring}"
 
-                        sh '/usr/local/src/apache-maven/bin/mvn clean test'
+                        sh '/usr/local/src/apache-maven/mvn clean install'
                         
 
                     } catch(Exception e) {

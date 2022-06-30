@@ -28,11 +28,11 @@ pipeline {
                     try {
                         sh "whoami"
                         def test1 = "radical1"
-                        echo "${TES}"
+                        echo "${TEST}"
                         echo "${test1}"
                         echo "${sTring}"
 
-                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean test'
                         
 
                     } catch(Exception e) {

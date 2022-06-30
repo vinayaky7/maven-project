@@ -28,7 +28,7 @@ pipeline {
                     try {
                         sh "whoami"
                         def test1 = "radical1"
-                        echo "${TEST}"
+                        echo "${TES}"
                         echo "${test1}"
                         echo "${sTring}"
 

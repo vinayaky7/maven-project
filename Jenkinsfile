@@ -31,8 +31,9 @@ pipeline {
                         echo "${TEST}"
                         echo "${test1}"
                         echo "${sTring}"
+                        echo "We are using the env ${ENVIRONMENT}"
 
-                        sh '/usr/local/src/apache-maven/mvn clean install'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
                         
 
                     } catch(Exception e) {

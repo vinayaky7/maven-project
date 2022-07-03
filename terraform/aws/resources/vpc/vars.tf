@@ -38,10 +38,6 @@ variable "subnet_private" {
 variable "subnets" {
 	type = map(string)
 	default = {
-		subnet1 = "subnet-0ac5cad04768a6894"
-		subnet2 = "subnet-08607b193ddc28364"
-		subnet3 = "subnet-082e9a36b73ccb48e"
-		subnet4 = "subnet-0713177bcf2516c8b"
 		us-east-2a = "subnet-082e9a36b73ccb48e"
 		us-east-2b = "subnet-0c2e0b4c70b514deb"
 		us-east-2c = "subnet-03ba9aad460bd47f6"

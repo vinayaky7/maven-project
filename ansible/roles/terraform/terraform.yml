@@ -1,6 +1,5 @@
 ---
-- hosts: webservers
-  remote_user: "{{ user }}"
+- hosts: localhost
   become: true
   become_method: sudo
 

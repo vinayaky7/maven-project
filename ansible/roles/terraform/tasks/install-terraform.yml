@@ -17,7 +17,7 @@
 
   - name: Installing Terraform - 2
     shell: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-    when: shell_result_utils.rc == 0
+    when: shell_result_check_terraform.rc != 0
     become: true
     register: shell_result_utils_2
   - debug:
@@ -25,7 +25,7 @@
 
   - name: Installing Terraform - 3
     shell: yum update -y
-    when: shell_result_utils_2.rc == 0
+    when: shell_result_check_terraform.rc != 0
     become: true
     register: shell_result_utils_3
   - debug:
@@ -33,7 +33,7 @@
 
   - name: Installing Terraform - 4
     shell: yum -y install terraform
-    when: shell_result_utils_3.rc == 0
+    when: shell_result_check_terraform.rc != 0
     become: true
     register: shell_result_utils_4
   - debug:

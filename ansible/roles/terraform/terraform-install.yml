@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  remote_user: "{{ user }}"
+  become: true
+  become_method: sudo
+
+  vars:
+    job: "{{ lookup('env', 'JOB') }}"
+
+  roles:
+    - /var/lib/jenkins/workspace/{{job}}/ansible/roles/terraform
+   #- /root/maven-project/ansible/roles/bastion-provision
+    

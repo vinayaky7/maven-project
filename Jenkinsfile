@@ -5,7 +5,7 @@ pipeline {
         IMAGE = "radical-april-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        aws-bastion = "radical-bastion"
+        bastion = "radical-bastion"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         namespace = "dev"

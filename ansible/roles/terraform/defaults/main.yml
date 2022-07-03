@@ -1,6 +1,6 @@
 ---
 # defaults file for myrole
-user: ec2-user
+user: jenkins
 WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
 job: "{{ lookup('env', 'JOB') }}"
 namespace: "{{ lookup('env', 'namespace') }}"

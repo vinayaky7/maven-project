@@ -1,8 +1,9 @@
 ---
-  - name: Checking Terrform
-    shell: which terrafrom
+  - name: Checking Terraform
+    shell: which terraform
     become: false
     register: shell_result_check_terraform
+    ignore_errors: True
   - debug:
       var: shell_result_check_terraform
 
@@ -43,6 +44,7 @@
     when: shell_result_utils_4.rc == 0
     become: false
     register: shell_result_check_terraform_installation
+    ignore_errors: True
   - debug:
       var: shell_result_check_terraform_installation
 

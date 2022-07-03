@@ -24,7 +24,7 @@
       var: shell_result_utils_2
 
   - name: Installing Terraform - 3
-    shell: yum update
+    shell: yum update -y
     when: shell_result_utils_2.rc == 0
     become: true
     register: shell_result_utils_3

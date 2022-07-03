@@ -14,13 +14,11 @@ variable "vpc_cidr" {
 variable "public_subnet_cidr" {
 	description = "CIDR for radical public subnet"
 	default     = "10.0.1.0/24"
-	availability_zone = "subnet-082e9a36b73ccb48e"
 }
 
 variable "private_subnet_cidr" {
 	description = "CIDR for radical private subnet"
 	default     = "10.0.2.0/24"
-	availability_zone = "subnet-03ba9aad460bd47f6"
 }
 
 variable "mykey" {

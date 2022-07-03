@@ -3,7 +3,7 @@ resource "aws_instance" "radical-bastion" {
   instance_type = "t2.micro"
   key_name      = var.mykey
   vpc_security_group_ids = ["${aws_security_group.radical-sg.id}"]
-  subnet_id = "${aws_subnet.aws-public-subnet.id}"
+  subnet_id = lookup(var.subnets, var.subnet_public, "")
 
   tags = {
     Terraform   = "true"

@@ -48,7 +48,9 @@ pipeline {
 
                     sh 'ls -la'
 
-                    echo "Here the VM will be launched by terraform & it will auto enable ssh to this Ansible server. Right now we are creating a VM manually & configuring it a an ansible client. We will re-run this step once we learn terraform."
+                    echo "Terraform is launching the bastion VM"
+
+                    sh 'ansible-playbook ansible/roles/terraform/terraform.yml'
                       
                 }
             }

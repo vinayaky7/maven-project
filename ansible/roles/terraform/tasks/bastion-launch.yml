@@ -21,7 +21,7 @@
   - name: Running terraform in apply mode
     args:
       chdir: "{{ WORKSPACE }}/terraform/aws/resources/ec2-instance"
-    shell: terraform apply -var-file terrform.tfvars
+    shell: terraform apply -var-file terrform.tfvars -auto-approve
     when: shell_result_plan.rc ==0
     become: false
     register: shell_result_apply

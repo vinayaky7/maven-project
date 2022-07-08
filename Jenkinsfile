@@ -4,7 +4,7 @@ pipeline {
     environment {
         def image_name="radical-devops-june-2022"
         def image_version="1.0"
-        def IP="54.185.162.231"
+        def IP="52.42.234.178"
     }
     
     stages {

@@ -18,7 +18,7 @@ pipeline {
         stage('Installing Docker') {
             steps {
 		        sh 'sudo yum install docker -y'
-                sh 'systemctl start docker'
+                sh 'sudo systemctl start docker'
             }
         }
 

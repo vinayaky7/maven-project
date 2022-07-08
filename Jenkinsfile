@@ -18,6 +18,7 @@ pipeline {
     stage('Build Docker Image') {
             steps {
 		        sh 'sudo yum install docker -y'
+                sh 'systemctl start docker'
             }
         }
 

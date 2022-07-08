@@ -14,10 +14,17 @@ pipeline {
                 sh 'ls -la'
             }
         }
+    
+    stage('Build Docker Image') {
+            steps {
+		        sh 'sudo yum install docker -y'
+            }
+        }
+
 
         stage('Build Docker Image') {
             steps {
-		sh 'echo ${image_name}'
+		        sh 'echo ${image_name}'
                 sh "sudo docker build -t $image_name:$image_version ."
                 sh 'sudo docker images'
             }

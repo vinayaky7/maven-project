@@ -46,9 +46,8 @@ pipeline {
                 /*sh 'sudo docker run -itd  --network=my_network --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 myweb:2.0'*/
                 sh 'sudo docker ps'
                 sh 'sudo docker images'
-                sh "curl -kv http://$IP:300${BUILD_NUMBER}/webapp"
-                sh "curl -kv http://$IP:300${BUILD_NUMBER}/webapp/index_dev.jsp"
-                sh "elinks http://$IP:300${BUILD_NUMBER}/webapp/index_master.jsp"
+                sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
+                sh "elinks http://$IP:300${BUILD_NUMBER}/index_master.jsp"
                 
         
             }

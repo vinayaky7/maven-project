@@ -15,10 +15,11 @@ pipeline {
             }
         }
     
-        stage('Installing Docker') {
+        stage('Installing Docker & tools') {
             steps {
 		        sh 'sudo yum install docker -y'
                 sh 'sudo systemctl start docker'
+                sh 'sudo yum install elinks'
             }
         }
 

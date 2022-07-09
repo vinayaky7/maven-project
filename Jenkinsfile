@@ -101,9 +101,11 @@ pipeline {
             steps {
                 script {
 
-                    sh 'echo "${bastion_ip}"  >> /etc/ansible/hosts'
+                    echo "${bastion_ip}"
 
-                    sh 'ansible -m ping "${bastion_ip}" -u ec2-user'
+                    sh "echo ${bastion_ip}  >> /etc/ansible/hosts"
+
+                    sh "ansible -m ping ${bastion_ip} -u ec2-user"
                       
                 }
             }

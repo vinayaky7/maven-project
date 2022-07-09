@@ -6,4 +6,3 @@
   loop: 
     - install-terraform.yml
     - aws-resource-create-vpc.yml
-    - aws-resource-destroy.yml

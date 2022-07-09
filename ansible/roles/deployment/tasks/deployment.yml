@@ -18,6 +18,54 @@
   - debug:
       var: shell_result_svc_file
 
+  - name: Copying namespace file to bastion
+    copy:
+      src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/namespace.yml
+      dest: /home/{{ user }}/
+    register: shell_result_namespace_file
+  - debug:
+      var: shell_result_namespace_file
+
+  - name: Copying secret file to bastion
+    copy:
+      src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/secret.yml
+      dest: /home/{{ user }}/
+    register: shell_result_secret_file
+  - debug:
+      var: shell_result_secret_file
+
+  - name: Checking if namespace exists
+    shell: kubectl get ns | grep {{ namespace }}
+    become: false
+    register: shell_result_check_ns
+    ignore_errors: True
+  - debug:
+      var: shell_result_check_ns
+
+  - name: Creating a namespace
+    shell: kubectl create -f namespace.yml
+    when: shell_result_check_ns.rc != 0
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Checking if secret exists in the namespace
+    shell: kubectl get secret | grep my-docker-hub-secret
+    become: false
+    register: shell_result_check_secret
+    ignore_errors: True
+  - debug:
+      var: shell_result_check_secret
+
+  - name: Creating a secret in a namespace
+    shell: kubectl create -f secret.yml
+    when: shell_result_check_secret.rc != 0
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
   - name: Checking if previous deployment exist
     shell: kubectl get deployment | grep frontend
     become: false

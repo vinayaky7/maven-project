@@ -8,7 +8,7 @@
     shell: cat /etc/ansible/hosts | grep {{ bastion_ip }}
     register: shell_result_ip_check
   - debug:
-      var: shell_result
+      var: shell_result_ip_check
 
   - name: Adding radical-bastion to ansible hosts file
     shell: echo {{ bastion_ip }} ansible_ssh_common_args=\'-o StrictHostKeyChecking=no\' >> /etc/ansible/hosts

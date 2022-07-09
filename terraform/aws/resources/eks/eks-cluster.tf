@@ -1,5 +1,5 @@
-resource "aws_eks_cluster" "myeks" {
- name = "myeks"
+resource "aws_eks_cluster" "radical-myeks" {
+ name = "radical-myeks"
  role_arn = aws_iam_role.eks-iam-role.arn
 
  vpc_config {

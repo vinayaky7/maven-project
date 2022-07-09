@@ -18,6 +18,8 @@ spec:
       - name: mywebserver
         image: aamirs/radical-private-repo:ci-extension-final
         command: [ "/usr/sbin/httpd", "-D", "FOREGROUND" ]
+      imagePullSecrets:
+      - name: my-docker-hub-secret
 
   selector:
     matchLabels:

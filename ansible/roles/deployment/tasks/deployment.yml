@@ -92,7 +92,6 @@
 
   - name: Applying a rolling update on existing deployment
     shell: kubectl describe deployment frontend
-    when: shell_result_rolling_update.rc == 0
     become: false
     register: shell_result
   - debug:

@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        /*stage('Build') {
+        stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
@@ -57,7 +57,7 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
         stage('Configuring aws on Jenkins slave') {
             steps {
@@ -66,7 +66,7 @@ pipeline {
 
                     sh 'aws ec2 describe-instances --filter Name=tag:Name,Values=Jenkins-Master --query Reservations[].Instances[].PrivateIpAddress --output text'
 
-                    def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=Jenkins-Master --query Reservations[].Instances[].PrivateIpAddress --output text")
+                    def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
 
                     println(bastion_ip.getClass())
                     

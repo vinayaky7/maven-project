@@ -18,7 +18,7 @@ pipeline {
 
     
     stages {
-        /*stage('Git Checkout') {
+        stage('Git Checkout') {
             steps {
                 git branch: 'dev-ansible',
                     credentialsId: 'git-https-creds',
@@ -64,7 +64,7 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }*/
+        }
 
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
@@ -108,14 +108,14 @@ pipeline {
             }
         }
 
-        /*stage('Deployment - Sanity test on testvm') {
+        stage('Deployment - Sanity test on testvm') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
         }
 
-        stage('Deployment') {
+        /*stage('Deployment') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }

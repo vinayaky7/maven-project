@@ -1,4 +1,4 @@
-resource "aws_instance" "radical-bastion" {
+resource "aws_instance" "testvm" {
   ami           = lookup(var.AMIS, var.AWS_REGION, "") # last parameter is the default value
   instance_type = "t2.micro"
   key_name      = var.mykey
@@ -31,6 +31,6 @@ resource "aws_instance" "radical-bastion" {
     private_key = "${file("${var.keyPath}")}"
     host        = self.public_ip
   }
-  
+
 }
 

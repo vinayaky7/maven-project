@@ -102,7 +102,7 @@ pipeline {
                     
                     sh "ansible-playbook ansible/update-ansible-host.yaml --extra-vars bastion_ip=${bastion_ip}"
 
-                    sh "ansible -m ping -u ec2-user $bastion_ip"
+                    sh "ansible -m ping -u ec2-user $bastion_name"
                       
                 }
             }
@@ -115,10 +115,10 @@ pipeline {
             }
         }
 
-        /*stage('Deployment') {
+        stage('Deployment') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }*/
+        }
     }
 }

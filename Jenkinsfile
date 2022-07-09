@@ -9,7 +9,7 @@ pipeline {
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_name = "radical-bastion"
-        bastion_ip = ""
+        bastion_ip = "192.168.1.51"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         namespace = "dev"
@@ -44,7 +44,6 @@ pipeline {
                 sh 'sudo yum install docker -y'
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
-                sh 'sudo systemctl status docker'
             }
         }
 
@@ -53,6 +52,9 @@ pipeline {
                 sh 'sudo amazon-linux-extras install epel -y'
                 sh 'sudo yum install ansible -y'
                 sh 'ansible --version'
+                sh 'sudo chmod 777 /etc/ansible/*'
+                sh 'sudo echo "${bastion_ip}" >> /etc/ansible/hosts'
+                sh 'cat /etc/ansible/hosts'
             }
         }
 

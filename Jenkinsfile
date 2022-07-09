@@ -63,7 +63,7 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }
+        }*/
 
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
@@ -78,7 +78,7 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
         stage('Configuring aws on Jenkins slave') {
             steps {

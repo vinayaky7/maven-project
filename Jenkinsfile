@@ -79,9 +79,9 @@ pipeline {
             steps {
                 script {
 
-                    sh 'echo "${bastion_ip}"  >> /etc/ansible/hosts'
+                    sh 'sudo echo "${bastion_ip}"  >> /etc/ansible/hosts'
 
-                    sh 'cat /etc/ansible/hosts'
+                    sh 'sudo cat /etc/ansible/hosts'
                       
                 }
             }

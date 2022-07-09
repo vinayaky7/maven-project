@@ -2,6 +2,9 @@ pipeline {
     agent {label 'linux'}
 
     environment {
+        AWS_ACCESS_KEY_ID     = credentials('myawscreds')
+        AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
+        aws_region="us-east-2"
         IMAGE = "radical-april-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
@@ -39,9 +42,41 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
+        }
+
+        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+            steps {
+                script {
+                    sh "pwd"
+
+                    sh 'ls -la'
+
+                    echo "Terraform is launching the bastion VM"
+
+                    sh 'ansible-playbook ansible/roles/terraform/terraform.yml'
+                      
+                }
+            }
         }*/
 
-        stage('Launching a Bastion VM via Terraform') {
+        stage('Configuring aws on Jenkins slave') {
+            steps {
+                script {
+                    sh 'aws configure set region ${aws_region}'
+
+                    sh 'aws ec2 describe-instances --filter Name=tag:Name,Values=Jenkins-Master  --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text'
+
+                    def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=Jenkins-Master  --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text")
+
+                    println(bastion_ip.getClass())
+                    
+                    echo "${bastion_ip}"
+                      
+                }
+            }
+        }
+
+        /*stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
                     sh "pwd"
@@ -56,7 +91,7 @@ pipeline {
             }
         }
 
-        /*stage('Deployment - Sanity test on testvm') {
+        stage('Deployment - Sanity test on testvm') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
@@ -66,7 +101,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
-            }
-        }*/
+            }*/
+        }
     }
 }

@@ -18,7 +18,7 @@ pipeline {
 
     
     stages {
-        /*stage('Code Checkout') {
+        stage('Code Checkout') {
             steps {
                 git branch: 'dev-ansible',
                     credentialsId: 'git-https-creds',
@@ -53,7 +53,7 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_image_build.yml'
             }
-        }*/
+        }
 
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
@@ -70,7 +70,7 @@ pipeline {
             }
         }
 
-        /*stage('Fetching Radical-Bastion IP from AWS') {
+        stage('Fetching Radical-Bastion IP from AWS') {
             steps {
                 script {
                     sh 'aws configure set region ${aws_region}'
@@ -118,6 +118,6 @@ pipeline {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }*/
+        }
     }
 }

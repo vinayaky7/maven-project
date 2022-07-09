@@ -16,7 +16,7 @@ resource "aws_instance" "radical-bastion" {
     destination = "/tmp/script.sh"
   }
 
-  rovisioner "remote-exec" {
+  provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/script.sh",
       "/tmp/script.sh",

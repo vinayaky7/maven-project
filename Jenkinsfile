@@ -8,7 +8,7 @@ pipeline {
         IMAGE = "radical-april-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion = "radical-bastion"
+        bastion_name = "radical-bastion"
         bastion_ip = ""
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
@@ -75,20 +75,17 @@ pipeline {
             }
         }
 
-        /*stage('Configuring Bastion as an Ansible Host') {
+        stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
-                    sh "pwd"
 
-                    sh 'ls -la'
+                    sh 'sudo echo "${bastion_ip} ${bastion_name}" >> /etc/hosts'
 
-                    echo "Terraform is launching the bastion VM"
-
-                    sh 'ansible-playbook ansible/roles/terraform/terraform.yml'
+                    sh 'sudo cat /etc/hosts'
                       
                 }
             }
-        }*/
+        }
 
         /*stage('Deployment - Sanity test on testvm') {
             steps {

@@ -18,15 +18,6 @@ spec:
       - name: mywebserver
         image: aamirs/radical-private-repo:ci-extension-final
         command: [ "/usr/sbin/httpd", "-D", "FOREGROUND" ]
-        volumeMounts:
-          - name: efs-pv
-            mountPath: "/tmp"
-      imagePullSecrets:
-      - name: mydocker
-      volumes:
-        - name: efs-pv
-          persistentVolumeClaim:
-            claimName: efs-claim
 
   selector:
     matchLabels:

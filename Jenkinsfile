@@ -102,8 +102,10 @@ pipeline {
                 script {
 
                     echo "${bastion_ip}"
+
+                    def redirect = sh(returnStdout: true, script: "echo ${bastion_ip} >> /etc/ansible/hosts")
                     
-                    sh "echo $bastion_ip >> /etc/ansible/hosts"
+                    //sh "echo ${bastion_ip} >> /etc/ansible/hosts"
 
                     sh "ansible -m ping -u ec2-user $bastion_ip"
                       

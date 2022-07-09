@@ -53,9 +53,6 @@ pipeline {
                 sh 'sudo yum install ansible -y'
                 sh 'ansible --version'
                 sh 'sudo chmod 777 /etc/ansible/*'
-                sh 'sudo echo "${bastion_ip}" >> /etc/ansible/hosts'
-                sh 'cat /etc/ansible/hosts'
-                sh 'ansible -m ping "${bastion_ip}" -u ec2-user'
             }
         }
 
@@ -66,7 +63,7 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }
+        }*/
 
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
@@ -92,7 +89,7 @@ pipeline {
 
                     println(bastion_ip.getClass())
                     
-                    echo "${bastion_ip}"
+                    echo "${bastion_ip}"         
                       
                 }
             }
@@ -104,13 +101,13 @@ pipeline {
 
                     sh 'sudo echo "${bastion_ip}"  >> /etc/ansible/hosts'
 
-                    sh 'sudo cat /etc/ansible/hosts'
+                    sh 'ansible -m ping "${bastion_ip}" -u ec2-user'
                       
                 }
             }
         }
 
-        stage('Deployment - Sanity test on testvm') {
+        /*stage('Deployment - Sanity test on testvm') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'

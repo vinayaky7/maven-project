@@ -53,6 +53,7 @@ pipeline {
                 sh 'sudo yum install ansible -y'
                 sh 'ansible --version'
                 sh 'sudo chmod 777 /etc/ansible/*'
+                sh 'sudo chmod 777 /etc/hosts/'
             }
         }
 
@@ -80,18 +81,16 @@ pipeline {
             }
         }
 
-        stage('Configuring aws on Jenkins slave') {
+        stage('Fetching Bastion IP from AWS') {
             steps {
                 script {
                     sh 'aws configure set region ${aws_region}'
 
                     def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
                     
-                    echo "${bastion_ip1}" 
+                    bastion_ip="${bastion_ip1}"  
 
-                    bastion_ip="${bastion_ip1}"
-
-                   echo "${bastion_ip}"        
+                    echo "${bastion_ip}"    
                       
                 }
             }
@@ -100,8 +99,6 @@ pipeline {
         stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
-
-                    echo "${bastion_ip}"
                     
                     sh "ansible-playbook ansible/update-ansible-host.yaml --extra-vars bastion_ip=${bastion_ip}"
 

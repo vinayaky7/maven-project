@@ -2,6 +2,7 @@
 - hosts: localhost
   vars:
     bastion_ip: ""
+    bastion_name: "{{ lookup('env', 'bastion_name') }}"
 
   tasks:
   - name: Checking if radical-bastion alsready added to ansible hosts file 
@@ -12,6 +13,13 @@
 
   - name: Adding radical-bastion to ansible hosts file
     shell: echo {{ bastion_ip }} ansible_ssh_common_args=\'-o StrictHostKeyChecking=no\' >> /etc/ansible/hosts
+    when: shell_result_ip_check.rc != 0
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Adding radical-bastion to jenkins-slave host file
+    shell: echo {{ bastion_ip }} {{ bastion_name }} >> /etc/hosts
     when: shell_result_ip_check.rc != 0
     register: shell_result
   - debug:

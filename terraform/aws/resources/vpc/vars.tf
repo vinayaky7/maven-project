@@ -27,6 +27,10 @@ variable "mykey" {
 	
 }
 
+variable "keyPath" {
+   default = "aws.pem"
+}
+
 variable "subnet_public" {
 	default = "us-east-2a"
 }

@@ -1,5 +1,5 @@
 ---
-- hosts: webservers
+- hosts: radical-bastion
   remote_user: "{{ user }}"
   become: true
   become_method: sudo

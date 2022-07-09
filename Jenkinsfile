@@ -85,11 +85,13 @@ pipeline {
                 script {
                     sh 'aws configure set region ${aws_region}'
 
-                    bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
-
-                    println(bastion_ip.getClass())
+                    def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
                     
-                    echo "${bastion_ip}"         
+                    echo "${bastion_ip1}" 
+
+                    echo "bastion_ip=${bastion_ip1}" 
+
+                   echo "${bastion_ip}"        
                       
                 }
             }
@@ -99,7 +101,7 @@ pipeline {
             steps {
                 script {
 
-                    sh 'sudo echo "${bastion_ip}"  >> /etc/ansible/hosts'
+                    sh 'echo "${bastion_ip}"  >> /etc/ansible/hosts'
 
                     sh 'ansible -m ping "${bastion_ip}" -u ec2-user'
                       

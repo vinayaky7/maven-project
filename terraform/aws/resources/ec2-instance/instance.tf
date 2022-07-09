@@ -10,5 +10,11 @@ resource "aws_instance" "radical-bastion" {
     Environment = "dev"
     Name   = "radical-bastion"
   }
+
+  provisioner "file" {
+    source      = "script.sh"
+    destination = "/tmp/script.sh"
+  }
+  
 }
 

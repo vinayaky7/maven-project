@@ -8,6 +8,7 @@
   - name: Checking if radical-bastion already added to ansible hosts file 
     shell: cat /etc/ansible/hosts | grep {{ bastion_ip }}
     register: shell_result_ip_check
+    ignore_errors: True
   - debug:
       var: shell_result_ip_check
 
@@ -21,6 +22,7 @@
   - name: Checking if radical-bastion already added to jenkins-slave host file
     shell: cat /etc/hosts | grep {{ bastion_ip }}
     register: shell_result_ip_check_slave
+    ignore_errors: True
   - debug:
       var: shell_result_ip_check_slave
 

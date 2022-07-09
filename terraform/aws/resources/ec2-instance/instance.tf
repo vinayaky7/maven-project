@@ -28,7 +28,7 @@ resource "aws_instance" "radical-bastion" {
     type        = "ssh"
     user        = "ec2-user"
     password    = ""
-    private_key = file(var.keyPath)
+    private_key = "${file("${var.keyPath}")}"
     host        = self.public_ip
   }
 

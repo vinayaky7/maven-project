@@ -19,7 +19,7 @@
   - debug:
       var: shell_result
 
-   - name: Checking if radical-bastion already added to ansible hosts file 
+  - name: Checking if radical-bastion already added to ansible hosts file 
     shell: cat /etc/ansible/hosts | grep {{ bastion_ip }}
     register: shell_result_ip_check
     ignore_errors: True

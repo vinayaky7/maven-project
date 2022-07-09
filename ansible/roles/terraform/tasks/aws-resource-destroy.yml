@@ -1,0 +1,39 @@
+---
+  - name: Initializing Terraform
+    args:
+      chdir: "{{ WORKSPACE }}/terraform/aws/resources/vpc"
+    shell: terraform init 
+    become: false
+    register: shell_result_init
+  - debug:
+      var: shell_result_init
+
+  - name: Running terraform in plan mode
+    args:
+      chdir: "{{ WORKSPACE }}/terraform/aws/resources/vpc"
+    shell: terraform plan -var-file terrform.tfvars -out out.terraform
+    when: shell_result_init.rc == 0
+    become: false
+    register: shell_result_plan
+  - debug:
+      var: shell_result_plan
+
+  - name: Running terraform in apply mode
+    args:
+      chdir: "{{ WORKSPACE }}/terraform/aws/resources/vpc"
+    shell: terraform destroy -var-file terrform.tfvars -auto-approve
+    when: shell_result_plan.rc ==0
+    become: false
+    register: shell_result_apply
+  - debug:
+      var: shell_result_apply
+
+
+
+
+  
+
+
+  
+
+  

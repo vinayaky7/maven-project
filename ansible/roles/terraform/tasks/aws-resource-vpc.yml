@@ -21,7 +21,7 @@
   - name: Running terraform in apply mode
     args:
       chdir: "{{ WORKSPACE }}/terraform/aws/resources/vpc"
-    shell: terraform apply out.terraform
+    shell: terraform destroy out.terraform
     when: shell_result_plan.rc ==0
     become: false
     register: shell_result_apply

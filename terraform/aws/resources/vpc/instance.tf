@@ -8,7 +8,7 @@ resource "aws_instance" "testvm" {
   tags = {
     Terraform   = "true"
     Environment = "dev"
-    Name   = "radical-bastion"
+    Name   = "testvm"
   }
 
   provisioner "file" {

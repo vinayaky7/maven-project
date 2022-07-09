@@ -53,7 +53,7 @@ pipeline {
                 sh 'sudo yum install ansible -y'
                 sh 'ansible --version'
                 sh 'sudo chmod 777 /etc/ansible/*'
-                sh 'sudo chmod 777 /etc/hosts/'
+                sh 'sudo chmod 777 /etc/hosts'
             }
         }
 

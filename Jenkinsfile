@@ -79,9 +79,9 @@ pipeline {
             steps {
                 script {
 
-                    sh 'sudo echo "${bastion_ip} ${bastion_name}" >> /etc/hosts'
+                    sh 'echo "${bastion_ip} ${bastion_name}" >> /etc/hosts'
 
-                    sh 'sudo cat /etc/hosts'
+                    sh 'cat /etc/hosts'
                       
                 }
             }

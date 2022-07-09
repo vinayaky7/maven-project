@@ -5,5 +5,5 @@ resource "aws_security_group_rule" "example" {
       protocol          = "tcp"
       cidr_blocks       = ["0.0.0.0/0"]
     
-      security_group_id = aws_eks_cluster.cluster.vpc_config[0].cluster_security_group_id
+      security_group_id = aws_eks_cluster.radical-myeks.vpc_config[0].cluster_security_group_id
  }

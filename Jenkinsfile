@@ -66,7 +66,7 @@ pipeline {
 
                     sh 'aws ec2 describe-instances --filter Name=tag:Name,Values=Jenkins-Master --query Reservations[].Instances[].PrivateIpAddress --output text'
 
-                    def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=Jenkins-Master --query Reservations[].Instances[].PrivateIpAddress --output text")
+                    def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=Jenkins-Master --query Reservations[  ].Instances[].PrivateIpAddress --output text")
 
                     println(bastion_ip.getClass())
                     
@@ -101,7 +101,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
-            }*/
-        }
+            }
+        }*/
     }
 }

@@ -9,6 +9,7 @@ pipeline {
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion = "radical-bastion"
+        bastion_ip = ""
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         namespace = "dev"
@@ -17,12 +18,12 @@ pipeline {
 
     
     stages {
-        stage('Git Checkout') {
-        steps {
-            git branch: 'dev-ansible',
-                credentialsId: 'git-https-creds',
-                url: 'https://gitlab.com/andromeda99/maven-project.git'
-            }
+        /*stage('Git Checkout') {
+            steps {
+                git branch: 'dev-ansible',
+                    credentialsId: 'git-https-creds',
+                    url: 'https://gitlab.com/andromeda99/maven-project.git'
+                }
         }
 
         stage('Build') {
@@ -57,14 +58,14 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
         stage('Configuring aws on Jenkins slave') {
             steps {
                 script {
                     sh 'aws configure set region ${aws_region}'
 
-                    def bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
+                    bastion_ip = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
 
                     println(bastion_ip.getClass())
                     
@@ -87,9 +88,9 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
-        stage('Deployment - Sanity test on testvm') {
+        /*stage('Deployment - Sanity test on testvm') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'

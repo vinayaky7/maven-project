@@ -8,7 +8,7 @@
   - debug:
       var: shell_result_init
 
-  - name: Running terraform in plan mode
+  - name: Running terraform in plan mode - Destroy
     args:
       chdir: "{{ WORKSPACE }}/terraform/aws/resources/vpc"
     shell: terraform plan -var-file terrform.tfvars -out out.terraform
@@ -18,7 +18,7 @@
   - debug:
       var: shell_result_plan
 
-  - name: Running terraform in apply mode
+  - name: Running terraform in Destroy mode
     args:
       chdir: "{{ WORKSPACE }}/terraform/aws/resources/vpc"
     shell: terraform destroy -var-file terrform.tfvars -auto-approve

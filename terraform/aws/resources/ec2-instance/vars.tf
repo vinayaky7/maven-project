@@ -15,6 +15,10 @@ variable "subnet" {
 	default = "us-east-2a"
 }
 
+variable "keyPath" {
+   default = "aws.pem"
+}
+
 variable "subnets" {
 	type = map(string)
 	default = {

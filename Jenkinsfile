@@ -18,7 +18,7 @@ pipeline {
 
     
     stages {
-        stage('Git Checkout') {
+        stage('Code Checkout') {
             steps {
                 git branch: 'dev-ansible',
                     credentialsId: 'git-https-creds',
@@ -26,14 +26,15 @@ pipeline {
                 }
         }
 
-        stage('Build') {
+        stage('Maven Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
         }
 
-        stage('Preparing volume for Containers') {
+        stage('Preparing volume for Docker Containers & EKS') {
             steps {
+
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
         }
@@ -47,22 +48,10 @@ pipeline {
             }
         }
 
-        stage('Installing Ansible') {
-            steps {
-                sh 'sudo amazon-linux-extras install epel -y'
-                sh 'sudo yum install ansible -y'
-                sh 'ansible --version'
-                sh 'sudo chmod 777 /etc/ansible/*'
-                sh 'sudo chmod 777 /etc/hosts'
-            }
-        }
-
-
-
-        stage('Building Docker image') {
+        stage('Building latest Docker image using latest artifact & pushing to DockerHub') {
             steps {
                 
-                sh 'ansible-playbook ansible/docker_build.yml'
+                sh 'ansible-playbook ansible/docker_image_build.yml'
             }
         }
 
@@ -81,7 +70,7 @@ pipeline {
             }
         }
 
-        stage('Fetching Bastion IP from AWS') {
+        stage('Fetching Radical-Bastion IP from AWS') {
             steps {
                 script {
                     sh 'aws configure set region ${aws_region}'
@@ -93,6 +82,16 @@ pipeline {
                     echo "${bastion_ip}"    
                       
                 }
+            }
+        }
+
+        stage('Installing Ansible') {
+            steps {
+                sh 'sudo amazon-linux-extras install epel -y'
+                sh 'sudo yum install ansible -y'
+                sh 'ansible --version'
+                sh 'sudo chmod 777 /etc/ansible/*'
+                sh 'sudo chmod 777 /etc/hosts'
             }
         }
 
@@ -108,14 +107,14 @@ pipeline {
             }
         }
 
-        stage('Deployment - Sanity test on testvm') {
+        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
         }
 
-        stage('Deployment') {
+        stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }

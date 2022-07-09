@@ -18,8 +18,8 @@ variable "subnet" {
 variable "subnets" {
 	type = map(string)
 	default = {
-		us-east-2a = "subnet-082e9a36b73ccb48e"
-		us-east-2b = "subnet-0c2e0b4c70b514deb"
+		us-east-2a = "subnet-011a5d9eb87abc3bd"
+		us-east-2b = "subnet-0e250c0a13ae1c6ab"
 		us-east-2c = "subnet-03ba9aad460bd47f6"
 	}
 }

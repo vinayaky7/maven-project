@@ -43,7 +43,7 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }
+        }*/
 
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
@@ -58,7 +58,7 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
         stage('Configuring aws on Jenkins slave') {
             steps {
@@ -75,7 +75,7 @@ pipeline {
             }
         }
 
-        stage('Configuring Bastion as an Ansible Host') {
+        /*stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
 
@@ -87,7 +87,7 @@ pipeline {
             }
         }
 
-        /*stage('Deployment - Sanity test on testvm') {
+        stage('Deployment - Sanity test on testvm') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'

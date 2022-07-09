@@ -103,7 +103,7 @@ pipeline {
 
                     echo "${bastion_ip}"
                     
-                    sh "ansible-playbook ansible/update-ansible-host.yaml"
+                    sh "ansible-playbook ansible/update-ansible-host.yaml --extra-vars bastion_ip=${bastion_ip}"
 
                     sh "ansible -m ping -u ec2-user $bastion_ip"
                       

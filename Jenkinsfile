@@ -99,15 +99,11 @@ pipeline {
 
         stage('Configuring Bastion as an Ansible Host') {
             steps {
-                script {
-
-                    echo "${bastion_ip}"
+                echo "${bastion_ip}"
                     
-                    sh "echo ${bastion_ip}  >> /etc/ansible/hosts"
+                sh "echo ${bastion_ip}  >> /etc/ansible/hosts"
 
-                    sh "ansible -m ping -u ec2-user ${bastion_ip}"
-                      
-                }
+                sh "ansible -m ping -u ec2-user ${bastion_ip}"
             }
         }
 

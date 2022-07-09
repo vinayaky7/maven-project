@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  vars:
+    bastion_ip: "{{ lookup('env', 'bastion_ip') }}"
+  tasks:
+  - name: Adding radical-bastion to ansible hosts file
+    shell: echo {{ bastion_ip }} >> /etc/ansible/hosts
+    register: shell_result
+  - debug:
+      var: shell_result

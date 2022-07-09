@@ -9,7 +9,7 @@ pipeline {
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_name = "radical-bastion"
-        bastion_ip = " "
+        bastion_ip = "192.168.1.51"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         namespace = "dev"

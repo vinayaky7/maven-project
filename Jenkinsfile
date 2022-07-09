@@ -36,9 +36,9 @@ pipeline {
             steps {
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
-        }*/
+        }
 
-        /*stage('Installing Docker') {
+        stage('Installing Docker') {
             steps {
                 sh 'sudo yum update -y'
                 sh 'sudo yum install docker -y'
@@ -54,16 +54,16 @@ pipeline {
                 sh 'ansible --version'
                 sh 'sudo chmod 777 /etc/ansible/*'
             }
-        }*/
+        }
 
 
 
-        /*stage('Building Docker image') {
+        stage('Building Docker image') {
             steps {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }*/
+        }
 
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
@@ -78,7 +78,7 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
         stage('Configuring aws on Jenkins slave') {
             steps {
@@ -102,10 +102,10 @@ pipeline {
                 script {
 
                     echo "${bastion_ip}"
-
+                    
                     sh "echo ${bastion_ip}  >> /etc/ansible/hosts"
 
-                    sh "ansible -m ping ${bastion_ip} -u ec2-user"
+                    sh "ansible -m ping -u ec2-user ${bastion_ip}"
                       
                 }
             }

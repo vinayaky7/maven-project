@@ -79,9 +79,9 @@ pipeline {
             steps {
                 script {
 
-                    sh 'echo "${bastion_ip} ${bastion_name}" >> /etc/hosts'
+                    sh 'echo "${bastion_ip}"  >> /etc/ansible/hosts'
 
-                    sh 'cat /etc/hosts'
+                    sh 'cat /etc/ansible/hosts'
                       
                 }
             }

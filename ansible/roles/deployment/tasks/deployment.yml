@@ -90,7 +90,7 @@
   - debug:
       var: shell_result_rolling_update
 
-  - name: Applying a rolling update on existing deployment
+  - name: Describing a deployment
     shell: kubectl describe deployment frontend
     become: false
     register: shell_result

@@ -38,7 +38,7 @@ pipeline {
             }
         }*/
 
-        stage('Installing Docker') {
+        /*stage('Installing Docker') {
             steps {
                 sh 'sudo yum update -y'
                 sh 'sudo yum install docker -y'
@@ -54,7 +54,7 @@ pipeline {
                 sh 'ansible --version'
                 sh 'sudo chmod 777 /etc/ansible/*'
             }
-        }
+        }*/
 
 
 
@@ -89,7 +89,7 @@ pipeline {
                     
                     echo "${bastion_ip1}" 
 
-                    echo "bastion_ip=${bastion_ip1}" 
+                    bastion_ip="${bastion_ip1}"
 
                    echo "${bastion_ip}"        
                       

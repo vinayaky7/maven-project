@@ -36,14 +36,34 @@ pipeline {
             steps {
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
+        }*/
+
+        stage('Installing Docker') {
+            steps {
+                sh 'yum update -y'
+                sh 'yum install docker -y'
+                sh 'systemctl start docker'
+                sh 'systemctl enable docker'
+                sh 'systemctl status docker'
+            }
         }
 
-        stage('Building Docker image') {
+        stage('Installing Ansible') {
+            steps {
+                sh 'amazon-linux-extras install epel -y'
+                sh 'yum install ansible -y'
+                sh 'ansible --version'
+            }
+        }
+
+
+
+        /*stage('Building Docker image') {
             steps {
                 
                 sh 'ansible-playbook ansible/docker_build.yml'
             }
-        }*/
+        }
 
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
@@ -75,7 +95,7 @@ pipeline {
             }
         }
 
-        /*stage('Configuring Bastion as an Ansible Host') {
+        stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
 

@@ -5,7 +5,7 @@
 
   tasks:
   - name: Adding radical-bastion to ansible hosts file
-    shell: echo {{ bastion_ip }} >> /etc/ansible/hosts
+    shell: echo {{ bastion_ip }} ansible_ssh_common_args='-o StrictHostKeyChecking=no' >> /etc/ansible/hosts
     register: shell_result
   - debug:
       var: shell_result

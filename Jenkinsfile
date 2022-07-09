@@ -40,18 +40,18 @@ pipeline {
 
         stage('Installing Docker') {
             steps {
-                sh 'yum update -y'
-                sh 'yum install docker -y'
-                sh 'systemctl start docker'
-                sh 'systemctl enable docker'
-                sh 'systemctl status docker'
+                sh 'sudo yum update -y'
+                sh 'sudo yum install docker -y'
+                sh 'sudo systemctl start docker'
+                sh 'sudo systemctl enable docker'
+                sh 'sudo systemctl status docker'
             }
         }
 
         stage('Installing Ansible') {
             steps {
-                sh 'amazon-linux-extras install epel -y'
-                sh 'yum install ansible -y'
+                sh 'sudo amazon-linux-extras install epel -y'
+                sh 'sudo yum install ansible -y'
                 sh 'ansible --version'
             }
         }

@@ -55,6 +55,7 @@ pipeline {
                 sh 'sudo chmod 777 /etc/ansible/*'
                 sh 'sudo echo "${bastion_ip}" >> /etc/ansible/hosts'
                 sh 'cat /etc/ansible/hosts'
+                sh 'ansible-playbook -m ping "${bastion_ip}" -u ec2-user'
             }
         }
 

@@ -12,7 +12,7 @@ pipeline {
         bastion_ip = "192.168.1.51"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        namespace = "dev"
+        namespace = "sist"
         eks_cluster = "radical-myeks"
     }
 

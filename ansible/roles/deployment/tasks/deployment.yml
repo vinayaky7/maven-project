@@ -21,6 +21,17 @@
   - debug:
       var: shell_result
 
+  - name: Copying secrets template to bastion
+    template: 
+      src: secret.yml.j2
+      dest: /home/{{ user }}/secret.yml
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0755
+    register: shell_result
+  - debug:
+      var: shell_result
+
   - name: Copying Service deployment file to bastion
     copy:
       src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/service.yml

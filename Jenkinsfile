@@ -52,10 +52,11 @@ pipeline {
                 sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index_master.jsp"
+                sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
             }
         }
 
-        stage('Cleanup') {
+        /*stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
                 sh 'sudo docker rm $(sudo docker ps -a -q)'
@@ -64,7 +65,7 @@ pipeline {
                 sh 'sudo docker ps'
                 sh 'sudo docker ps -a'
             }
-        }
+        }*/
         
         stage('Deployment') {
             steps {

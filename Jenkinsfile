@@ -5,6 +5,7 @@ pipeline {
         def image_name="radical-devops-june-2022"
         def image_version="1.0"
         def IP="52.42.234.178"
+        def DOCKER_NETWORK="my_network"
     }
     
     stages {
@@ -37,6 +38,12 @@ pipeline {
 		        sh 'echo ${image_name}'
                 sh 'ls -la'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
+            }
+        }
+
+        stage('Creating a Docker Network') {
+            steps {
+		        sh 'sudo docker network create --driver=bridge --subnet=10.10.0.0/24 ${DOCKER_NETWORK}'
             }
         }
 

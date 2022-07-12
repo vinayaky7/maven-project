@@ -76,7 +76,7 @@ pipeline {
                 sh 'sudo docker rm $(sudo docker ps -a -q)'
                 sh 'sudo docker system prune -f'
                 sh 'sleep 15'
-                sh 'sudo docker images prune -f'
+                sh 'sudo docker image prune --all -f'
                 sh 'sudo docker ps'
                 sh 'sudo docker ps -a'
                 sh 'sudo docker images'

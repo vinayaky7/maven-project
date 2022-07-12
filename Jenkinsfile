@@ -43,9 +43,14 @@ pipeline {
 
         stage('Creating a Docker Network') {
             steps {
-		        sh 'sudo docker network create --driver=bridge --subnet=10.10.0.0/24 ${DOCKER_NETWORK}'
-                //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
-                sh 'exit 0'
+                script {
+                    try {
+                        sh 'sudo docker network create --driver=bridge --subnet=10.10.0.0/24 ${DOCKER_NETWORK}'
+                    } catch (e) {
+                        //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
+                        sh 'exit 0'
+                    }
+		        }
             }
         }
 

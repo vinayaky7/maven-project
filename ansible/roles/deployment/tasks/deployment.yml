@@ -10,6 +10,17 @@
   - debug:
       var: shell_result
 
+  - name: Copying Namespace template to bastion
+    template: 
+      src: namespace.yml.j2
+      dest: /home/{{ user }}/namespace.yml
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0755
+    register: shell_result
+  - debug:
+      var: shell_result
+
   - name: Copying Service deployment file to bastion
     copy:
       src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/service.yml
@@ -17,14 +28,6 @@
     register: shell_result_svc_file
   - debug:
       var: shell_result_svc_file
-
-  - name: Copying namespace file to bastion
-    copy:
-      src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/namespace.yml
-      dest: /home/{{ user }}/
-    register: shell_result_namespace_file
-  - debug:
-      var: shell_result_namespace_file
 
   - name: Copying secret file to bastion
     copy:

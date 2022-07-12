@@ -72,6 +72,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
+                sh 'sleep 30'
                 sh 'sudo docker rm $(sudo docker ps -a -q)'
                 sh 'sudo docker system prune -f'
                 sh 'sudo docker images'

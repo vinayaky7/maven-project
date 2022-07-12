@@ -50,7 +50,19 @@ pipeline {
                 sh 'sudo docker ps'
                 sh 'sudo docker images'
                 sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
+                sh "elinks http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index_master.jsp"
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+                sh 'sudo docker stop $(docker ps -a -q)'
+                sh 'sudo docker rm $(docker ps -a -q)'
+                sh 'sudo docker system prune -f'
+                sh 'sudo docker images'
+                sh 'sudo docker ps'
+                sh 'sudo docker ps -a'
             }
         }
         

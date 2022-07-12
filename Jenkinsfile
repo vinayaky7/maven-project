@@ -44,6 +44,8 @@ pipeline {
         stage('Creating a Docker Network') {
             steps {
 		        sh 'sudo docker network create --driver=bridge --subnet=10.10.0.0/24 ${DOCKER_NETWORK}'
+                //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
+                sh 'exit 0'
             }
         }
 
@@ -58,12 +60,11 @@ pipeline {
                 sh 'sudo docker images'
                 sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
-                sh "elinks http://$IP:300${BUILD_NUMBER}/index_master.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
             }
         }
 
-        /*stage('Cleanup') {
+        stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
                 sh 'sudo docker rm $(sudo docker ps -a -q)'
@@ -72,7 +73,7 @@ pipeline {
                 sh 'sudo docker ps'
                 sh 'sudo docker ps -a'
             }
-        }*/
+        }
         
         stage('Deployment') {
             steps {

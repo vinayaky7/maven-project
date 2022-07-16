@@ -6,6 +6,7 @@ pipeline {
         def image_version="1.0"
         def IP="52.42.234.178"
         def DOCKER_NETWORK="my_network"
+        def DOCKER_SUBNET="10.10.0.0/24"
     }
     
     stages {
@@ -45,7 +46,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'sudo docker network create --driver=bridge --subnet=10.10.0.0/24 ${DOCKER_NETWORK}'
+                        sh 'sudo docker network create --driver=bridge --subnet=${DOCKER_SUBNET} ${DOCKER_NETWORK}'
                     } catch (e) {
                         //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
                         sh 'exit 0'
@@ -59,7 +60,7 @@ pipeline {
                 echo 'Testing..'
                 sh 'sudo docker run -itd --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/tmp ${image_name}:${image_version}'
 
-                sh 'sudo docker run -itd  --network=my_network --name mycentos300${BUILD_NUMBER} centos:centos7'
+                sh 'sudo docker run -itd  --network=${DOCKER_NETWORK} --name mycentos300${BUILD_NUMBER} centos:centos7'
 
                 sh 'sudo docker ps'
                 sh 'sudo docker images'

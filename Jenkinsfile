@@ -28,7 +28,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
 		        sh 'echo ${image_name}'
-                sh "sudo docker build -t $image_name:$image_version ."
+                sh "sudo docker build -t $image_name:$image_version .  --build-arg user=radical"
                 sh 'sudo docker images'
             }
         }

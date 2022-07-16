@@ -119,6 +119,8 @@
   - debug:
       var: shell_result_svc_deploy
 
+  - pause: seconds=60
+
   - name: Checking if Load Balancer exist 
     shell: kubectl get svc | grep myfrontend-service | awk '{print $4}'
     become: false
@@ -126,8 +128,6 @@
     ignore_errors: True
   - debug:
       var: shell_result_lb_link_exist
-
-  - pause: seconds=60
 
   - name: Testing Load Balancer Link
     shell: curl -kv http://{{ shell_result_lb_link_exist.stdout }}/index_dev.jsp

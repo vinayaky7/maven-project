@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         def image_name="radical-devops-june-2022"
-        def image_version="1.0"
+        def image_version="9am-v1.0"
         def IP="52.42.234.178"
         def DOCKER_NETWORK="my_network"
         def DOCKER_SUBNET="10.10.0.0/24"
@@ -67,6 +67,13 @@ pipeline {
                 sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
+            }
+        }
+
+        stage('Push image to dockerhub') {
+            steps {
+                sh 'sudo docker tag ${image_name}:${image_version} aamirs/radical-private-repo:${image_version}'
+                sh 'sudo docker push aamirs/radical-private-repo:${image_version}'
             }
         }
 

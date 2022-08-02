@@ -1,5 +1,5 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIA4TNG5PSZNJZYYOPX"
+	default = "AKIA2UM2VMALNDWX6RG3"
 }
 
 variable "AWS_SECRET_KEY" {
@@ -7,12 +7,12 @@ variable "AWS_SECRET_KEY" {
 
 variable "mykey" {
 	type = string
-	default = "radical-devops-April-Ohio-12pm"
+	default = "radical-devops-weekdays-June-2022"
 	
 }
 
 variable "subnet" {
-	default = "us-east-2a"
+	default = "us-west-2a"
 }
 
 variable "keyPath" {
@@ -22,23 +22,24 @@ variable "keyPath" {
 variable "subnets" {
 	type = map(string)
 	default = {
-		us-east-2a = "subnet-011a5d9eb87abc3bd"
-		us-east-2b = "subnet-0e250c0a13ae1c6ab"
-		us-east-2c = "subnet-03ba9aad460bd47f6"
+		us-west-2a = "subnet-058b3d997939b0f22"
+		us-west-2b = "subnet-042528506f3d17250"
+		us-west-2c = "subnet-0247e041dfb7aa47c"
+		us-west-2d = "subnet-0ac6d0d2348ff66c4"
 	}
 }
 
 
 variable "AWS_REGION" {
-  default = "us-east-2"
+  default = "us-west-2"
 }
 
 variable "AMIS" {
   type = map(string)
   default = {
     us-east-1 = "ami-13be557e"
-    us-west-2 = "ami-0ca285d4c2cda3300"
+    us-west-2 = "ami-098e42ae54c764c35"
     eu-west-1 = "ami-0d729a60"
-	us-east-2 = "ami-0fa49cc9dc8d62c84"
+    us-east-2 = "ami-0fa49cc9dc8d62c84"
   }
 }

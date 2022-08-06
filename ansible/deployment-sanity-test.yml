@@ -39,6 +39,22 @@
       name: docker
       enabled: yes
 
+  - name: Installing pip
+    yum:
+      name: pip
+      state: present
+
+  - name: Installing docker-py
+    shell: pip install docker-py
+
+  - name: Log into DockerHub
+    docker_login:
+      username: aamirs
+      password: "{{ docker_pass }}"
+    register: shell_result
+  - debug:
+      var: shell_result
+
   - name: Creating test container
     command: "{{ item }}"
     with_items:

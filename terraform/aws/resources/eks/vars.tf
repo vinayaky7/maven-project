@@ -1,12 +1,8 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIA4TNG5PSZNJZYYOPX"
+	default = "AKIA2UM2VMALNDWX6RG3"
 }
 
 variable "AWS_SECRET_KEY" {
-}
-
-variable "subnet" {
-	default = "us-east-2a"
 }
 
 variable "keyPath" {
@@ -15,29 +11,35 @@ variable "keyPath" {
 
 variable "subnet_id_1" {
   type = string
-  default = "subnet-03ba9aad460bd47f6"
+  default = "subnet-058b3d997939b0f22"
 }
  
 variable "subnet_id_2" {
   type = string
-  default = "subnet-0c2e0b4c70b514deb"
+  default = "subnet-042528506f3d17250"
 }
 
 variable "subnet_id_3" {
   type = string
-  default = "subnet-011a5d9eb87abc3bd"
+  default = "subnet-0247e041dfb7aa47c"
+}
+
+variable "subnet_id_4" {
+  type = string
+  default = "subnet-0ac6d0d2348ff66c4"
 }
 
 variable "subnets" {
 	type = map(string)
 	default = {
-		us-east-2a = "subnet-011a5d9eb87abc3bd"
-		us-east-2b = "subnet-0e250c0a13ae1c6ab"
-		us-east-2c = "subnet-03ba9aad460bd47f6"
+		us-west-2a = "subnet-058b3d997939b0f22"
+		us-west-2b = "subnet-042528506f3d17250"
+		us-west-2c = "subnet-0247e041dfb7aa47c"
+    us-west-2d = "subnet-0ac6d0d2348ff66c4"
 	}
 }
 
 
 variable "AWS_REGION" {
-  default = "us-east-2"
+  default = "us-west-2"
 }

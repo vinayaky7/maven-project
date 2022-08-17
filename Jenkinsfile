@@ -4,15 +4,15 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('myawscreds')
         AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
-        aws_region="us-east-2"
-        IMAGE = "radical-april-2022"
+        aws_region="us-west-2"
+        IMAGE = "radical-june-weekdays-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_name = "radical-bastion"
         bastion_ip = "192.168.1.51"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        namespace = "prod"
+        namespace = "dev"
         eks_cluster = "radical-myeks"
     }
 

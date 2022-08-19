@@ -65,6 +65,7 @@ pipeline {
             }
         }
 
+        // CD(Continuous Deployment) starts Here ... !!!
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {

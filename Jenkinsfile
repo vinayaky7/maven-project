@@ -27,12 +27,12 @@ pipeline {
             steps {
                 script {
                     try {
-                       echo ${BUILD_NUMBER}
-                       echo ${BUILD_ID}
-                       echo ${BUILD_DISPLAY_NAME}
-                       echo ${WORKSPACE}
-                       echo ${JOB_NAME}
-                       echo ${JENKINS_HOME}
+                       echo "${BUILD_NUMBER}"
+                       echo "${BUILD_ID}"
+                       echo "${BUILD_DISPLAY_NAME}"
+                       echo "${WORKSPACE}"
+                       echo "${JOB_NAME}"
+                       echo "${JENKINS_HOME}"
                         
 
                     } catch(Exception e) {

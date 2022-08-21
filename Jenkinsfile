@@ -23,6 +23,28 @@ pipeline {
                 }
         }
 
+        stage('Testing Jenkisn Global Variables') {
+            steps {
+                script {
+                    try {
+                       echo ${BUILD_NUMBER}
+                       echo ${BUILD_ID}
+                       echo ${BUILD_DISPLAY_NAME}
+                       echo ${WORKSPACE}
+                       echo ${JOB_NAME}
+                       echo ${JENKINS_HOME}
+                        
+
+                    } catch(Exception e) {
+                        echo "Exception received because of --- " + e.toString()
+                        sh 'exit 1'   
+                        }
+
+                }
+                
+                }
+        }
+
         stage('Build') {
             steps {
                 script {

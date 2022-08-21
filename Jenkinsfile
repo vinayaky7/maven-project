@@ -28,7 +28,6 @@ pipeline {
                 script {
                     try {
                        echo "${BUILD_NUMBER}"
-                       echo "${BUILD_ID}"
                        echo "${BUILD_DISPLAY_NAME}"
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
@@ -45,7 +44,7 @@ pipeline {
                 }
         }
 
-        stage('Build') {
+        stage('Testing Env & local Variables') {
             steps {
                 script {
                     try {
@@ -56,6 +55,21 @@ pipeline {
                         echo "${sTring}"
                         
 
+                    } catch(Exception e) {
+                        echo "Exception received because of --- " + e.toString()
+                        sh 'exit 1'   
+                        }
+
+                }
+                
+                }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    try {
+                    
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
                         
 

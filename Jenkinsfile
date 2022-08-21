@@ -3,12 +3,12 @@ pipeline {
     agent {
         node {
             label 'linux'
-            customWorkspace '/tmp/myefs/myworkspace/workspace/radical'
+            //customWorkspace '/var/lib/jenkins/workspace/'
         }
     }
 
     environment {
-    Node_IP = "54.185.162.231"
+    Node_IP = "34.209.41.226"
     TEST = "Radical"
     sTring = "Webhook created from pipline job"
     }

@@ -8,12 +8,13 @@ pipeline {
     }
 
     environment {
-    Node_IP = "34.209.41.226"
-    TEST = "Radical"
-    sTring = "Webhook created from pipline job"
+        Node_IP = "34.209.41.226"
+        TEST = "Radical"
+        sTring = "Webhook created from pipline job"
     }
-    
+
     stages {
+
         stage('Git Checkout') {
             steps {
                 git branch: 'dev-local-deploy',
@@ -31,7 +32,7 @@ pipeline {
                         echo "${TEST}"
                         echo "${test1}"
                         echo "${sTring}"
-                        echo "We are using the env ${ENVIRONMENT}"
+                        
 
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
                         
@@ -92,7 +93,8 @@ pipeline {
 
             }
         }
-        
+
     }
+    
 }
 

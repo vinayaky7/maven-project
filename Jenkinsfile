@@ -2,11 +2,11 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        def image_name="radical-devops-june-2022"
-        def image_version="9am-v1.0"
-        def IP="52.42.234.178"
+        def image_name="radical-devops-july-2022"
+        def image_version="10am-v1.0"
+        def IP="34.212.176.43"
         def DOCKER_NETWORK="my_network"
-        def DOCKER_SUBNET="10.10.0.0/24"
+        def DOCKER_SUBNET="172.168.0.0/24"
     }
     
     stages {

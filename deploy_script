@@ -10,7 +10,9 @@ pwd
 
 echo "Static Code Testing initiated"
 
-sh scanning.sh 
+echo "Static code analyser - Sonarqube Scan running"
+
+sudo /opt/sonar-scanner-4.0.0.1744-linux/bin/sonar-scanner Dsonar.projectKey=webapp -Dsonar.sources=webapp -Dsonar.host.url=https://server.sonarqube.com:9090 -Dsonar.login=myAuthenticationToken 
 
 echo "Scanning completed."
 
@@ -26,4 +28,6 @@ sudo rsync -avt ${WORKSPACE}/webapp/target/webapp.war /var/www/html
 
 sudo yum install elinks -y
 
-elinks http://34.209.250.122/index_dev.jsp
+#Replace localhost with your Jenkins Master or Slave Public/Private IP as per your requirement. 
+
+elinks http://localhost

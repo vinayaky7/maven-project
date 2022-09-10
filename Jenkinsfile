@@ -4,7 +4,7 @@ pipeline {
     environment {
         def image_name="radical-devops-july-2022"
         def image_version="10am-v1.0"
-        def IP="34.212.176.43"
+        def IP="34.212.176.43" // This should be your jenkins slave IP
         def DOCKER_NETWORK="my_network"
         def DOCKER_SUBNET="172.168.0.0/24"
     }
@@ -16,6 +16,8 @@ pipeline {
                 sh 'ls -la'
             }
         }
+
+        // This will start your CD part (Continuous Delivery/Deployment)
     
         stage('Installing Docker & tools') {
             steps {
@@ -77,7 +79,7 @@ pipeline {
             }
         }
 
-        /*stage('Cleanup') {
+        stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
                 sh 'sleep 30'
@@ -89,7 +91,7 @@ pipeline {
                 sh 'sudo docker ps -a'
                 sh 'sudo docker images'
             }
-        }*/
+        }
         
         stage('Deployment') {
             steps {

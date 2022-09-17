@@ -69,7 +69,7 @@ pipeline {
                 script {
                     try {
                     
-                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean instal'
                         
 
                     } catch (Exception e) {

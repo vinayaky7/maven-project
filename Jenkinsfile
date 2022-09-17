@@ -8,9 +8,9 @@ pipeline {
     }
 
     environment {
-        Node_IP = "34.212.176.43"
-        TEST = "Radical"
-        sTring = "Webhook created from pipline job"
+        Node_IP = "35.87.20.31"
+        var1 = "Radical"
+        string1 = "Webhook created from pipline job"
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
                 }
         }
 
-        stage('Testing Jenkisn Global Variables') {
+        stage('Testing Jenkins Global Variables') {
             steps {
                 script {
                     try {
@@ -50,9 +50,9 @@ pipeline {
                     try {
                         sh "whoami"
                         def test1 = "radical1"
-                        echo "${TEST}"
+                        echo "${var1}"
                         echo "${test1}"
-                        echo "${sTring}"
+                        echo "${string1}"
                         
 
                     } catch(Exception e) {

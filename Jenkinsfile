@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     try {
-                       echo "${BUILD_NUMBER}"
+                       echo "${BUILD_NUMBE}"
                        echo "${BUILD_DISPLAY_NAME}"
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"

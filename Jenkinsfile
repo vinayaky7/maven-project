@@ -27,16 +27,13 @@ pipeline {
             steps {
                 script {
                     try {
-                       echo "${BUILD_NUMBE}"
+                       echo "${BUILD_NUMBER}"
                        echo "${BUILD_DISPLAY_NAME}"
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
-                       echo "${JENKINS_HOME}"
+                       echo "${JENKINS_MYHOME}"
 
-                       echo "${BUILD_}"
-                        
-
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
                         sh 'exit 1'   
                         }
@@ -57,7 +54,7 @@ pipeline {
                         echo "${string1}"
                         
 
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
                         sh 'exit 1'   
                         }
@@ -75,7 +72,7 @@ pipeline {
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
                         
 
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
                         sh 'exit 1'   
                         } 
@@ -105,7 +102,7 @@ pipeline {
                 script {
                     try {
                         sh 'date'
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         echo "Exception received " + e.toString()
                         sh 'exit 1'
                     }

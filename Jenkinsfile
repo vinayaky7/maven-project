@@ -32,6 +32,8 @@ pipeline {
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
                        echo "${JENKINS_HOME}"
+
+                       echo "${BUILD_}"
                         
 
                     } catch(Exception e) {

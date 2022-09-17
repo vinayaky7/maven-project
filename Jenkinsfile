@@ -31,11 +31,11 @@ pipeline {
                        echo "${BUILD_DISPLAY_NAME}"
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
-                       echo "${JENKINS_MYHOME}"
+                       echo "${JENKINS_HOME}"
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
-                        sh 'exit 0'   
+                        sh 'exit 1'   
                         }
 
                 }
@@ -69,7 +69,7 @@ pipeline {
                 script {
                     try {
                     
-                        sh '/usr/local/src/apache-maven/bin/mvn clean instal'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
                         
 
                     } catch (Exception e) {

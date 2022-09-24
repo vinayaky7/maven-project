@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        Node_IP = "35.87.20.31"
+        //Node_IP = "35.87.20.31"
         var1 = "Radical"
         string1 = "Webhook created from pipline job"
     }
@@ -31,7 +31,7 @@ pipeline {
                        echo "${BUILD_DISPLAY_NAME}"
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
-                       echo "${JENKIN_HOME}"
+                       echo "${JENKINS_HOME}"
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
@@ -120,10 +120,10 @@ pipeline {
                     sh 'sudo systemctl enable httpd'
                     sh 'sudo rm -rf /var/www/html/*'
                     sh 'sudo rsync -avt ${WORKSPACE}/webapp/target/webapp /var/www/html'
-                    sh 'sudo elinks  http://${Node_IP}/webapp/'
-                    sh 'sudo elinks  http://${Node_IP}/webapp/index_dev.jsp'
-                    sh 'sudo elinks  http://${Node_IP}/webapp/index.html'
-                    sh 'sudo curl -kv http://${Node_IP}/webapp/index_dev.jsp'
+                    sh 'sudo elinks  http://${NODE_IP}/webapp/'
+                    sh 'sudo elinks  http://${NODE_IP}/webapp/index_dev.jsp'
+                    sh 'sudo elinks  http://${NODE_IP}/webapp/index.html'
+                    sh 'sudo curl -kv http://${NODE_IP}/webapp/index_dev.jsp'
                 }
 
             }

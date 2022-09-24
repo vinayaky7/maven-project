@@ -35,7 +35,7 @@ pipeline {
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
-                        sh 'exit 0'   
+                        sh 'exit 1'   
                         }
 
                 }

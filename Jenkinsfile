@@ -2,9 +2,9 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        def image_name="radical-devops-july-2022"
-        def image_version="10am-v1.0"
-        def IP="34.212.176.43" // This should be your jenkins slave IP
+        def image_name="radical-devops-aug-12pm-2022"
+        def image_version="1.0.0"
+        def IP="35.87.20.31" // This should be your jenkins slave IP
         def DOCKER_NETWORK="my_network"
         def DOCKER_SUBNET="172.168.0.0/24"
     }
@@ -21,7 +21,7 @@ pipeline {
     
         stage('Installing Docker & tools') {
             steps {
-		        sh 'sudo yum install docker -y'
+                sh 'sudo yum install docker -y'
                 sh 'sudo systemctl start docker'
                 sh 'sudo yum install elinks -y'
             }
@@ -30,8 +30,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-		        sh 'echo ${image_name}'
-                sh "sudo docker build -t $image_name:$image_version .  --build-arg user=radical"
+                sh 'echo ${image_name}'
+                sh "sudo docker build -t $image_name:$image_version . --build-arg user=radical"
                 sh 'sudo docker images'
             }
         }

@@ -41,7 +41,7 @@
 
   - name: Ansible copy file to remote server
     copy:
-      src: "{{ WORKSPACE }}"/ansible/docker_token.yml
+      src: "{{ WORKSPACE }}/ansible/docker_token.yml"
       dest: /home/ec2-user/docker_token.yml
 
   - name: Installing pip

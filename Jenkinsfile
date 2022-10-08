@@ -5,11 +5,11 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('myawscreds')
         AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
         aws_region="us-west-2"
-        IMAGE = "radical-june-weekdays-2022"
+        IMAGE = "radical-july-weekend-10am-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_name = "radical-bastion"
-        bastion_ip = "192.168.1.51"
+        bastion_name = "ansibleclient1"
+        bastion_ip = "192.168.1.160"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         namespace = "uat"
@@ -66,7 +66,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -106,7 +106,7 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
         stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
@@ -115,10 +115,10 @@ pipeline {
             }
         }
 
-        stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
+        /*stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }
+        }*/
     }
 }

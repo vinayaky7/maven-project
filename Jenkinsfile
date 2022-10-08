@@ -7,6 +7,7 @@ pipeline {
         def IP="35.87.20.31" // This should be your jenkins slave IP
         def DOCKER_NETWORK="my_network"
         def DOCKER_SUBNET="172.168.0.0/24"
+        def DOCKERHUB = credentials('DOCKERHUB_CREDS')
     }
     
     stages {
@@ -71,6 +72,12 @@ pipeline {
                 sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
             }
         }
+
+        stage('login to dockerhub') {
+            steps{
+                sh 'echo $DOCKERHUB_USR | docker login -u $DOCKERHUB_PWD --password-stdin'
+                // https://thetechdarts.com/deploy-to-dockerhub-using-jenkins-declarative-pipeline/
+            }
 
         stage('Push image to dockerhub') {
             steps {

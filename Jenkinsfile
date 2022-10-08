@@ -75,7 +75,7 @@ pipeline {
 
         stage('login to dockerhub') {
             steps{
-                sh 'echo $DOCKERHUB_USR | docker login -u $DOCKERHUB_PWD --password-stdin'
+                sh 'echo $DOCKERHUB_PWD | docker login -u $DOCKERHUB_USR --password-stdin'
                 // https://thetechdarts.com/deploy-to-dockerhub-using-jenkins-declarative-pipeline/
             }
 

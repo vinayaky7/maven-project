@@ -74,10 +74,13 @@ pipeline {
         }
 
         stage('login to dockerhub') {
-            steps{
-                sh 'echo $DOCKERHUB_PWD | docker login -u $DOCKERHUB_USR --password-stdin'
-                // https://thetechdarts.com/deploy-to-dockerhub-using-jenkins-declarative-pipeline/
+            steps {
+                script {
+                    sh 'echo $DOCKERHUB_PWD | docker login -u $DOCKERHUB_USR --password-stdin'
+                    // https://thetechdarts.com/deploy-to-dockerhub-using-jenkins-declarative-pipeline/
+                }
             }
+        }
 
         stage('Push image to dockerhub') {
             steps {

@@ -8,7 +8,7 @@
 <br />
 <br />
 
-<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate"> Version 2.0 DEV testing !!!</h1></marquee>
+<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate"> Version 3.0 DEV testing !!!</h1></marquee>
 
 </body>
 </html>

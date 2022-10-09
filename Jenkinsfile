@@ -123,7 +123,7 @@ pipeline {
 
         stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
-                sh 'history 2>&1 | tee history.txt'
+                sh 'history >> history.txt'
             }
         }
     }

@@ -5,11 +5,11 @@ pipeline {
         //AWS_ACCESS_KEY_ID = credentials('myawscreds')
         //AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
         //aws_region="us-west-2"
-        IMAGE = "radical-july-weekend-10am-2022"
+        IMAGE = "radical-aug-weekend-12pm-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_name = "ansibleclient1"
-        bastion_ip = "192.168.1.160"
+        bastion_ip = "192.168.1.104"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         //namespace = "uat"
@@ -28,6 +28,7 @@ pipeline {
 
         stage('Maven Build') {
             steps {
+                sh 'history'
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
         }
@@ -123,7 +124,7 @@ pipeline {
 
         stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
-                sh 'history >> history.txt'
+                sh 'history > history.txt'
             }
         }
     }

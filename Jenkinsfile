@@ -12,6 +12,7 @@ pipeline {
         bastion_ip = "192.168.1.104"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
+        bastion_host = "ansibleclient1"
         //namespace = "uat"
         //eks_cluster = "radical-myeks"
     }
@@ -103,7 +104,7 @@ pipeline {
                     
                     sh "ansible-playbook ansible/update-ansible-host.yaml --extra-vars bastion_ip=${bastion_ip}"
 
-                    sh "ansible -m ping -u ec2-user $bastion_name"
+                    sh "ansible -m ping -u ec2-user $bastion_host"
                       
                 }
             }

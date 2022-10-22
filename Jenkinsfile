@@ -123,16 +123,9 @@ pipeline {
             }
         }
 
-        stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
-            steps {
-                sh 'history > history.txt'
-            }
-        }
-    }
-
     post {
         always {
-            archiveArtifacts artifacts: 'history.txt', 
+            archiveArtifacts artifacts: 'project_details.txt', 
             onlyIfSuccessful: true
         }
     }

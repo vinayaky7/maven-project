@@ -122,6 +122,7 @@ pipeline {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
         }
+    }
 
     post {
         always {

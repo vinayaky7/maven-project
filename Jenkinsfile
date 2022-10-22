@@ -4,17 +4,17 @@ pipeline {
     environment {
         //AWS_ACCESS_KEY_ID = credentials('myawscreds')
         //AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
-        //aws_region="us-west-2"
+        aws_region="us-west-2"
         IMAGE = "radical-aug-weekend-12pm-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_name = "ansibleclient1"
-        bastion_ip = "192.168.1.104"
+        bastion_name = "radical-bastion"
+        bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        bastion_host = "ansibleclient1"
-        //namespace = "uat"
-        //eks_cluster = "radical-myeks"
+        bastion_host = "radical-bastion"
+        namespace = "dev"
+        eks_cluster = "myeks"
     }
 
     
@@ -81,7 +81,7 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
         stage('Fetching Radical-Bastion IP from AWS') {
             steps {
@@ -108,20 +108,20 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
-        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }
+        }*/
 
-        /*stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
+        stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }*/
+        }
 
         stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {

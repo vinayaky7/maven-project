@@ -89,7 +89,7 @@ pipeline {
 
                     sh 'aws configure set region ${aws_region}'
 
-                    def bastion_ip1 = sh(returnStdout: true, script: aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text)
+                    def bastion_ip1 = sh(returnStdout: true, script: 'aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text')
                    
                     echo "${bastion_ip1}"
                     bastion_ip="${bastion_ip1}"

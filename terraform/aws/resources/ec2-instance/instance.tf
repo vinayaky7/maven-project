@@ -1,5 +1,6 @@
 resource "aws_network_interface" "radical_interface" {
   subnet_id   = lookup(var.subnets, var.subnet, "")
+  vpc_security_group_ids = ["sg-0180f84f7133bee9e"]
   private_ips = ["192.168.1.111"]
 
   tags = {
@@ -11,7 +12,7 @@ resource "aws_instance" "radical-bastion" {
   ami           = lookup(var.AMIS, var.AWS_REGION, "") # last parameter is the default value
   instance_type = "t2.micro"
   key_name      = var.mykey
-  vpc_security_group_ids = ["sg-0180f84f7133bee9e"]
+  
 
   network_interface {
     network_interface_id = aws_network_interface.radical_interface.id

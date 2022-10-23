@@ -26,7 +26,7 @@ pipeline {
                 }
         }
 
-        stage('Maven Build') {
+        /*stage('Maven Build') {
             steps {
                 sh 'history'
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
@@ -65,7 +65,7 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_image_build.yml'
             }
-        }
+        }*/
 
         // CD(Continuous Deployment) starts Here ... !!!
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
@@ -83,7 +83,7 @@ pipeline {
             }
         }
 
-        stage('Fetching Radical-Bastion IP from AWS') {
+        /*stage('Fetching Radical-Bastion IP from AWS') {
             steps {
                 script {
 
@@ -96,7 +96,7 @@ pipeline {
                     echo "${bastion_ip}"
                 } 
             }
-        }
+        }*/
 
         stage('Configuring Bastion as an Ansible Host') {
             steps {
@@ -110,7 +110,7 @@ pipeline {
             }
         }
 
-        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
@@ -121,7 +121,7 @@ pipeline {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }
+        }*/
     }
 
     post {

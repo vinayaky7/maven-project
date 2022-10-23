@@ -26,7 +26,7 @@ pipeline {
                 }
         }
 
-        /*stage('Maven Build') {
+        stage('Maven Build') {
             steps {
                 sh 'history'
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
@@ -65,7 +65,7 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_image_build.yml'
             }
-        }*/
+        }
 
         // CD(Continuous Deployment) starts Here ... !!!
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
@@ -95,12 +95,12 @@ pipeline {
             }
         }
 
-        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }*/
+        }
 
         stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {

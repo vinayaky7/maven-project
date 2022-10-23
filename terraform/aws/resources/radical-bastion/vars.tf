@@ -15,6 +15,15 @@ variable "subnet" {
 	default = "us-west-2a"
 }
 
+variable "security-group" {
+	type = map(list(string))
+	default = {
+		"mysg" = ["sg-0180f84f7133bee9e"]
+		
+	}
+}
+
+
 variable "keyPath" {
    default = "aws.pem"
 }

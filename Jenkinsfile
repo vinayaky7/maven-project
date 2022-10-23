@@ -8,7 +8,7 @@ pipeline {
         IMAGE = "radical-aug-weekend-12pm-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_ip = "192.168.1.160"
+        bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         bastion_host = "radical-bastion"
@@ -26,7 +26,7 @@ pipeline {
                 }
         }
 
-        /*stage('Maven Build') {
+        stage('Maven Build') {
             steps {
                 sh 'history'
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
@@ -65,10 +65,10 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_image_build.yml'
             }
-        }*/
+        }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -81,7 +81,7 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
         stage('Fetching Radical-Bastion IP from AWS') {
             steps {
@@ -98,7 +98,7 @@ pipeline {
             }
         }
 
-        /*stage('Configuring Bastion as an Ansible Host') {
+        stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
                     
@@ -121,7 +121,7 @@ pipeline {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }*/
+        }
     }
 
     post {

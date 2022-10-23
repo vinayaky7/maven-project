@@ -4,6 +4,7 @@ resource "aws_instance" "radical-bastion" {
   key_name      = var.mykey
   vpc_security_group_ids = ["sg-0180f84f7133bee9e"]
   subnet_id = lookup(var.subnets, var.subnet, "")
+  private_ip = ["192.168.1.111"]
   
   tags = {
     Terraform   = "true"

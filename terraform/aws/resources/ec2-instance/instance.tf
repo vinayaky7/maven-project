@@ -1,6 +1,6 @@
 resource "aws_network_interface" "radical_interface" {
   subnet_id   = lookup(var.subnets, var.subnet, "")
-  vpc_security_group_ids = ["sg-0180f84f7133bee9e"]
+  security_groups = ["sg-0180f84f7133bee9e"]
   private_ips = ["192.168.1.111"]
 
   tags = {

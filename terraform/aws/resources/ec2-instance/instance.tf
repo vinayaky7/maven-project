@@ -1,10 +1,23 @@
+resource "aws_network_interface" "radical_interface" {
+  subnet_id   = lookup(var.subnets, var.subnet, "")
+  private_ips = ["192.168.1.111"]
+
+  tags = {
+    Name = "primary_network_interface"
+  }
+}
+
 resource "aws_instance" "radical-bastion" {
   ami           = lookup(var.AMIS, var.AWS_REGION, "") # last parameter is the default value
   instance_type = "t2.micro"
   key_name      = var.mykey
   vpc_security_group_ids = ["sg-0180f84f7133bee9e"]
   subnet_id = lookup(var.subnets, var.subnet, "")
-  private_ip = ["192.168.1.111"]
+
+  network_interface {
+    network_interface_id = aws_network_interface.radical_interface.id
+    device_index         = 0
+  }
   
   tags = {
     Terraform   = "true"

@@ -67,7 +67,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -80,9 +80,9 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
-        /*stage('Fetching Radical-Bastion IP from AWS') {
+        stage('Fetching Radical-Bastion IP from AWS') {
             steps {
                 script {
                     sh 'aws configure set region ${aws_region}'
@@ -95,7 +95,7 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
         stage('Configuring Bastion as an Ansible Host') {
             steps {

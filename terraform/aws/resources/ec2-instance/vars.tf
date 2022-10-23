@@ -1,5 +1,5 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIA2UM2VMALNDWX6RG3"
+	default = "AKIA3WQTCMOXINIFS7XW"
 }
 
 variable "AWS_SECRET_KEY" {
@@ -7,7 +7,7 @@ variable "AWS_SECRET_KEY" {
 
 variable "mykey" {
 	type = string
-	default = "radical-devops-weekdays-June-2022"
+	default = "radical-devops-weekend-July-10am-2022"
 	
 }
 

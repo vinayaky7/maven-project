@@ -5,6 +5,6 @@
   include_tasks: "{{ item }}"
   loop: 
     - install-terraform.yml
-    - aws-resource-create-vpc.yml
+    #- aws-resource-create-vpc.yml
     - aws-resource-create-vm.yml
     #- aws-resource-create-eks.yml

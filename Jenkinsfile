@@ -91,7 +91,7 @@ pipeline {
 
                     //def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
 
-                    bastion_ip1 = sh(returnStdout: true, script: cat terraform.tfstate | jq -C .resources[].instances[].attributes.private_ip | tr -d '"')
+                    bastion_ip1 = sh(returnStdout: true, script: "cat terraform.tfstate | jq -C .resources[].instances[].attributes.private_ip | tr -d '\"' ")
                     
                     bastion_ip="${bastion_ip1}"  
 

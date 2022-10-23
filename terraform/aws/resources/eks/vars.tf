@@ -11,22 +11,22 @@ variable "keyPath" {
 
 variable "subnet_id_1" {
   type = string
-  default = "subnet-058b3d997939b0f22"
+  default = "subnet-00eaa050085b7ad04"
 }
  
 variable "subnet_id_2" {
   type = string
-  default = "subnet-042528506f3d17250"
+  default = "subnet-02e8f731938e03cd3"
 }
 
 variable "subnet_id_3" {
   type = string
-  default = "subnet-0247e041dfb7aa47c"
+  default = "subnet-02be228febb9095d7"
 }
 
 variable "subnet_id_4" {
   type = string
-  default = "subnet-0ac6d0d2348ff66c4"
+  default = "subnet-0d5099c4599a1edf7"
 }
 
 variable "subnets" {

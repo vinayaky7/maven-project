@@ -93,7 +93,7 @@ pipeline {
                     dir('terraform/aws/resources/ec2-instance') {
                         sh 'pwd'
                         sh 'ls -la'
-                        bastion_ip1 = sh(returnStdout: true, script: "cat terraform.tfstate | jq -C .resources[].instances[].attributes.private_ip | tr -d '\"\' ")
+                        bastion_ip1 = sh(returnStdout: true, script: "cat terraform.tfstate | jq -C .resources[].instances[].attributes.private_ip")
                         echo "${bastion_ip1}"
                         bastion_ip="${bastion_ip1}"
                         echo "${bastion_ip}"

@@ -83,21 +83,6 @@ pipeline {
             }
         }
 
-        /*stage('Fetching Radical-Bastion IP from AWS') {
-            steps {
-                script {
-
-                    sh 'aws configure set region ${aws_region}'
-
-                    def bastion_ip1 = sh(returnStdout: true, script: 'aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text')
-                   
-                    echo "${bastion_ip1}"
-                    bastion_ip="${bastion_ip1}"
-                    echo "${bastion_ip}"
-                } 
-            }
-        }*/
-
         stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
@@ -115,13 +100,13 @@ pipeline {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }
+        }*/
 
         stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }*/
+        }
     }
 
     post {

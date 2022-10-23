@@ -12,7 +12,7 @@ pipeline {
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         bastion_host = "radical-bastion"
-        namespace = "dev"
+        namespace = "qa"
         eks_cluster = "myeks"
     }
 

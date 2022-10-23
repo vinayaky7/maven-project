@@ -8,11 +8,11 @@ pipeline {
         IMAGE = "radical-aug-weekend-12pm-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_name = "radical-bastion"
+        bastion_name = "ansibleclient1"
         bastion_ip = "192.168.1.160"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        bastion_host = "radical-bastion"
+        bastion_host = "ansibleclient1"
         namespace = "dev"
         eks_cluster = "myeks"
     }

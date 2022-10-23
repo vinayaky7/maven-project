@@ -10,7 +10,7 @@
 
   - name: Running terraform in plan mode
     args:
-      chdir: "{{ WORKSPACE }}/terraform/aws/resources/radical-bastion
+      chdir: "{{ WORKSPACE }}/terraform/aws/resources/radical-bastion"
     shell: terraform plan -var-file terrform.tfvars -out out.terraform
     when: shell_result_init.rc == 0
     become: false

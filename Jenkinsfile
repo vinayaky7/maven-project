@@ -11,7 +11,7 @@ pipeline {
         bastion_ip = "192.168.1.160"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        bastion_host = "ansibleclient1"
+        bastion_host = "radical-bastion"
         namespace = "dev"
         eks_cluster = "myeks"
     }

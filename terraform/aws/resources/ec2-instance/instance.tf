@@ -3,7 +3,7 @@ resource "aws_network_interface" "radical_interface" {
   private_ips = ["192.168.1.111"]
 
   tags = {
-    Name = "primary_network_interface"
+    Name = "radical_bastion_network_interface"
   }
 }
 

@@ -26,7 +26,7 @@ pipeline {
                 }
         }
 
-        stage('Maven Build') {
+        /*stage('Maven Build') {
             steps {
                 sh 'history'
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'
@@ -52,6 +52,7 @@ pipeline {
         stage('Installing Ansible') {
             steps {
                 sh 'sudo amazon-linux-extras install epel -y'
+                sh 'sudo yum install jq -y'
                 sh 'sudo yum install ansible -y'
                 sh 'ansible --version'
                 sh 'sudo chmod 777 /etc/ansible/*'
@@ -64,7 +65,7 @@ pipeline {
                 
                 sh 'ansible-playbook ansible/docker_image_build.yml'
             }
-        }
+        }*/
 
         // CD(Continuous Deployment) starts Here ... !!!
         stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
@@ -85,9 +86,12 @@ pipeline {
         stage('Fetching Radical-Bastion IP from AWS') {
             steps {
                 script {
+
                     sh 'aws configure set region ${aws_region}'
 
-                    def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
+                    //def bastion_ip1 = sh(returnStdout: true, script: "aws ec2 describe-instances --filter Name=tag:Name,Values=radical-bastion --query Reservations[].Instances[].PrivateIpAddress --output text")
+
+                    bastion_ip1 = sh(returnStdout: true, script: cat terraform.tfstate | jq -C .resources[].instances[].attributes.private_ip | tr -d '"')
                     
                     bastion_ip="${bastion_ip1}"  
 
@@ -97,7 +101,7 @@ pipeline {
             }
         }
 
-        stage('Configuring Bastion as an Ansible Host') {
+        /*stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
                     
@@ -109,18 +113,18 @@ pipeline {
             }
         }
 
-        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }*/
+        }
 
         stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }
+        }*/
     }
 
     post {

@@ -8,7 +8,6 @@ pipeline {
         IMAGE = "radical-aug-weekend-12pm-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_name = "ansibleclient1"
         bastion_ip = "192.168.1.160"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"

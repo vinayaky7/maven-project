@@ -2,25 +2,6 @@ variable "AWS_ACCESS_KEY" {
 	default = "AKIASMHI2VDZNYVXGC7X"
 }
 
-variable "AWS_SECRET_KEY" {
-	default = "AKIA3WQTCMOXINIFS7XW"
-}
-
-variable "vpc_cidr" {
-	description = "CIDR for radical VPC"
-	default     = "10.0.0.0/16"
-}
-
-variable "public_subnet_cidr" {
-	description = "CIDR for radical public subnet"
-	default     = "10.0.1.0/24"
-}
-
-variable "private_subnet_cidr" {
-	description = "CIDR for radical private subnet"
-	default     = "10.0.2.0/24"
-}
-
 variable "mykey" {
 	type = string
 	default = "radical-devops-weekend-Aug-2022-12pm"
@@ -31,18 +12,14 @@ variable "keyPath" {
    default = "aws.pem"
 }
 
-variable "subnet_public" {
+variable "subnet" {
 	default = "us-west-2a"
-}
-
-variable "subnet_private" {
-	default = "us-west-2b"
 }
 
 variable "subnets" {
 	type = map(string)
 	default = {
-		us-west-2a = "subnet-058b3d997939b0f22"
+		us-west-2a = "subnet-0f4c6ea0f186845c3"
         us-west-2b = "subnet-042528506f3d17250"
         us-west-2c = "subnet-0247e041dfb7aa47c"
         us-west-2d = "subnet-0ac6d0d2348ff66c4"

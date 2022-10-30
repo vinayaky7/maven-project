@@ -3,7 +3,7 @@ variable "AWS_ACCESS_KEY" {
 }
 
 variable "AWS_SECRET_KEY" {
-	default = "AKIA3WQTCMOXINIFS7XW"
+	default = "AKIASMHI2VDZNYVXGC7X"
 }
 
 variable "vpc_cidr" {

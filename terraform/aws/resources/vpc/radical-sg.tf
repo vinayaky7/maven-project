@@ -33,6 +33,6 @@ ingress {
     vpc_id = "${aws_vpc.radical-vpc.id}" 
 
     tags = {
-    Name = "Radical-sg"
+    Name = "radical-sg"
     }
 }

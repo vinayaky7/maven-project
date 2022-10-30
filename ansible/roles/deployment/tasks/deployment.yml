@@ -130,7 +130,7 @@
       var: shell_result_lb_link_exist
 
   - name: Testing Load Balancer Link
-    shell: curl -kv http://{{ shell_result_lb_link_exist.stdout }}/index_dev.jsp
+    shell: curl -kv http://{{ shell_result_lb_link_exist.stdout }}
     become: false
     register: shell_result_lb_link
   - debug:

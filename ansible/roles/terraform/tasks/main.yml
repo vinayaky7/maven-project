@@ -8,3 +8,4 @@
     #- aws-resource-create-vpc.yml
     - aws-resource-create-radical-bastion.yml
     #- aws-resource-create-eks.yml
+    #- aws-create-vpc-peering.yml

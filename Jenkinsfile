@@ -8,10 +8,10 @@ pipeline {
         IMAGE = "radical-aug-weekend-12pm-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_ip = "192.168.1.104"
+        bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        bastion_host = "ansibleclient1"
+        bastion_host = "radical-bastion"
         namespace = "qa"
         eks_cluster = "myeks"
     }
@@ -68,7 +68,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -81,7 +81,7 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
         stage('Configuring Bastion as an Ansible Host') {
             steps {

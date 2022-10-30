@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   vars:
-    bastion_ip: "192.168.1.197"
+    bastion_ip: "{{ lookup('env', 'bastion_ip') }}"
     bastion_host: "{{ lookup('env', 'bastion_host') }}"
 
   tasks:

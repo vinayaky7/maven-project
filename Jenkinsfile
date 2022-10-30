@@ -2,17 +2,17 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('myawscreds')
-        AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
+        //AWS_ACCESS_KEY_ID = credentials('myawscreds')
+        //AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
         aws_region="us-west-2"
         IMAGE = "radical-aug-weekend-12pm-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_ip = "192.168.1.111"
+        bastion_ip = "192.168.1.104"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        bastion_host = "radical-bastion"
-        namespace = "qa"
+        bastion_host = "ansibleclient1"
+        namespace = "dev"
         eks_cluster = "myeks"
     }
 
@@ -68,7 +68,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -81,7 +81,7 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
         stage('Configuring Bastion as an Ansible Host') {
             steps {
@@ -95,12 +95,12 @@ pipeline {
             }
         }
 
-        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }
+        }*/
 
         stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {

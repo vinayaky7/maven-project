@@ -2,6 +2,10 @@ variable "AWS_ACCESS_KEY" {
 	default = "AKIASMHI2VDZNYVXGC7X"
 }
 
+variable "AWS_SECRET_KEY" {
+	default = "XXXXXYYYYYXX"
+}
+
 variable "mykey" {
 	type = string
 	default = "radical-devops-weekend-Aug-2022-12pm"

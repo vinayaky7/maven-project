@@ -17,7 +17,8 @@ pipeline {
 
         stage('Git Checkout') {
             steps {
-                git branch: [[name: refs/tags/test-1]],
+                $class: 'GitSCM',
+                git branch: [[name: 'refs/tags/test-1']],
                     credentialsId: 'git-https-creds',
                     url: 'https://gitlab.com/andromeda99/maven-project.git'
                 }

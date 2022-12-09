@@ -87,7 +87,7 @@ pipeline {
                 
                 
             }
-        }git push origin
+        }
 
         stage('Testing') {
             steps {

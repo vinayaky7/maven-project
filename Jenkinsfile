@@ -17,7 +17,7 @@ pipeline {
 
         stage('Git Checkout') {
             steps {
-                git branch: 'radical-nov-pipeline-1',
+                git branch: 'radical-nov-pipeline',
                     credentialsId: 'git-https-creds',
                     url: 'https://gitlab.com/andromeda99/maven-project.git'
                 }

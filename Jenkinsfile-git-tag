@@ -18,7 +18,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 script{
-                    checkout([$class: 'GitSCM', branches: [[name: "refs/tags/test-1"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: false, recursiveSubmodules: false, reference: '', trackingSubmodules: false]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: "git-https-creds", url: "https://gitlab.com/andromeda99/maven-project.git"]]])
+                    checkout([$class: 'GitSCM', branches: [[name: "refs/tags/test-1"]], userRemoteConfigs: [[credentialsId: "git-https-creds", url: "https://gitlab.com/andromeda99/maven-project.git"]]])
                 }
                 }
         }

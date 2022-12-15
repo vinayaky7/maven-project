@@ -1,4 +1,4 @@
-FROM centos:centos7.9.2009
+FROM centos:centos7
 RUN yum install httpd -y
 RUN  yum install git -y
 RUN yum install elinks -y

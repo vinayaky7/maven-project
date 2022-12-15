@@ -1,9 +1,33 @@
 #/bin/bash
 
-echo "Hello World"
+# Please replace below IP with your Nodes's IP
 
-echo "Hello World"
+whoami
 
-cp -rf /tmp/myworkspaces/webapp/target/webapp.war /tmp/myPackages
+ls -l
 
-sudo scp -i /root/aws.pem -r /tmp/myworkspaces/webapp ec2-user@testvm:/tmp
+pwd
+
+echo "Static Code Testing initiated"
+
+echo "Static code analyser - Sonarqube Scan running"
+
+sudo /opt/sonar-scanner-4.0.0.1744-linux/bin/sonar-scanner Dsonar.projectKey=webapp -Dsonar.sources=webapp -Dsonar.host.url=https://server.sonarqube.com:9090 -Dsonar.login=myAuthenticationToken 
+
+echo "Scanning completed."
+
+sudo yum install httpd -y
+
+sudo systemctl start httpd
+
+sudo systemctl enable httpd 
+
+sudo rsync -avt ${WORKSPACE}/webapp/target/webapp/* /var/www/html
+
+sudo rsync -avt ${WORKSPACE}/webapp/target/webapp.war /var/www/html
+
+sudo yum install elinks -y
+
+#Replace localhost with your Jenkins Master or Slave Public/Private IP as per your requirement. 
+
+elinks http://localhost

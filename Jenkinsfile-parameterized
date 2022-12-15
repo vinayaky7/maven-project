@@ -8,9 +8,9 @@ pipeline {
     }
 
     environment {
-        Node_IP = "52.25.27.255"
-        var1 = "Radical"
-        string1 = "Webhook created from pipline job"
+        Node_IP = "34.209.41.226"
+        TEST = "Radical"
+        sTring = "Webhook created from pipline job"
     }
 
     stages {
@@ -23,7 +23,7 @@ pipeline {
                 }
         }
 
-        stage('Testing Jenkins Global Variables') {
+        stage('Testing Jenkisn Global Variables') {
             steps {
                 script {
                     try {
@@ -33,7 +33,14 @@ pipeline {
                        echo "${JOB_NAME}"
                        echo "${JENKINS_HOME}"
 
-                    } catch (Exception e) {
+                       // Echoing Parametirized Values
+
+                       echo "${environment}" 
+                       echo "${tier}" 
+                       echo "My Client name is ${ClientName}"
+                        
+
+                    } catch(Exception e) {
                         echo "Exception received because of --- " + e.toString()
                         sh 'exit 1'   
                         }
@@ -49,12 +56,12 @@ pipeline {
                     try {
                         sh "whoami"
                         def test1 = "radical1"
-                        echo "${var1}"
+                        echo "${TEST}"
                         echo "${test1}"
-                        echo "${string1}"
+                        echo "${sTring}"
                         
 
-                    } catch (Exception e) {
+                    } catch(Exception e) {
                         echo "Exception received because of --- " + e.toString()
                         sh 'exit 1'   
                         }
@@ -72,7 +79,7 @@ pipeline {
                         sh '/usr/local/src/apache-maven/bin/mvn clean install'
                         
 
-                    } catch (Exception e) {
+                    } catch(Exception e) {
                         echo "Exception received because of --- " + e.toString()
                         sh 'exit 1'   
                         } 
@@ -102,7 +109,7 @@ pipeline {
                 script {
                     try {
                         sh 'date'
-                    } catch (Exception e) {
+                    } catch(Exception e) {
                         echo "Exception received " + e.toString()
                         sh 'exit 1'
                     }

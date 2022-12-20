@@ -2,9 +2,9 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        def image_name="radical-devops-aug-12pm-2022"
-        def image_version="1.0.0"
-        def IP="35.87.20.31" // This should be your jenkins slave IP
+        def image_name="radical-devops-oct-8am-2022"
+        def image_version="oct-8am-2022"
+        def IP="52.25.27.255" // This should be your jenkins slave IP
         def DOCKER_NETWORK="my_network"
         def DOCKER_SUBNET="172.168.0.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')

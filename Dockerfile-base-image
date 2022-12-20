@@ -1,0 +1,26 @@
+FROM radical-nov-2022:2.0
+
+ARG user=jenkins
+ARG uid=1010
+ARG gid=1010
+ARG folder=/tmp/myownimage-folder
+ARG document-root=/var/www/html
+
+RUN yum install ftp -y
+RUN  yum install vsftpd -y
+RUN yum install elinks -y
+
+RUN groupadd -g $gid -r $user && useradd -u $uid -g $gid -r -m -d /home/$user -g $user $user
+
+RUN mkdir $folder
+
+RUN chown -R $user.$user $folder
+RUN chmod 777 $folder
+
+WORKDIR $document-root
+
+ENV DocumentRoot=$document-root
+EXPOSE 80
+CMD ["-D", "FOREGROUND"]
+ENTRYPOINT ["/usr/sbin/httpd"]
+

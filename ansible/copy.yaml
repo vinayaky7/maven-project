@@ -1,0 +1,9 @@
+- hosts: ansibleclient1
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
+  tasks:
+  - name: Ansible copy file to remote server
+    copy:
+      src: sample.txt
+      dest: /tmp

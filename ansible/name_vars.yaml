@@ -1,0 +1,3 @@
+---
+variable_to_be_replaced: 'Good Morning Devops'
+inline_variable: 'Good Evening Devops'

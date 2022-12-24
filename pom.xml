@@ -25,15 +25,10 @@
   </repositories>
 
   <distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>a0w35oiicmtxk-artifactory-primary-0-releases</name>
-        <url>https://aamirforradical.jfrog.io/artifactory/local-snapshot</url>
-    </repository>
     <snapshotRepository>
         <id>snapshots</id>
-        <name>a0w35oiicmtxk-artifactory-primary-0-snapshots</name>
-        <url>https://aamirforradical.jfrog.io/artifactory/local-snapshot</url>
+        <name>a0k7wmoacnm4e-artifactory-primary-0-snapshots</name>
+        <url>https://myfreerepository.jfrog.io/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
   </distributionManagement>
 

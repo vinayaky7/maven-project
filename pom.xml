@@ -19,15 +19,10 @@
 
 
   <distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>a0w35oiicmtxk-artifactory-primary-0-releases</name>
-        <url>https://aamirforradical.jfrog.io/artifactory/local-snapshot</url>
-    </repository>
     <snapshotRepository>
         <id>snapshots</id>
         <name>a0w35oiicmtxk-artifactory-primary-0-snapshots</name>
-        <url>https://aamirforradical.jfrog.io/artifactory/local-snapshot</url>
+        <url>https://aamirforradical.jfrog.io/artifactory/radical-libs-snapshot-local</url>
     </snapshotRepository>
   </distributionManagement>
 

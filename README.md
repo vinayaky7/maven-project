@@ -48,62 +48,64 @@ Important Tips:-
 
 ### Login to your JFrog account & click on Quick Repository Creation as shown in below Pic.
 
-![Alt text](jfrog/pic-1.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-1.jpg?raw=true "pic-1")
 
 ### Click on Maven icon as shown in the below pic & follow below steps.
 
-![Alt text](jfrog/pic-2.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-2.jpg?raw=true "pic-2")
 
-![Alt text](jfrog/pic-3.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-3.jpg?raw=true "pic-3")
 
-![Alt text](jfrog/pic-4.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-4.jpg?raw=true "pic-4")
 
 ### After you click on Create, check "Repositories" under JFrog UI to check newly created Maven repository, Local repository & Virtual Repository as shown in below pics. 
 
-![Alt text](jfrog/pic-5.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-5.jpg?raw=true "pic-5")
 
-![Alt text](jfrog/pic-6.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-6.jpg?raw=true "pic-6")
 
-![Alt text](jfrog/pic-7.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-7.jpg?raw=true "pic-7")
 
-![Alt text](jfrog/pic-8.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-8.jpg?raw=true "pic-8")
 
 ### Later to use our own Maven repository, we need to generate a settings.xml file. Please follow below pics. 
 
-![Alt text](jfrog/pic-9.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-9.jpg?raw=true "pic-9")
 
-![Alt text](jfrog/pic-10.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-10.jpg?raw=true "pic-10")
 
-![Alt text](jfrog/pic-11.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-11.jpg?raw=true "pic-11")
 
-![Alt text](jfrog/pic-12.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-12.jpg?raw=true "pic-12")
 
-![Alt text](jfrog/pic-13.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-13.jpg?raw=true "pic-13")
 
-![Alt text](jfrog/pic-14.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-14.jpg?raw=true "pic-14")
     
 ## Sample settings.xml is mentioned here on the root folder. Please cross check with the file which you downloaded looking at above mentioned pics.
 
 ### We need to put this settings.xml file under our Maven Home Dir which is /var/lib/jenkins/.m2 folder on our Jenkins/Slave servers. 
 #### Note:- This settings.xml file needs to present under every Maven Home Dir which is /var/lib/jenkins/.m2 folder WHICH YOU WILL USE to BUILD.
 
-![Alt text](jfrog/pic-15.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-15.jpg?raw=true "pic-15")
 
 ## This will help you install all the dependencies from your own Maven repository.
 
 ## Now if you want to deploy your artifacts to your own JFrog repository. Put the distributionManagement block of code in your Parent pom.xml as shown below.
 
-![Alt text](jfrog/pic-16.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-16.jpg?raw=true "pic-16")
 
 ## How to generate distributionManagement block of code, Please follow below steps
 
-![Alt text](jfrog/pic-17.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-17.jpg?raw=true "pic-17")
 
 ### Select the folder which contains "local". This folder will store your artifacts which you deploy using maven deploy command. 
 
-![Alt text](jfrog/pic-18.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-18.jpg?raw=true "pic-18")
 
-![Alt text](jfrog/pic-19.jpg?raw=true "Optional Title")
+![Alt text](jfrog/pic-19.jpg?raw=true "pic-19")
+
+### Copy the above shown block of code in your pom.xml as shown in Pic-16
 
 
 

@@ -84,8 +84,6 @@ pipeline {
         stage('Scanning') {
             steps {
                 echo 'Scanning in progress.'
-                
-                
             }
         }
 
@@ -97,11 +95,11 @@ pipeline {
             }
         }
 
-        stage('Nexus Upload') {
+        stage('JFrog Upload') {
             steps {
                 script {
                     try {
-                        sh 'date'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
                     } catch (Exception e) {
                         echo "Exception received " + e.toString()
                         sh 'exit 1'

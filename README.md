@@ -57,6 +57,26 @@ Important Tips:-
 ![Alt text](jfrog/pic-3.jpg?raw=true "Optional Title")
 
 ![Alt text](jfrog/pic-4.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-5.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-6.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-7.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-8.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-9.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-10.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-11.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-12.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-13.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-14.jpg?raw=true "Optional Title")
     
 ## Sample settings.xml is mentioned here on the root folder. Please replace it as per your current JFrog repository & make sure to mention this file under your Maven Home Dir which is /var/lib/jenkins/.m2 foler on all Jenmkins /SLave servers mostly. 
 

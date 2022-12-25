@@ -33,11 +33,11 @@ pipeline {
                        echo "${BUILD_DISPLAY_NAME}"
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
-                       echo "${JENKINS_HOME}"
+                       echo "${JENKINS_HME}"
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
-                        sh 'exit 1'   
+                        sh 'exit 0'   
                         }
 
                 }

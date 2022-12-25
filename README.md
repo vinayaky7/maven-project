@@ -95,6 +95,16 @@ Important Tips:-
 
 ![Alt text](jfrog/pic-16.jpg?raw=true "Optional Title")
 
+## How to generate distributionManagement block of code, Please follow below steps
+
+![Alt text](jfrog/pic-17.jpg?raw=true "Optional Title")
+
+### Select the folder which contains "local". This folder will store your artifacts which you deploy using maven deploy command. 
+
+![Alt text](jfrog/pic-18.jpg?raw=true "Optional Title")
+
+![Alt text](jfrog/pic-19.jpg?raw=true "Optional Title")
+
 
 
 

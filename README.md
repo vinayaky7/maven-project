@@ -68,6 +68,8 @@ Important Tips:-
 
 ![Alt text](jfrog/pic-8.jpg?raw=true "Optional Title")
 
+### Later to use our own Maven repository, we need to generate a settings.xml file. Please follow below pics. 
+
 ![Alt text](jfrog/pic-9.jpg?raw=true "Optional Title")
 
 ![Alt text](jfrog/pic-10.jpg?raw=true "Optional Title")
@@ -80,6 +82,11 @@ Important Tips:-
 
 ![Alt text](jfrog/pic-14.jpg?raw=true "Optional Title")
     
-## Sample settings.xml is mentioned here on the root folder. Please replace it as per your current JFrog repository & make sure to mention this file under your Maven Home Dir which is /var/lib/jenkins/.m2 foler on all Jenmkins /SLave servers mostly. 
+## Sample settings.xml is mentioned here on the root folder. Please cross check with the file which you downloaded looking at above mentioned pics.
+
+### We need to put this settings.xml file under our Maven Home Dir which is /var/lib/jenkins/.m2 folder on our Jenkins/Slave servers. 
+#### Note:- This settings.xml file needs to present under every Maven Home Dir which is /var/lib/jenkins/.m2 folder WHICH YOU WILL USE to BUILD.
+
+![Alt text](jfrog/pic-15.jpg?raw=true "Optional Title")
 
 

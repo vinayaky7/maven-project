@@ -58,6 +58,8 @@ Important Tips:-
 
 ![Alt text](jfrog/pic-4.jpg?raw=true "Optional Title")
 
+### After you click on Create, check "Repositories" under JFrog UI to check newly created Maven repository, Local repository & Virtual Repository as shown in below pics. 
+
 ![Alt text](jfrog/pic-5.jpg?raw=true "Optional Title")
 
 ![Alt text](jfrog/pic-6.jpg?raw=true "Optional Title")

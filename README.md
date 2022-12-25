@@ -41,3 +41,11 @@ Please read & understand above project & description before mentioning it in the
 Please practise all above. Thanks for the consideration.
 
 Aamir Shaikh
+
+Important Tips:-
+
+Repository Manager:- JFrog
+    We have created a free account on free cloud repository JFrog. Please use below URL to create & follow below steps.
+    https://jfrog.com/artifactory/?utm_source=google&utm_medium=cpc&utm_campaign=Search|DSK|BrandAwareness|SearchPartners|India|202202&utm_term=artifactory%20cloud&utm_network=g&cq_plac=&cq_plt=gp&utm_content=u-bin&gclid=Cj0KCQiA45qdBhD-ARIsAOHbVdF07-xaEx-4FOrNBnxgKaibByJhrQ8i8e8va_DBNtGMr06VK8nqUXYaAjKlEALw_wcB
+
+    Sample settings.xml is mentioned here on the root folder. Please replace it as per your current JFrog repository & make sure to mention this file under your Maven Home Dir which is /var/lib/jenkins/.m2 foler on all Jenmkins /SLave servers mostly. 

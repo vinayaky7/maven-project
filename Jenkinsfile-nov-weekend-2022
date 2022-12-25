@@ -57,6 +57,7 @@ pipeline {
                         echo "${string2}"
                         def local_var = "radical-nov-2022"
                         echo "${local_var}"
+                        echo "${ENV}"
                         
 
                     } catch (Exception e) {

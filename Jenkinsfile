@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        //Node_IP = "52.25.27.255"
+        Node_IP = "34.212.119.130"
         var1 = "Radical"
         string1 = "Webhook created from pipline job"
     }

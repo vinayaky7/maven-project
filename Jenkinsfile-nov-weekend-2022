@@ -11,6 +11,7 @@ pipeline {
         Node_IP = "35.87.20.31"
         var1 = "Radical"
         string1 = "Webhook created from pipline job"
+        string2 = "Are your Guys getting?"
     }
 
 
@@ -53,6 +54,9 @@ pipeline {
                         echo "${var1}"
                         echo "${test1}"
                         echo "${string1}"
+                        echo "${string2}"
+                        def local_var = "radical-nov-2022"
+                        echo "${local_var}"
                         
 
                     } catch (Exception e) {

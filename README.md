@@ -49,5 +49,11 @@ Important Tips:-
 ### Login to your JFrog account & click on Quick Repository Creation as shown in below Pic.
 
 ![Alt text](jfrog/pic-1.jpg?raw=true "Optional Title")
+
+### Click on Maven icon on next windows as shown in the pic
+
+![Alt text](jfrog/pic-2.jpg?raw=true "Optional Title")
     
 ## Sample settings.xml is mentioned here on the root folder. Please replace it as per your current JFrog repository & make sure to mention this file under your Maven Home Dir which is /var/lib/jenkins/.m2 foler on all Jenmkins /SLave servers mostly. 
+
+

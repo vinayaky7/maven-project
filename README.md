@@ -89,4 +89,12 @@ Important Tips:-
 
 ![Alt text](jfrog/pic-15.jpg?raw=true "Optional Title")
 
+## This will help you install all the dependencies from your own Maven repository.
+
+## Now if you want to deploy your artifacts to your own JFrog repository. Put the distributionManagement block of code in your Parent pom.xml as shown below.
+
+![Alt text](jfrog/pic-16.jpg?raw=true "Optional Title")
+
+
+
 

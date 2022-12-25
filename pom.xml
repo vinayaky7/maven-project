@@ -17,30 +17,18 @@
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
   </properties>
 
-  <repositories>
-    <repository>
-      <id>maven-central-proxy</id>
-      <url>http://18.221.20.95:8081/repository/maven-central-proxy/</url>
-    </repository>
-  </repositories>
 
   <distributionManagement>
     <snapshotRepository>
-      <id>radical-snapshot</id>
-      <name>radical-snapshot</name>
-      <url>http://18.221.20.95:8081/repository/radical-snapshot/</url>
+        <id>snapshots</id>
+        <name>a0k7wmoacnm4e-artifactory-primary-0-snapshots</name>
+        <url>https://myfreerepository.jfrog.io/artifactory/radical-libs-snapshot-local</url>
     </snapshotRepository>
-    <repository>
-      <id>radical-releases</id>
-      <url>http://18.221.20.95:8081/repository/radical-releases/</url>
-    </repository>
   </distributionManagement>
 
   <modules>
     <module>webapp</module>
   </modules>
-
-
 
   <build>
     <plugins>
@@ -227,7 +215,7 @@
   </scm>
 
   <prerequisites>
-    <maven>3.0.3</maven>
+    <maven>3.8.5</maven>
   </prerequisites>
 
 

@@ -7,6 +7,12 @@ pipeline {
         }
     }
 
+    environment {
+        Node_IP = "35.87.20.31"
+        var1 = "Radical"
+        string1 = "Webhook created from pipline job"
+    }
+
 
     stages {
 
@@ -18,7 +24,7 @@ pipeline {
                 }
         }
 
-        /*stage('Testing Jenkins Global Variables') {
+        stage('Testing Jenkins Global Variables') {
             steps {
                 script {
                     try {
@@ -57,7 +63,7 @@ pipeline {
                 }
                 
             }
-        }*/
+        }
 
     }
     

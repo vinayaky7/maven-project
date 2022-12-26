@@ -11,7 +11,7 @@ pipeline {
         bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        bastion_host = "ansibleclient1"
+        bastion_host = "radical-bastion"
         namespace = "qa"
         eks_cluster = "myeks"
     }
@@ -40,14 +40,14 @@ pipeline {
             }
         }
 
-        /*stage('Installing Docker') {
+        stage('Installing Docker') {
             steps {
                 sh 'sudo yum update -y'
                 sh 'sudo yum install docker -y'
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
             }
-        }*/
+        }
 
         stage('Installing Ansible') {
             steps {
@@ -68,7 +68,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -93,20 +93,20 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
-        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }
+        }*/
 
-        /*stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
+        stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }*/
+        }
     }
 
     post {

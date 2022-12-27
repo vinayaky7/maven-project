@@ -11,6 +11,10 @@
     WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
     DockerHub_repo: "{{ lookup('env', 'DockerHub_repo') }}"
     VER: "{{ lookup('env', 'VER') }}"
+    JFrog_repo: "{{ lookup('env', 'JFrog_repo') }}"
+    JFrog_docker_folder: "{{ lookup('env', 'JFrog_docker_folder') }}"
+    Jfrog_image: "{{ lookup('env', 'Jfrog_image') }}"
+    Jfrog_image_tag: "{{ lookup('env', 'Jfrog_image_tag') }}"
 
   tasks:
   - name: Installing Docker
@@ -68,6 +72,25 @@
     with_items:
     - docker tag {{ IMAGE  }}:{{ VER}} {{ DockerHub_repo }}:{{ VER}}
     - docker push {{ DockerHub_repo }}:{{ VER}}
+    when: shell_result_docker_build.rc == 0
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Log into JFrog
+    docker_login:
+      registry_url: radicaloct2022weekday.jfrog.io
+      username: radicaloct2022weekday@gmail.com
+      password: "{{ docker_pass1 }}"
+    register: shell_result
+  - debug:
+      var: shell_result
+      
+  - name: Pushing docker image to DockerHub Private Repository
+    command: "{{ item }}"
+    with_items:
+    - docker tag {{ IMAGE  }}:{{ VER}} {{JFrog_repo}}/{{JFrog_docker_folder}}/{{Jfrog_image}}:{{Jfrog_image_tag}}
+    - docker push {{JFrog_repo}}/{{JFrog_docker_folder}}/{{Jfrog_image}}:{{Jfrog_image_tag}}
     when: shell_result_docker_build.rc == 0
     register: shell_result
   - debug:

@@ -77,7 +77,9 @@
   - debug:
       var: shell_result
 
-  - name: Log into JFrog
+  # Pushing the same image to Jfrog Private Repository. Please create a free account & create docker repository before using below block of code, OR simply comment it to only use Docker_HUB
+
+  - name: Log into JFrog Private Repository
     docker_login:
       registry_url: radicaloct2022weekday.jfrog.io
       username: radicaloct2022weekday@gmail.com
@@ -86,7 +88,7 @@
   - debug:
       var: shell_result
       
-  - name: Pushing docker image to DockerHub Private Repository
+  - name: Pushing docker image to JFrog Private Repository
     command: "{{ item }}"
     with_items:
     - docker tag {{ IMAGE  }}:{{ VER}} {{JFrog_repo}}/{{JFrog_docker_folder}}/{{Jfrog_image}}:{{Jfrog_image_tag}}

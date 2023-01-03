@@ -5,13 +5,13 @@ pipeline {
         //AWS_ACCESS_KEY_ID = credentials('myawscreds')
         //AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
         aws_region="us-west-2"
-        IMAGE = "radical-aug-weekend-12pm-2022"
+        IMAGE = "radical-oct-weekdays-9am-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         JFrog_repo = "radicaloct2022weekday.jfrog.io"
         JFrog_docker_folder = "radical-docker-local"
         Jfrog_image = "radical-private-repo"
-        Jfrog_image_tag = "1.1.1"
+        Jfrog_image_tag = "2.0.0"
         bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"

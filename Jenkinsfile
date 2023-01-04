@@ -11,7 +11,7 @@ pipeline {
         JFrog_repo = "radicaloct2022weekday.jfrog.io"
         JFrog_docker_folder = "radical-docker-local"
         Jfrog_image = "radical-private-repo"
-        Jfrog_image_tag = "2.0.0"
+        Jfrog_image_tag = "3.0.0"
         bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"

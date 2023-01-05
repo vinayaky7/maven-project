@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mywebserver
-        image: aamirs/radical-private-repo:{{ job }}-{{ tag }}
+        image: aamirs/radical-private-repo:{{ DockerHub_repo }}-{{ VER }}
         command: [ "/usr/sbin/httpd", "-D", "FOREGROUND" ]
       imagePullSecrets:
       - name: my-docker-hub-secret

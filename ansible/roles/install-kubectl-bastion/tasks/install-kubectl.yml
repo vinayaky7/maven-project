@@ -8,14 +8,14 @@
       var: shell_result_check_kubectl
 
   - name: Install Kubectl
-    shell: curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.7/2022-06-29/bin/linux/amd64/kubectl
+    shell: curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.7/2022-10-31/bin/linux/amd64/kubectl
     when: shell_result_check_kubectl.rc != 0
     register: shell_result
   - debug:
       var: shell_result
 
   - name: Install SHA-256
-    shell: curl -o kubectl.sha256 https://s3.us-west-2.amazonaws.com/amazon-eks/1.23.7/2022-06-29/bin/linux/amd64/kubectl.sha256
+    shell: curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.7/2022-10-31/bin/linux/amd64/kubectl.sha256
     when: shell_result_check_kubectl.rc != 0
     register: shell_result
   - debug:

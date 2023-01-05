@@ -1,5 +1,7 @@
 ---
 # defaults file for myrole
+DockerHub_repo: "{{ lookup('env', 'DockerHub_repo') }}"
+VER: "{{ lookup('env', 'VER') }}"
 user: ec2-user
 WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
 job: "{{ lookup('env', 'JOB') }}"

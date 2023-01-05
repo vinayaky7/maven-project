@@ -16,7 +16,7 @@ pipeline {
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
         bastion_host = "ansibleclient1"
-        namespace = "dev"
+        namespace = "uat"
         eks_cluster = "myeks"
     }
 

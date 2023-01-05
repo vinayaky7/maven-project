@@ -1,5 +1,10 @@
 FROM centos:centos7
 
+<<<<<<< HEAD
+=======
+MAINTAINER "Aamir M. Shaikh"
+
+>>>>>>> dev-ansible
 ARG user=appuser
 ARG uid=1010
 ARG gid=1010
@@ -10,7 +15,11 @@ RUN yum install git -y
 
 RUN groupadd -g $gid -r $user && useradd -u $uid -g $gid -r -m -d /home/$user -g $user $user
 
+<<<<<<< HEAD
 ADD https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz /home/$user
+=======
+ADD https://dlcdn.apache.org/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.tar.gz /home/$user
+>>>>>>> dev-ansible
 
 RUN touch index.php
 

@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  vars:
+    bastion_ip: "{{ lookup('env', 'bastion_ip') }}"
+    bastion_host: "{{ lookup('env', 'bastion_host') }}"
+
+  tasks:
+  - name: Checking if radical-bastion already added to jenkins-slave host file
+    shell: cat /etc/hosts | grep {{ bastion_ip }}
+    register: shell_result_ip_check_slave
+    ignore_errors: True
+  - debug:
+      var: shell_result_ip_check_slave
+
+  - name: Adding radical-bastion to jenkins-slave host file
+    shell: echo {{ bastion_ip }} {{ bastion_host }} >> /etc/hosts
+    when: shell_result_ip_check_slave.rc != 0
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Checking if radical-bastion already added to ansible hosts file 
+    shell: cat /etc/ansible/hosts | grep {{ bastion_host }}
+    register: shell_result_ip_check
+    ignore_errors: True
+  - debug:
+      var: shell_result_ip_check
+
+  - name: Adding radical-bastion to ansible hosts file
+    shell: echo {{ bastion_host }} ansible_ssh_common_args=\'-o StrictHostKeyChecking=no\' >> /etc/ansible/hosts
+    when: shell_result_ip_check.rc != 0
+    register: shell_result
+  - debug:
+      var: shell_result

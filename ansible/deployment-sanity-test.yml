@@ -1,0 +1,85 @@
+---
+- name: This sets up a Docker server
+  hosts: "{{ lookup('env', 'bastion_host') }}"
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
+  vars_files:
+       - docker_token.yml
+  vars:
+    vol: /tmp/myefs/docker_volume/
+    IMAGE: "{{ lookup('env', 'IMAGE') }}"
+    WORKSPACE: "{{ lookup('env', 'WORKSPACE') }}"
+    DockerHub_repo: "{{ lookup('env', 'DockerHub_repo') }}"
+    VER: "{{ lookup('env', 'VER') }}"
+
+  tasks:
+  - name: set fact here
+    set_fact:
+      random_number: "{{ 100 | random }}"
+    run_once: yes
+
+  - name: Installing Docker
+    yum:
+      name: docker
+      state: present
+
+  - name: Installing Git
+    yum:
+      name: git
+      state: present
+
+  - name: Start Docker Service
+    service:
+      name: docker
+      state: started
+
+  - name: Enable Docker Service
+    service:
+      name: docker
+      enabled: yes
+
+  - name: Ansible copy file to remote server
+    copy:
+      src: "{{ WORKSPACE }}/ansible/docker_token.yml"
+      dest: /home/ec2-user/docker_token.yml
+
+  - name: Installing pip
+    yum:
+      name: pip
+      state: present
+
+  - name: Installing docker-py
+    shell: pip install docker-py
+
+  - name: Log into DockerHub
+    docker_login:
+      username: aamirs
+      password: "{{ docker_pass }}"
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Creating test container
+    command: "{{ item }}"
+    with_items:
+    - docker run -itd  --name=test_machine320"{{ random_number }}" centos
+    #- docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80 -v "{{ vol }}":/var/www/html/  {{ DockerHub_repo }}:{{ VER}}
+    - docker run -itd --name=webserver320"{{ random_number }}" -p 320"{{ random_number }}":80  {{ DockerHub_repo }}:{{ VER}}
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Testing
+    shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
+    register: shell_result
+  - debug:
+      msg: Testing URL is http://{{ shell_result.stdout }}:320{{ random_number }}/index_dev.jsp
+
+  - name: Checking if the above link is working as expected
+    ansible.builtin.raw: curl -kv http://{{ shell_result.stdout }}:320{{ random_number }}/index_dev.jsp
+    register: url_check
+  - debug:
+      var: url_check
+
+

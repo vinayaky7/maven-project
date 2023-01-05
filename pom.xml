@@ -21,11 +21,11 @@
   </modules>
 
   <distributionManagement>
-    <site>
-      <id>site-server</id>
-      <name>Test Project Site</name>
-      <url>file:///tmp/maven-project-site</url>
-    </site>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>a0nfjcj8g0fmr-artifactory-primary-0-snapshots</name>
+        <url>https://radicaloct2022weekday.jfrog.io/artifactory/radical-libs-snapshot-local</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <build>

@@ -1,0 +1,147 @@
+---
+  - name: Copying deployment template to bastion
+    template: 
+      src: deployment.yml.j2
+      dest: /home/{{ user }}/deployment.yml
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0755
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Copying Namespace template to bastion
+    template: 
+      src: namespace.yml.j2
+      dest: /home/{{ user }}/namespace.yml
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0755
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Copying secrets template to bastion
+    template: 
+      src: secret.yml.j2
+      dest: /home/{{ user }}/secret.yml
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0755
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Copying Service deployment file to bastion
+    copy:
+      src: /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment/files/service.yml
+      dest: /home/{{ user }}/
+    register: shell_result_svc_file
+  - debug:
+      var: shell_result_svc_file
+
+  - name: Checking if namespace exists
+    shell: kubectl get ns | grep {{ namespace }}
+    become: false
+    register: shell_result_check_ns
+    ignore_errors: True
+  - debug:
+      var: shell_result_check_ns
+
+  - name: Creating a namespace
+    shell: kubectl create -f namespace.yml
+    when: shell_result_check_ns.rc != 0
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Checking if secret exists in the namespace
+    shell: kubectl get secret | grep my-docker-hub-secret
+    become: false
+    register: shell_result_check_secret
+    ignore_errors: True
+  - debug:
+      var: shell_result_check_secret
+
+  - name: Creating a secret in a namespace
+    shell: kubectl create -f secret.yml
+    when: shell_result_check_secret.rc != 0
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Checking if previous deployment exist
+    shell: kubectl get deployment | grep frontend
+    become: false
+    register: shell_result_check_deployment
+    ignore_errors: True
+  - debug:
+      var: shell_result_check_deployment
+
+  - name: Creating a deployment
+    shell: kubectl create -f deployment.yml
+    when: shell_result_check_deployment.rc != 0
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Applying a rolling update on existing deployment
+    shell: kubectl apply -f deployment.yml
+    when: shell_result_check_deployment.rc == 0
+    become: false
+    register: shell_result_rolling_update
+  - debug:
+      var: shell_result_rolling_update
+
+  - name: Describing a deployment
+    shell: kubectl describe deployment frontend
+    become: false
+    register: shell_result
+  - debug:
+      var: shell_result
+
+  - name: Checking Load Balancer service
+    shell: kubectl get svc | grep myfrontend-loadbalancer-service
+    become: false
+    register: shell_result_check_svc
+    ignore_errors: True
+  - debug:
+      var: shell_result_check_svc
+
+  - name: Creating a Load Balancer service
+    shell: kubectl create -f service.yml
+    when: shell_result_check_svc.rc != 0
+    become: false
+    register: shell_result_svc_deploy
+  - debug:
+      var: shell_result_svc_deploy
+
+  - pause: seconds=60
+
+  - name: Checking if Load Balancer exist 
+    shell: kubectl get svc | grep myfrontend-service | awk '{print $4}'
+    become: false
+    register: shell_result_lb_link_exist
+    ignore_errors: True
+  - debug:
+      var: shell_result_lb_link_exist
+
+  - name: Testing Load Balancer Link
+    shell: curl -kv http://{{ shell_result_lb_link_exist.stdout }}
+    become: false
+    register: shell_result_lb_link
+  - debug:
+      var: shell_result_lb_link
+
+
+
+
+  
+
+
+  
+
+  

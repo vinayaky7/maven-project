@@ -1,0 +1,10 @@
+#!/bin/bash
+#Below ssh public key belongs to jenkins user on Jenkins Slave Node which will ssh to client machine & will be be pasted in /home/ec2-user/.ssh/authorized_keys file on the client. So replace it accordingly as per your current agent which you will use. 
+
+hostnamectl set-hostname testvm
+
+mkdir /tmp/myefs
+
+mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-042de7d6ef9a2770e.efs.us-west-2.amazonaws.com:/ /tmp/myefs
+
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDb5hDZuCDQX4BDGV4CxZLEUkf/udXNRbB77geUq1nr/bWdYmotI9NI4HovJuCF4oYSNjIA86OzxUBi9sJOz5gVM5++ul6T2aonK0J69RBG7QSfoAulxcLpdap/vY7pT6PpKj4G5f4aOiK5UhwwuACL1QshHnO/0WRoEZy+bEZNUC2Ubju/JZcitbtlKU1g1dyyXgp6Ona1gMTyK6PGi91Q9vHW70RrVjg1bOE0GNu8Kwxd+do5ZgYU88uh8UZD37aB5a+FmhcbaMn8lDhb5Vp27KcFgiiZeIFH5i/JFs+N9ZFU0rhlC2S4QCmWBMrImCzl09RwyqceQzu72V8PWCvH Jenkins agent key" >> /home/ec2-user/.ssh/authorized_keys

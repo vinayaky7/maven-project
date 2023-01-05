@@ -1,11 +1,19 @@
 ---
 - name: This sets up a Docker server
+<<<<<<< HEAD
   hosts: ansibleclient1
+=======
+  hosts: testvm-dev
+>>>>>>> dev-ansible
   remote_user: ec2-user
   become: true
   become_method: sudo
   vars:
       vol: /tmp/myefs/docker_volume/
+<<<<<<< HEAD
+=======
+      image: "{{ lookup('env', 'IMAGE') }}"
+>>>>>>> dev-ansible
 
   tasks:
   - name: set fact here
@@ -16,6 +24,13 @@
     yum:
       name: docker
       state: present
+<<<<<<< HEAD
+=======
+  - name: Installing Git
+    yum:
+      name: git
+      state: present
+>>>>>>> dev-ansible
   - name: Start Docker Service
     service:
       name: docker
@@ -24,6 +39,7 @@
     service:
       name: docker
       enabled: yes
+<<<<<<< HEAD
   - name: Checking local Directory to pull Dockerfile code snippet from gitlab
     stat: 
       path: /home/ec2-user/2041720
@@ -45,6 +61,24 @@
     args:
       chdir: /home/ec2-user/2041720
     shell: docker build -t myweb:v1.0 .
+=======
+  - name: Creating a DIR for Dockefile snippet
+    file:
+      path: mysnippet{{ random_number }}
+      state: directory
+      mode: "u=rwx,g=rx,o=rx"
+  - name: Pulling Dockerfile as a snippet
+    args:
+      chdir: mysnippet{{ random_number }}
+    shell: git clone https://gitlab.com/snippets/2041720.git
+    register: shell_result
+  - debug:
+      var: shell_result
+  - name: Build Docker Image
+    args:
+      chdir: mysnippet{{ random_number }}/2041720
+    shell: docker build -t {{ image }} .
+>>>>>>> dev-ansible
     register: shell_result
   - debug:
       var: shell_result
@@ -60,4 +94,8 @@
     shell: host myip.opendns.com resolver1.opendns.com | grep address |  awk '{print $4}'
     register: shell_result
   - debug:
+<<<<<<< HEAD
       msg: Testing URL is http://{{ shell_result.stdout }}:320{{ random_number }}/webapp/target/webapp/index_dev.jsp
+=======
+      msg: Testing URL is http://{{ shell_result.stdout }}:320{{ random_number }}/webapp/index_dev.jsp
+>>>>>>> dev-ansible

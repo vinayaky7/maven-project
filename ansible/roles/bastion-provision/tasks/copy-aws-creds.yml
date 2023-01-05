@@ -1,0 +1,22 @@
+---
+ - name: copy credentials file to bastion
+   template: 
+      src: credentials.j2 
+      dest: /home/{{ user }}/.aws/credentials
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0600
+   register: shell_result
+ - debug:
+    var: shell_result
+
+ - name: copy credentials file to bastion
+   template:
+      src: config.j2
+      dest: /home/{{ user }}/.aws/config
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0600
+   register: shell_result
+ - debug:
+    var: shell_result

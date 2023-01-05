@@ -1,0 +1,11 @@
+---
+#tasks file for myrole
+
+- name: Installing Terraform
+  include_tasks: "{{ item }}"
+  loop: 
+    - install-terraform.yml
+    #- aws-resource-create-vpc.yml
+    - aws-resource-create-radical-bastion.yml
+    #- aws-resource-create-eks.yml
+    #- aws-create-vpc-peering.yml

@@ -1,0 +1,17 @@
+---
+- name: checking pwd
+  shell: pwd
+  register: shell_result
+- debug:
+      var: shell_result
+
+- name: ansible create directory example
+  file:
+    path: /home/{{ user }}/.aws
+    state: directory
+    mode: "u=rwx,g=rwx,o=rx"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  register: shell_result
+- debug:
+      var: shell_result

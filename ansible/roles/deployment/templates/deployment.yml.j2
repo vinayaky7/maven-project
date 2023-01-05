@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: {{ namespace }}
+  labels:
+    app: myapp-dev
+    type: frontend
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: myreplicaset
+      labels:
+        app: myapp-dev
+    spec:
+      containers:
+      - name: mywebserver
+        image: {{ DockerHub_repo }}:{{ VER }}
+        command: [ "/usr/sbin/httpd", "-D", "FOREGROUND" ]
+      imagePullSecrets:
+      - name: my-docker-hub-secret
+
+  selector:
+    matchLabels:
+      app: myapp-dev

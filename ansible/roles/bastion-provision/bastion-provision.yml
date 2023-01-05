@@ -1,0 +1,15 @@
+---
+- hosts: "{{ lookup('env', 'bastion_host') }}"
+  remote_user: "{{ user }}"
+  become: true
+  become_method: sudo
+
+  vars:
+    job: "{{ lookup('env', 'JOB') }}"
+
+  roles:
+    - /var/lib/jenkins/workspace/{{job}}/ansible/roles/bastion-provision
+    - /var/lib/jenkins/workspace/{{job}}/ansible/roles/install-kubectl-bastion
+    - /var/lib/jenkins/workspace/{{job}}/ansible/roles/deployment
+   #- /root/maven-project/ansible/roles/bastion-provision
+    

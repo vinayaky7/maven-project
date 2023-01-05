@@ -1,0 +1,3 @@
+#/bin/bash
+
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnl+o6BBGSN2E264wqMOKhCt3tlkbImQvqPQj1etTrJEQ7Dgal6CesEj9P4fp+glbxqxi+HqgFwATUOp6lki+MuwlKXef8QnoOlrkPjMyhhI9sUi4aPfDpS/WlNHBfPKSHew4clCABkdU4Bgn6Jzihtgw/LJHWCuUtWxZ14s87uKozzOAdMy0tp2fU3tl/iq4hmnowyYu5VXSSmHHkY0tT3+38FUaeghpRi8cWst4KdLslWxZbDwRP9DbmhTIdWu552hjx/YJRTVU5EByU46dZD0VdKQtBHe2Qfr0W2G1DVh88qUBgQSu0V4soOB1GRJWvpWiTYduzE292LpQvR/+t Jenkins agent key" >> /home/ec2-user/.ssh/authorized_keys

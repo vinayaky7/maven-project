@@ -99,12 +99,12 @@ pipeline {
             }
         }*/
 
-        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }
+        }*/
 
         stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {

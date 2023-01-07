@@ -1,7 +1,7 @@
 ---
 
   - name: Check aws instances
-    shell: aws ec2 describe-instances
+    shell: aws ec2 describe-instances | grep {{ bastion_host }}
     become: false
     register: shell_result
   - debug:

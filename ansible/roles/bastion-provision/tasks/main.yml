@@ -7,3 +7,4 @@
     - aws-dir.yml
     - copy-aws-creds.yml
     - aws-test-command.yml
+    - upgrade-aws_cli.yml

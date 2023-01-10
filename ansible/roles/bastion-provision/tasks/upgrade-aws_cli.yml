@@ -6,7 +6,7 @@
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     - unzip awscliv2.zip
     - sudo ./aws/install --update
-    - echo "export PATH=$PATH:$HOME/bin" >> /home/ec2-user/.ssh/.bashrc
+    - echo "export PATH=$PATH:/usr/local/bin/aws" >> /home/ec2-user/.bashrc
     #become: false
     register: shell_result
   - debug:

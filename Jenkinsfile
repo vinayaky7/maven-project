@@ -12,10 +12,10 @@ pipeline {
         JFrog_docker_folder = "radical-docker-local"
         Jfrog_image = "radical-private-repo"
         Jfrog_image_tag = "3.0.0"
-        bastion_ip = "192.168.21.251"
+        bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "${env.BUILD_ID}"
-        bastion_host = "ansibleclient1"
+        bastion_host = "radical-bastion"
         namespace = "uat"
         eks_cluster = "myeks"
     }
@@ -72,7 +72,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -97,7 +97,7 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
         /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {

@@ -33,7 +33,7 @@ pipeline {
         stage('Maven Build') {
             steps {
                 sh 'history'
-                sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
+                sh '/usr/local/src/apache-maven/bin/mvn clean install'
             }
         }
 

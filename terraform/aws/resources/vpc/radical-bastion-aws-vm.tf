@@ -1,6 +1,6 @@
 resource "aws_network_interface" "radical_interface" {
-  subnet_id   = "${aws_subnet.subnet_public-1.id}"
-  security_groups = var.security-group["mysg"]
+  subnet_id   = "${aws_subnet.public_subnet_1.id}"
+  security_groups = ["${aws_security_group.radical-sg.id}"]
   private_ips = ["10.0.1.111"]
 
   tags = {

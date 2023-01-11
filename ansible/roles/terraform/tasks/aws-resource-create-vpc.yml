@@ -2,7 +2,7 @@
   - name: Initializing Terraform
     args:
       chdir: "{{ WORKSPACE }}/terraform/aws/resources/vpc"
-    shell: terraform init -auto-approve
+    shell: terraform init -force-copy
     become: false
     register: shell_result_init
   - debug:

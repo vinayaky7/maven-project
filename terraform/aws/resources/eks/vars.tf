@@ -1,12 +1,8 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIA3WQTCMOXINIFS7XW"
+	default = "AKIAXKVQT6YSQG4LVA5A"
 }
 
 variable "AWS_SECRET_KEY" {
-}
-
-variable "keyPath" {
-   default = "aws.pem"
 }
 
 variable "subnet_id_1" {

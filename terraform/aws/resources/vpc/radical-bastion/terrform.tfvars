@@ -1,1 +1,0 @@
-AWS_SECRET_KEY="Mtqvhs8YbJuubu07SnYO/3wnV+/SCR6kO1AaUxEx"

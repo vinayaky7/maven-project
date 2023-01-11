@@ -1,5 +1,6 @@
 resource "aws_eks_cluster" "radical-myeks" {
  name = "radical-myeks"
+ version = "1.24"
  role_arn = aws_iam_role.eks-iam-role.arn
 
  vpc_config {

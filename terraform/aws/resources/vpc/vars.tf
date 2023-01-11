@@ -1,9 +1,9 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIASMHI2VDZNYVXGC7X"
+	default = "AKIAXKVQT6YSQG4LVA5A"
 }
 
 variable "AWS_SECRET_KEY" {
-	default = "AKIASMHI2VDZNYVXGC7X"
+	default = "Mtqvhs8YbJuubu07SnYO/3wnV+/SCR6kO1AaUxEx"
 }
 
 variable "vpc_cidr" {
@@ -11,19 +11,29 @@ variable "vpc_cidr" {
 	default     = "10.0.0.0/16"
 }
 
-variable "public_subnet_cidr" {
+variable "public_subnet_1" {
 	description = "CIDR for radical public subnet"
 	default     = "10.0.1.0/24"
 }
 
-variable "private_subnet_cidr" {
+variable "public_subnet_2" {
 	description = "CIDR for radical private subnet"
 	default     = "10.0.2.0/24"
 }
 
+variable "public_subnet_3" {
+	description = "CIDR for radical public subnet"
+	default     = "10.0.3.0/24"
+}
+
+variable "public_subnet_4" {
+	description = "CIDR for radical public subnet"
+	default     = "10.0.4.0/24"
+}
+
 variable "mykey" {
 	type = string
-	default = "radical-devops-weekend-Aug-2022-12pm"
+	default = "radical-devops-weekdays-oct-2022-9.30am"
 	
 }
 
@@ -31,22 +41,20 @@ variable "keyPath" {
    default = "aws.pem"
 }
 
-variable "subnet_public" {
+variable "subnet_public-1" {
 	default = "us-west-2a"
 }
 
-variable "subnet_private" {
+variable "subnet_public-2" {
 	default = "us-west-2b"
 }
 
-variable "subnets" {
-	type = map(string)
-	default = {
-		us-west-2a = "subnet-058b3d997939b0f22"
-        us-west-2b = "subnet-042528506f3d17250"
-        us-west-2c = "subnet-0247e041dfb7aa47c"
-        us-west-2d = "subnet-0ac6d0d2348ff66c4"
-	}
+variable "subnet_public-3" {
+	default = "us-west-2c"
+}
+
+variable "subnet_public-4" {
+	default = "us-west-2d"
 }
 
 
@@ -58,7 +66,7 @@ variable "AMIS" {
   type = map(string)
   default = {
     us-east-1 = "ami-13be557e"
-    us-west-2 = "ami-0cea098ed2ac54925"
+    us-west-2 = "ami-094125af156557ca2"
     eu-west-1 = "ami-0d729a60"
 	us-east-2 = "ami-0fa49cc9dc8d62c84"
   }

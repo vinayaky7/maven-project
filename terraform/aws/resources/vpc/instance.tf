@@ -3,7 +3,7 @@ resource "aws_instance" "testvm" {
   instance_type = "t2.micro"
   key_name      = var.mykey
   vpc_security_group_ids = ["${aws_security_group.radical-sg.id}"]
-  subnet_id = "${aws_subnet.aws-public-subnet.id}"
+  subnet_id = "${aws_subnet.subnet_public-1.id}"
 
   tags = {
     Terraform   = "true"

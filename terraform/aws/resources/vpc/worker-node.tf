@@ -2,7 +2,7 @@ resource "aws_eks_node_group" "radical-workernode" {
   cluster_name  = aws_eks_cluster.radical-myeks.name
   node_group_name = "radical-workernodes"
   node_role_arn  = aws_iam_role.myworkernodes.arn
-  subnet_ids   = ["${var.public_subnet_1.id}", "${var.public_subnet_2.id}", "${var.public_subnet_3.id}", "${var.public_subnet_4.id}"]
+  subnet_ids   = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id, aws_subnet.public_subnet_3.id, aws_subnet.public_subnet_4.id]
   instance_types = ["t3.medium"]
  
   scaling_config {

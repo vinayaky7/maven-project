@@ -9,6 +9,7 @@ pipeline {
         def DOCKER_SUBNET="172.168.0.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')
         DockerHub_repo = "aamirs/radical-private-repo"
+        Docker_user = "jordan"
     }
     
     stages {
@@ -34,7 +35,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'echo ${image_name}'
-                sh "sudo docker build -t $image_name:$docker_tag . --build-arg user=radical"
+                sh "sudo docker build -t $image_name:$docker_tag . --build-arg user=${Docker_user}"
                 sh 'sudo docker images'
             }
         }

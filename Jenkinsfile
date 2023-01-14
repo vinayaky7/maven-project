@@ -13,6 +13,15 @@ pipeline {
     }
     
     stages {
+
+        stage('Git Checkout') {
+            steps {
+                script{
+                    checkout([$class: 'GitSCM', branches: [[name: "refs/tags/rel-3.0"]], userRemoteConfigs: [[credentialsId: "git-https-creds", url: "https://gitlab.com/andromeda99/maven-project.git"]]])
+                }
+                }
+        }
+
         stage('Build') {
             steps {
                 sh '/usr/local/src/apache-maven/bin/mvn clean install'

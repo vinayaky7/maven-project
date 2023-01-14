@@ -62,16 +62,24 @@ pipeline {
 
         stage('Testing') {
             steps {
-                echo 'Testing..'
-                sh 'sudo docker run -itd --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/tmp ${image_name}:${docker_tag}'
+                script {
+                    try {
+                        echo 'Testing..'
+                        sh 'sudo docker run -itd --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/tmp ${image_name}:${docker_tag}'
 
-                sh 'sudo docker run -itd  --network=${DOCKER_NETWORK} --name mycentos300${BUILD_NUMBER} centos:centos7'
+                        sh 'sudo docker run -itd  --network=${DOCKER_NETWORK} --name mycentos300${BUILD_NUMBER} centos:centos7'
 
-                sh 'sudo docker ps'
-                sh 'sudo docker images'
-                sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
-                sh "elinks http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
-                sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
+                        sh 'sudo docker ps'
+                        sh 'sudo docker images'
+                        sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
+                        sh "elinks http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
+                        sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
+                    } catch (e) {
+                       //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
+                       echo "Exception received because of --- " + e.toString()
+                       echo "Testing failed..."
+                       sh 'exit 1'
+                    } 
             }
         }
 

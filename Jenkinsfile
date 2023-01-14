@@ -4,7 +4,7 @@ pipeline {
     environment {
         def image_name="radical-devops-nov-10am-2022"
         def docker_tag="nov-10am-2022"
-        def IP="34.220.17.165" // This should be your jenkins slave IP
+        def IP="34.212.119.130" // This should be your jenkins slave IP
         def DOCKER_NETWORK="my_network"
         def DOCKER_SUBNET="172.168.0.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')

@@ -2,12 +2,13 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        def image_name="radical-devops-oct-8am-2022"
-        def image_version="oct-8am-2022"
-        def IP="52.25.27.255" // This should be your jenkins slave IP
+        def image_name="radical-devops-nov-10am-2022"
+        def docker_tag="nov-10am-2022"
+        def IP="34.220.17.165" // This should be your jenkins slave IP
         def DOCKER_NETWORK="my_network"
         def DOCKER_SUBNET="172.168.0.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')
+        DockerHub_repo = "aamirs/radical-private-repo"
     }
     
     stages {
@@ -24,6 +25,7 @@ pipeline {
             steps {
                 sh 'sudo yum install docker -y'
                 sh 'sudo systemctl start docker'
+                sh 'sudo systemctl enable docker'
                 sh 'sudo yum install elinks -y'
             }
         }
@@ -32,7 +34,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'echo ${image_name}'
-                sh "sudo docker build -t $image_name:$image_version . --build-arg user=radical"
+                sh "sudo docker build -t $image_name:$docker_tag . --build-arg user=radical"
                 sh 'sudo docker images'
             }
         }
@@ -61,7 +63,7 @@ pipeline {
         stage('Testing') {
             steps {
                 echo 'Testing..'
-                sh 'sudo docker run -itd --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/tmp ${image_name}:${image_version}'
+                sh 'sudo docker run -itd --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/tmp ${image_name}:${docker_tag}'
 
                 sh 'sudo docker run -itd  --network=${DOCKER_NETWORK} --name mycentos300${BUILD_NUMBER} centos:centos7'
 
@@ -84,12 +86,12 @@ pipeline {
 
         stage('Push image to dockerhub') {
             steps {
-                sh 'sudo docker tag ${image_name}:${image_version} aamirs/radical-private-repo:${image_version}'
-                sh 'sudo docker push aamirs/radical-private-repo:${image_version}'
+                sh 'sudo docker tag ${image_name}:${docker_tag} ${DockerHub_repo}:${docker_tag}'
+                sh 'sudo docker push ${DockerHub_repo}:${docker_tag}'
             }
         }
 
-        stage('Cleanup') {
+        /*stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
                 sh 'sleep 30'
@@ -107,6 +109,6 @@ pipeline {
             steps {
                 echo 'Deployment..'
             }
-        }
+        }*/
     }
 }

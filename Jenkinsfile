@@ -80,6 +80,7 @@ pipeline {
                        echo "Testing failed..."
                        sh 'exit 1'
                     } 
+                }
             }
         }
 

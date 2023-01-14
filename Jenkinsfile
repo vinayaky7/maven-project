@@ -76,7 +76,7 @@ pipeline {
                         sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
                     } catch (e) {
                        //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
-                       echo "Exception received because of --- " + e.toString()
+                       echo "Please check the IP of your build server --- " + e.toString()
                        echo "Testing failed..."
                        sh 'exit 1'
                     } 

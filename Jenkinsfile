@@ -110,7 +110,7 @@ pipeline {
             }
         }
 
-        /*stage('Cleanup') {
+        stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
                 sh 'sleep 30'
@@ -128,6 +128,6 @@ pipeline {
             steps {
                 echo 'Deployment..'
             }
-        }*/
+        }
     }
 }

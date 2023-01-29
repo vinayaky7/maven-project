@@ -2,23 +2,23 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('myawscreds')
-        AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
-        aws_region="us-west-2"
-        IMAGE = "radical-oct-weekdays-9am-2022"
+        #AWS_ACCESS_KEY_ID = credentials('myawscreds')
+        #AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
+        #aws_region="us-west-2"
+        IMAGE = "radical-nov-weekend-10am-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        JFrog_repo = "radicaloct2022weekday.jfrog.io"
-        JFrog_docker_folder = "radical-docker-local"
-        Jfrog_image = "radical-private-repo"
-        Jfrog_image_tag = "3.0.0"
+        #JFrog_repo = "radicaloct2022weekday.jfrog.io"
+        #JFrog_docker_folder = "radical-docker-local"
+        #Jfrog_image = "radical-private-repo"
+        #Jfrog_image_tag = "3.0.0"
         //bastion_ip = "10.0.1.111"
-        bastion_ip = "192.168.21.251"
+        bastion_ip = "192.168.3.194"
         JOB = "${env.JOB_NAME}"
-        tag = "${env.BUILD_ID}"
+        tag = 0.0."${env.BUILD_ID}"
         bastion_host = "ansibleclient1"
-        namespace = "dev"
-        eks_cluster = "myeks"
+        #namespace = "dev"
+        #eks_cluster = "myeks"
     }
 
     
@@ -52,7 +52,7 @@ pipeline {
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
             }
-        }*/
+        }
 
         stage('Installing Ansible') {
             steps {
@@ -63,7 +63,7 @@ pipeline {
                 sh 'sudo chmod 777 /etc/ansible/*'
                 sh 'sudo chmod 777 /etc/hosts'
             }
-        }
+        }*/
 
         stage('Building latest Docker image using latest artifact & pushing to DockerHub') {
             steps {
@@ -73,7 +73,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -98,20 +98,20 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
-        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }*/
+        }
 
-        stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
+        /*stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }
+        }*/
     }
 
     post {

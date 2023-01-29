@@ -4,6 +4,7 @@
   remote_user: ec2-user
   become: true
   become_method: sudo
+  
   vars_files:
        - docker_token.yml
   vars:

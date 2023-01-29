@@ -2,23 +2,24 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        #AWS_ACCESS_KEY_ID = credentials('myawscreds')
-        #AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
-        #aws_region="us-west-2"
+        //AWS_ACCESS_KEY_ID = credentials('myawscreds')
+        //AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
+        //JFrog_repo = "radicaloct2022weekday.jfrog.io"
+        //JFrog_docker_folder = "radical-docker-local"
+        //Jfrog_image = "radical-private-repo"
+        //Jfrog_image_tag = "3.0.0"
+        //bastion_ip = "10.0.1.111"
+        //namespace = "dev"
+        //eks_cluster = "myeks"
+        //aws_region="us-west-2"
         IMAGE = "radical-nov-weekend-10am-2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        #JFrog_repo = "radicaloct2022weekday.jfrog.io"
-        #JFrog_docker_folder = "radical-docker-local"
-        #Jfrog_image = "radical-private-repo"
-        #Jfrog_image_tag = "3.0.0"
-        //bastion_ip = "10.0.1.111"
         bastion_ip = "192.168.3.194"
         JOB = "${env.JOB_NAME}"
         tag = 0.0."${env.BUILD_ID}"
         bastion_host = "ansibleclient1"
-        #namespace = "dev"
-        #eks_cluster = "myeks"
+        
     }
 
     

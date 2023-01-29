@@ -1,5 +1,5 @@
 ---
-- name: This sets up a Docker server
+- name: Deleting all test containers from the ansible client
   hosts: "{{ lookup('env', 'bastion_host') }}"
   remote_user: ec2-user
   become: true
@@ -7,7 +7,7 @@
 
   tasks:
   
-  - name: Installing Docker
+  - name: Deleting containers
     command: "{{ item }}"
     with_items: 
     - docker stop $(docker ps -a -q)

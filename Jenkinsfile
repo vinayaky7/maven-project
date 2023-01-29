@@ -12,12 +12,12 @@ pipeline {
         //namespace = "dev"
         //eks_cluster = "myeks"
         //aws_region="us-west-2"
-        IMAGE = "radical-nov-weekend-10am-2022"
+        IMAGE = "mytestimageradicalnov2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_ip = "192.168.3.194"
         JOB = "${env.JOB_NAME}"
-        tag = "0.0.${env.BUILD_ID}"
+        tag = "10.10.${env.BUILD_ID}"
         bastion_host = "ansibleclient1"
         
     }

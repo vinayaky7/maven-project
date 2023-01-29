@@ -17,7 +17,7 @@ pipeline {
         DockerHub_repo = "aamirs/radical-private-repo"
         bastion_ip = "192.168.3.194"
         JOB = "${env.JOB_NAME}"
-        tag = 0.0."${env.BUILD_ID}"
+        tag = "0.0.${env.BUILD_ID}"
         bastion_host = "ansibleclient1"
         
     }

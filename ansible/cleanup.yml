@@ -10,9 +10,9 @@
   - name: Installing Docker
     command: "{{ item }}"
     with_items: 
-    - docker stop $(sudo docker ps -a -q)
+    - docker stop $(docker ps -a -q)
     - sleep 30
-    - docker rm $(sudo docker ps -a -q)
+    - docker rm $(docker ps -a -q)
     - docker system prune -f
     - sleep 15
     - docker image prune --all -f

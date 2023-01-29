@@ -1,0 +1,26 @@
+---
+- name: This sets up a Docker server
+  hosts: "{{ lookup('env', 'bastion_host') }}"
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
+
+  tasks:
+  
+  - name: Installing Docker
+    command: "{{ item }}"
+    with_items: 
+    - docker stop $(sudo docker ps -a -q)
+    - sleep 30
+    - docker rm $(sudo docker ps -a -q)
+    - docker system prune -f
+    - sleep 15
+    - docker image prune --all -f
+    - docker ps
+    - docker ps -a
+    - docker images
+    register: shell_result
+  - debug:
+      var: shell_result
+
+

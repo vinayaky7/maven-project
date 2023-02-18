@@ -4,7 +4,7 @@ metadata:
   name: frontend
   namespace: {{ namespace }}
   labels:
-    app: myapp-dev
+    app: myapp
     type: frontend
 spec:
   replicas: 3
@@ -12,7 +12,7 @@ spec:
     metadata:
       name: myreplicaset
       labels:
-        app: myapp-dev
+        app: myapp
     spec:
       containers:
       - name: mywebserver
@@ -23,4 +23,4 @@ spec:
 
   selector:
     matchLabels:
-      app: myapp-dev
+      app: myapp

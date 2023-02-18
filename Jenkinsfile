@@ -2,8 +2,8 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('myawscreds')
-        AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
+        //AWS_ACCESS_KEY_ID = credentials('myawscreds')
+        //AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
         //JFrog_repo = "radicaloct2022weekday.jfrog.io"
         //JFrog_docker_folder = "radical-docker-local"
         //Jfrog_image = "radical-private-repo"

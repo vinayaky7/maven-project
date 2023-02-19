@@ -1,5 +1,5 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIAXKVQT6YSQG4LVA5A"
+	default = "AKIARDAKVDTYMPC2KPSA"
 }
 
 variable "AWS_SECRET_KEY" {
@@ -7,7 +7,7 @@ variable "AWS_SECRET_KEY" {
 
 variable "mykey" {
 	type = string
-	default = "radical-devops-weekdays-oct-2022-9.30am"
+	default = "radicalnov2022weekend10am"
 	
 }
 
@@ -18,7 +18,7 @@ variable "subnet" {
 variable "security-group" {
 	type = map(list(string))
 	default = {
-		"mysg" = ["sg-0eb2f647f60656d34"]
+		"mysg" = ["sg-05e6208821489e80a"]
 		
 	}
 }
@@ -31,7 +31,7 @@ variable "keyPath" {
 variable "subnets" {
 	type = map(string)
 	default = {
-		us-west-2a = "subnet-0f2404e0bdf0a50a1"
+		us-west-2a = "subnet-07c10b20a7fb70b45"
 		us-west-2b = "subnet-02e8f731938e03cd3"
 		us-west-2c = "subnet-02be228febb9095d7"
 		us-west-2d = "subnet-098e9fded75939441"

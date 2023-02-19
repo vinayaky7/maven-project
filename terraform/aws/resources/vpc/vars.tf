@@ -1,9 +1,9 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIAXKVQT6YSQG4LVA5A"
+	default = "AKIARDAKVDTYMPC2KPSA"
 }
 
 variable "AWS_SECRET_KEY" {
-	default = "Mtqvhs8YbJuubu07SnYO/3wnV+/SCR6kO1AaUxEx"
+	default = "85fitee74dcVCmAtLLcYG9hmMGBgM1a70dXixar0"
 }
 
 variable "vpc_cidr" {
@@ -33,7 +33,7 @@ variable "public_subnet_4" {
 
 variable "mykey" {
 	type = string
-	default = "radical-devops-weekdays-oct-2022-9.30am"
+	default = "radicalnov2022weekend10am"
 	
 }
 

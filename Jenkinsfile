@@ -9,7 +9,7 @@ pipeline {
         //Jfrog_image = "radical-private-repo"
         //Jfrog_image_tag = "3.0.0"
         //bastion_ip = "10.0.1.111"
-        namespace = "dev"
+        namespace = "uat"
         eks_cluster = "myeks"
         aws_region="us-west-2"
         IMAGE = "mytestimageradicalnov2022"

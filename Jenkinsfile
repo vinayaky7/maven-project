@@ -74,7 +74,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -99,7 +99,7 @@ pipeline {
                       
                 }
             }
-        }*/
+        }
 
         stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {

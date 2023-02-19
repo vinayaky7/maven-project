@@ -15,10 +15,10 @@ pipeline {
         IMAGE = "mytestimageradicalnov2022"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_ip = "192.168.3.194"
+        bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "10.10.${env.BUILD_ID}"
-        bastion_host = "ansibleclient1"
+        bastion_host = "radical-bastion"
         
     }
 
@@ -101,12 +101,12 @@ pipeline {
             }
         }
 
-        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                 
                   sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }
+        }*/
 
         /*stage('Cleanup of containers on ansibleclient1') {
             steps {

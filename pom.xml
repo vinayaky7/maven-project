@@ -4,8 +4,8 @@
   <modelVersion>4.0.0</modelVersion>
 
  
-  <groupId>com.myproject</groupId>
-  <artifactId>test</artifactId>
+  <groupId>com.radaical.xyz</groupId>
+  <artifactId>maven-project</artifactId>
   <packaging>pom</packaging>
   <version>1.1-SNAPSHOT</version>
   <name>Maven Project</name>

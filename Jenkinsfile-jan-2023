@@ -64,7 +64,7 @@ pipeline {
                 }
         }
 
-        /*stage('Build') {
+        stage('Build') {
             steps {
                 script {
                     try {
@@ -125,7 +125,7 @@ pipeline {
                 }
 
             }
-        }*/
+        }
 
     }
     

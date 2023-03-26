@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "whoami"
+                        sh "whoareyou"
                         def test1 = "radical1"
                         echo "${var1}"
                         echo "${test1}"

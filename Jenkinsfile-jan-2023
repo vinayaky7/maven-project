@@ -95,7 +95,7 @@ pipeline {
             }
         }
 
-        stage('JFrog Upload') {
+        /*stage('JFrog Upload') {
             steps {
                 script {
                     try {
@@ -106,7 +106,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         stage('Deployment') {
             steps {

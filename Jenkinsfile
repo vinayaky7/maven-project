@@ -2,10 +2,10 @@ pipeline {
     agent {label 'linux'}
 
     environment {
-        def image_name="radical-devops-nov-10am-2022"
-        def docker_tag="nov-10am-2022"
-        def IP="34.212.119.130" // This should be your jenkins slave IP
-        def DOCKER_NETWORK="my_network"
+        def image_name="radical-devops-jan-2023-12pm"
+        def docker_tag="radical-devops-jan-2023-12pm"
+        def IP="35.160.133.55" // This should be your jenkins slave IP
+        def DOCKER_NETWORK="radical_network"
         def DOCKER_SUBNET="172.168.0.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')
         DockerHub_repo = "aamirs/radical-private-repo"
@@ -14,13 +14,13 @@ pipeline {
     
     stages {
 
-        stage('Git Checkout') {
+        /*stage('Git Checkout') {
             steps {
                 script{
                     checkout([$class: 'GitSCM', branches: [[name: "refs/tags/rel-3.0"]], userRemoteConfigs: [[credentialsId: "git-https-creds", url: "https://gitlab.com/andromeda99/maven-project.git"]]])
                 }
                 }
-        }
+        }*/
 
         stage('Build') {
             steps {
@@ -110,7 +110,7 @@ pipeline {
             }
         }
 
-        stage('Cleanup') {
+        /*stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
                 sh 'sleep 30'
@@ -122,7 +122,7 @@ pipeline {
                 sh 'sudo docker ps -a'
                 sh 'sudo docker images'
             }
-        }
+        }*/
         
         stage('Deployment') {
             steps {

@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         def image_name="radical-devops-jan-2023-12pm"
-        def docker_tag="radical-devops-jan-2023-12pm"
+        def docker_tag="1.0"
         def IP="35.160.133.55" // This should be your jenkins slave IP
         def DOCKER_NETWORK="radical_network"
         def DOCKER_SUBNET="172.168.0.0/24"
@@ -105,8 +105,8 @@ pipeline {
 
         stage('Push image to dockerhub') {
             steps {
-                sh 'sudo docker tag ${image_name}:${docker_tag} ${DockerHub_repo}:${docker_tag}'
-                sh 'sudo docker push ${DockerHub_repo}:${docker_tag}'
+                sh 'sudo docker tag ${image_name}:${docker_tag} ${DockerHub_repo}:${docker_tag}-${BUILD_NUMBER}'
+                sh 'sudo docker push ${DockerHub_repo}:${docker_tag}-${BUILD_NUMBER}'
             }
         }
 

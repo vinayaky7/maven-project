@@ -14,13 +14,13 @@ pipeline {
     
     stages {
 
-        /*stage('Git Checkout') {
+        stage('Git Checkout') {
             steps {
                 script{
-                    checkout([$class: 'GitSCM', branches: [[name: "refs/tags/rel-3.0"]], userRemoteConfigs: [[credentialsId: "git-https-creds", url: "https://gitlab.com/andromeda99/maven-project.git"]]])
+                    checkout([$class: 'GitSCM', branches: [[name: "refs/tags/radical-jan-2023"]], userRemoteConfigs: [[credentialsId: "git-https-creds", url: "https://gitlab.com/andromeda99/maven-project.git"]]])
                 }
                 }
-        }*/
+        }
 
         stage('Build') {
             steps {
@@ -105,12 +105,12 @@ pipeline {
 
         stage('Push image to dockerhub') {
             steps {
-                sh 'sudo docker tag ${image_name}:${docker_tag} ${DockerHub_repo}:${docker_tag}-${BUILD_NUMBER}'
-                sh 'sudo docker push ${DockerHub_repo}:${docker_tag}-${BUILD_NUMBER}'
+                sh 'sudo docker tag ${image_name}:${docker_tag} ${DockerHub_repo}:${docker_tag}'
+                sh 'sudo docker push ${DockerHub_repo}:${docker_tag}'
             }
         }
 
-        /*stage('Cleanup') {
+        stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
                 sh 'sleep 30'
@@ -122,7 +122,7 @@ pipeline {
                 sh 'sudo docker ps -a'
                 sh 'sudo docker images'
             }
-        }*/
+        }
         
         stage('Deployment') {
             steps {

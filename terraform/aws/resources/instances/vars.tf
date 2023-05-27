@@ -8,7 +8,7 @@ variable "AWS_SECRET_KEY" {
 
 variable "mykey" {
 	type = string
-	default = "radicaljan2023weekend12pm"
+	default = "radicaljan2023-new"
 	
 }
 

@@ -19,11 +19,11 @@
 
 
   <distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>a0z6mqpukzjka-artifactory-primary-0-releases</name>
-        <url>https://radicalapril2023.jfrog.io/artifactory/libs-release</url>
-    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>a0z6mqpukzjka-artifactory-primary-0-snapshots</name>
+        <url>https://radicalapril2023.jfrog.io/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
   </distributionManagement>
 
   <modules>

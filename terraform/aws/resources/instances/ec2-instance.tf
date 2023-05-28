@@ -1,4 +1,4 @@
-resource "aws_instance" "radical-bastion" {
+resource "aws_instance" "ansibleclient1" {
   ami           = lookup(var.AMIS, var.AWS_REGION, "") # last parameter is the default value
   instance_type = "t2.micro"
   key_name      = var.mykey
@@ -8,7 +8,7 @@ resource "aws_instance" "radical-bastion" {
   tags = {
     Terraform   = "true"
     Environment = "dev"
-    Name   = "radical-bastion"
+    Name   = "ansibleclient1"
   }
 
   provisioner "file" {

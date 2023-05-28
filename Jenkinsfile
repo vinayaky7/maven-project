@@ -108,13 +108,13 @@ pipeline {
             }
         }
 
-        stage('Cleanup of containers on ansibleclient1') {
+        /*stage('Cleanup of containers on ansibleclient1') {
             steps {
 
                sh 'ansible-playbook ansible/cleanup.yml'
                
             }
-        }
+        }*/
 
         /*stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {

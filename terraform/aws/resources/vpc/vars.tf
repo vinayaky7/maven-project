@@ -33,8 +33,7 @@ variable "public_subnet_4" {
 
 variable "mykey" {
 	type = string
-	default = "radicalnov2022weekend10am"
-	
+	default = "radicaljan2023-new"
 }
 
 variable "keyPath" {
@@ -66,7 +65,7 @@ variable "AMIS" {
   type = map(string)
   default = {
     us-east-1 = "ami-13be557e"
-    us-west-2 = "ami-094125af156557ca2"
+    us-west-2 = "ami-0b029b1931b347543"
     eu-west-1 = "ami-0d729a60"
 	us-east-2 = "ami-0fa49cc9dc8d62c84"
   }

@@ -15,10 +15,10 @@ pipeline {
         IMAGE = "mytestimageradicaljan2023-12pm"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_ip = "192.168.1.134"
+        bastion_ip = "192.168.1.111"
         JOB = "${env.JOB_NAME}"
         tag = "10.10.${env.BUILD_ID}"
-        bastion_host = "ansibleclient1"
+        bastion_host = "radical-bastion"
         
     }
 

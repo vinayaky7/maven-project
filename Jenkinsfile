@@ -9,7 +9,7 @@ pipeline {
         //Jfrog_image = "radical-private-repo"
         //Jfrog_image_tag = "3.0.0"
         //bastion_ip = "10.0.1.111"
-        namespace = "uat"
+        namespace = "prod"
         eks_cluster = "myeks"
         aws_region="us-west-2"
         IMAGE = "mytestimageradicaljan2023-12pm"
@@ -24,11 +24,11 @@ pipeline {
 
     
     stages {
-        stage('Code Checkout') {
+        stage('Git Checkout') {
             steps {
-                git branch: 'dev-ansible',
-                    credentialsId: 'git-https-creds',
-                    url: 'https://gitlab.com/andromeda99/maven-project.git'
+                script{
+                    checkout([$class: 'GitSCM', branches: [[name: "refs/tags/radical-jan-2023-rel-2.0"]], userRemoteConfigs: [[credentialsId: "git-https-creds", url: "https://gitlab.com/andromeda99/maven-project.git"]]])
+                }
                 }
         }
 

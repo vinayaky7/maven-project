@@ -20,6 +20,7 @@ stages:          # List of stages for jobs, and their order of execution
   - build
   - test
   - deploy
+  - radical
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
@@ -47,3 +48,13 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+
+Testing-the-build:       # This job runs in the build stage, which runs first.
+  stage: radical
+  script:
+    - whoami
+    - pwd
+    - ls -l
+    - df -HT
+    - free -m
+    - hostname

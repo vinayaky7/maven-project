@@ -122,11 +122,11 @@ pipeline {
             }
         }
 
-        post {
+        /*post {
         always {
             archiveArtifacts artifacts: 'webapp/target/*.war', 
             onlyIfSuccessful: true
-        }
+        }*/
     }
 
     }

@@ -126,8 +126,8 @@ pipeline {
         always {
             archiveArtifacts artifacts: 'webapp/target/*.war', 
             onlyIfSuccessful: true
+        }
         }*/
-    }
 
     }
 }

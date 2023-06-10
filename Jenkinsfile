@@ -1,10 +1,10 @@
 pipeline {
-    agent {label 'linux'}
+    agent {label 'master'}
 
     environment {
-        def image_name="radical-devops-jan-2023-12pm"
-        def docker_tag="1.0"
-        def IP="35.160.133.55" // This should be your jenkins slave IP
+        def image_name="radical-april-2023"
+        def docker_tag="dev-1.0"
+        def IP="34.217.51.114" // This should be your jenkins slave IP
         def DOCKER_NETWORK="radical_network"
         def DOCKER_SUBNET="172.168.0.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')
@@ -102,7 +102,7 @@ pipeline {
             }
         }
 
-        stage('Cleanup') {
+        /*stage('Cleanup') {
             steps {
                 sh 'sudo docker stop $(sudo docker ps -a -q)'
                 sh 'sleep 30'
@@ -114,12 +114,20 @@ pipeline {
                 sh 'sudo docker ps -a'
                 sh 'sudo docker images'
             }
-        }
+        }*/
         
         stage('Deployment') {
             steps {
                 echo 'Deployment..'
             }
         }
+
+        post {
+        always {
+            archiveArtifacts artifacts: 'webapp/target/*.war', 
+            onlyIfSuccessful: true
+        }
+    }
+
     }
 }

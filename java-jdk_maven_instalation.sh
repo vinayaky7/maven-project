@@ -12,7 +12,7 @@ echo "export PATH=$PATH:/opt/jdk-13/bin" >> /root/.bashrc
 # Install Maven
 cd /usr/local/src
 rm -rf apache-maven*
-wget https://mirrors.estointernet.in/apache/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
+wget https://dlcdn.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
 tar -xf apache-maven-3.8.8-bin.tar.gz
 mv apache-maven-3.8.8/ apache-maven/
 echo "export MAVEN_HOME=/usr/local/src/apache-maven" >> /root/.bashrc

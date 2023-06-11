@@ -5,8 +5,8 @@ pipeline {
         def image_name="radical-april-2023"
         def docker_tag="dev-1.0"
         def IP="34.210.70.10" // This should be your jenkins slave IP
-        def DOCKER_NETWORK="radical_network"
-        def DOCKER_SUBNET="172.168.0.0/24"
+        def DOCKER_NETWORK="dev"
+        def DOCKER_SUBNET="10.10.0.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')
         DockerHub_repo = "aamirs/radical-private-repo"
         Docker_user = "jordan"
@@ -23,14 +23,14 @@ pipeline {
 
         // This will start your CD part (Continuous Delivery/Deployment)
     
-        stage('Installing Docker & tools') {
+        /*stage('Installing Docker & tools') {
             steps {
                 sh 'sudo yum install docker -y'
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
                 sh 'sudo yum install elinks -y'
             }
-        }
+        }*/
 
 
         stage('Build Docker Image') {

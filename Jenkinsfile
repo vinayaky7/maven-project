@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'linux'}
+    agent {label 'master'}
 
     environment {
         def image_name="radical-april-2023"

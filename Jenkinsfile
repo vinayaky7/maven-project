@@ -48,14 +48,14 @@ pipeline {
             }
         }
 
-        stage('Installing Docker') {
+        /*stage('Installing Docker') {
             steps {
                 sh 'sudo yum update -y'
                 sh 'sudo yum install docker -y'
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
             }
-        }
+        }*/
 
         stage('Installing Ansible') {
             steps {

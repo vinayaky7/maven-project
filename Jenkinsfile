@@ -12,7 +12,7 @@ pipeline {
         //namespace = "dev"
         //eks_cluster = "myeks"
         //aws_region="us-west-2"
-        IMAGE = "mytestimageradicaljan2023-12pm"
+        IMAGE = "radical-april-2023"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         //bastion_ip = "192.168.1.111"

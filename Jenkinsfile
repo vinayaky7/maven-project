@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'linux'}
+    agent {label 'master'}
 
     environment {
         //WS_ACCESS_KEY_ID = credentials('myawscreds')

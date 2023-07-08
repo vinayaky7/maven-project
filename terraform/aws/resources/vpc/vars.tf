@@ -1,9 +1,9 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIAUVDNXNRZTGLOO5FI"
+	default = "AKIASYBOLO3G5CVNDG5A"
 }
 
 variable "AWS_SECRET_KEY" {
-	default = "P052SlhYNawQ92M5R9lVg+lQVn9Q6ohFuJfCuRio"
+	default = "4QJvaCxsmKrg6CAjC+rQ4HK2vahei/eE95uU9rRT"
 }
 
 variable "vpc_cidr" {
@@ -33,7 +33,7 @@ variable "public_subnet_4" {
 
 variable "mykey" {
 	type = string
-	default = "radicaljan2023-new"
+	default = "radical-april-2023-10am"
 }
 
 variable "keyPath" {
@@ -65,7 +65,7 @@ variable "AMIS" {
   type = map(string)
   default = {
     us-east-1 = "ami-13be557e"
-    us-west-2 = "ami-0b029b1931b347543"
+    us-west-2 = "ami-0ac64ad8517166fb1"
     eu-west-1 = "ami-0d729a60"
 	us-east-2 = "ami-0fa49cc9dc8d62c84"
   }

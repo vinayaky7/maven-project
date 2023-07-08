@@ -1,5 +1,5 @@
 resource "aws_instance" "testvm" {
-  ami           = "ami-0b029b1931b347543" # last parameter is the default value
+  ami           = "ami-0ac64ad8517166fb1" # last parameter is the default value
   //ami           = lookup(var.AMIS, var.AWS_REGION, "") # last parameter is the default value
   instance_type = "t2.micro"
   key_name      = var.mykey

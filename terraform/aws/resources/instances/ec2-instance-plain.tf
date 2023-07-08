@@ -3,14 +3,14 @@ resource "aws_instance" "testvm" {
   //ami           = lookup(var.AMIS, var.AWS_REGION, "") # last parameter is the default value
   instance_type = "t2.micro"
   key_name      = var.mykey
-  vpc_security_group_ids = ["sg-0479eca8bb3abbab1"]
-  subnet_id = "subnet-00ce114fc73a94b73"
+  vpc_security_group_ids = ["sg-0983b096a0db56db8"]
+  subnet_id = "subnet-09d77de1900c2ff01"
   //subnet_id = lookup(var.subnets, var.subnet, "")
   
   tags = {
     Terraform   = "true"
     Environment = "dev"
-    Name   = "testvm"
+    Name   = "terraformcreated"
   }
 
 }

@@ -1,14 +1,14 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIAUVDNXNRZTGLOO5FI"
+	default = "AKIASYBOLO3GXKLTECFB"
 }
 
 variable "AWS_SECRET_KEY" {
-	default = "P052SlhYNawQ92M5R9lVg+lQVn9Q6ohFuJfCuRio"
+	default = "uwnuDdX/xNMgzQuWtvRVfAdMwgvFGU3aRBoEji0y"
 }
 
 variable "mykey" {
 	type = string
-	default = "radicaljan2023-new"
+	default = "radical-april-2023-10am"
 	
 }
 
@@ -23,7 +23,7 @@ variable "subnet" {
 variable "subnets" {
 	type = map(string)
 	default = {
-		    us-west-2a = "subnet-00ce114fc73a94b73"
+		    us-west-2a = "subnet-09d77de1900c2ff01"
         us-west-2b = "subnet-042528506f3d17250"
         us-west-2c = "subnet-0247e041dfb7aa47c"
         us-west-2d = "subnet-0ac6d0d2348ff66c4"

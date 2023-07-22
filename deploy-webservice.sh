@@ -1,3 +1,3 @@
 #/bin/bash
 
-java -jar target/dependenscy/webapp-runner.jar target/*.war  --port 9999 &
+java -jar target/dependency/webapp-runner.jar target/*.war  --port 9999 &

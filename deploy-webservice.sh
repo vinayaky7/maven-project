@@ -1,3 +1,3 @@
 #/bin/bash
 
-nohup java -jar target/dependency/webapp-runner.jar target/*.war  --port 9090 &
+nohup java -jar target/dependency/webapp-runner.jar target/*.war  --port 9090 2>&1 &

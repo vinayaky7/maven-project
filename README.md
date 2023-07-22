@@ -9,18 +9,24 @@ This is an example ready-to-deploy java web application built for Tomcat using M
 
 (need maven and java installed)
 
-```
-mvn package or mvn cleam install
+1. Build the package 
+   ```
+   mvn package 
+   ```
+   ```
+   mvn clea install
+   ```
 
-# To run the web-service on Apache-tomcat using webapp-runner from in-built jar within the POM
+2. Run the Apache-tomcat web service webapp-runner jar. Its included in the POM. 
 
-java -jar target/dependency/webapp-runner.jar target/*.war
-
-# To run the web-service on Apache-tomcat using desired port
-
-java -jar target/dependency/webapp-runner.jar target/*.war  --port 9090 & 
-
-```
+   ```
+   java -jar target/dependency/webapp-runner.jar target/*.war
+   ```
+   
+3. Run the Apache-tomcat web service on desired port
+   ```
+   java -jar target/dependency/webapp-runner.jar target/*.war  --port 9090 & 
+   ```
 
 The application will be available on `http://localhost:8080` locally or `http://PUBLIC-IP:PORTNO`.
 

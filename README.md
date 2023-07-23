@@ -41,6 +41,11 @@ The application will be available on `http://localhost:9090` locally or `http://
    curl -kv http://YOUR-JENKINS-PUBLIC-IP:PORT-NO
    ```
 
+4. How to deploy a jar manually on Jfrog
+   ```
+   curl -X PUT -u username:password -T webapp-runner-8.5.11.3.jar https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/webapp-runner-8.5.11.3.jar
+   ```
+
 ## How This Was Built
 
 1. Generate the project using a Maven archetype(optional).

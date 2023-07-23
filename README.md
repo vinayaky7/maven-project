@@ -25,11 +25,9 @@ This is a ready-to-deploy java web application built for Tomcat using Maven and 
 ## Push the target folder as an artifact to Repository Manager(Jfrog) manually.
    ```
    Create the artifact with tar command 
-   ```
-   ```
+   
    tar -czvf target.tar.gz target
-   ```
-   ```
+
    curl -X PUT -u username:password -T target.tar.gz https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/target.tar.gz
    ```
   
@@ -56,8 +54,15 @@ This is a ready-to-deploy java web application built for Tomcat using Maven and 
       ```
       curl -L -u "user:pass" -X GET https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/target.tar.gz -o target.tar.gz
       ```
-   4. tar -xvf target.tar.gz
-   5. Copy the target folder into /tmp/target
+   4. Extract the tar file.
+      ```
+      tar -xvf target.tar.gz
+      ``````
+   5. Copy the target folder into /tmp location.
+      ```
+      cp -rf target /tmp/target
+      ```
+   6. Run the java command to start the process. 
       ```
       #/bin/bash
 

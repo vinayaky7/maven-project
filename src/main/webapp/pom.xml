@@ -6,42 +6,13 @@
     <groupId>com.radical.june</groupId>
     <artifactId>java-maven-tomcat-example</artifactId>
     <version>4.0-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
+    <relativePath>../com/github/jsimone/webapp-runner/8.5.11.3/webapp-runner-8.5.11.3.jar</relativePath>
   </parent>
 
   <artifactId>webapp-runner</artifactId>
   <packaging>war</packaging>
   <version>8.5.11.3</version>
   <name>webapp-runner</name>
-
-  <build>
-      <finalName>${project.artifactId}</finalName>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>2.3</version>
-          <executions>
-            <execution>
-              <phase>package</phase>
-              <goals><goal>copy</goal></goals>
-              <configuration>
-                <artifactItems>
-                  <artifactItem>
-                    <groupId>com.github.jsimone</groupId>
-                    <artifactId>webapp-runner</artifactId>
-                    <version>8.5.11.3</version>
-                    <destFileName>webapp-runner.jar</destFileName>
-                  </artifactItem>
-                </artifactItems>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </build>
-  </build>
-
 
 
 </project>

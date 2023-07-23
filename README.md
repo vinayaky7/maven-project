@@ -11,13 +11,13 @@ This is a ready-to-deploy java web application built for Tomcat using Maven and 
    mvn clean install
    ```
 
-2. Deploy the tomcat web service jar & the source compiled jar combined. 
+2. Deploy the Apache-tomcat web service on default port. 
 
    ```
    java -jar target/dependency/webapp-runner.jar target/*.war
    ```
 
-3. Deploy the tomcat web service on desired port as required(optional)
+3. Deploy the Apache-tomcat web service on custom port.
    ```
    java -jar target/dependency/webapp-runner.jar target/*.war  --port 9090 & 
    ```
@@ -29,37 +29,29 @@ This is a ready-to-deploy java web application built for Tomcat using Maven and 
    mvn clean install
    ```
 
-2. Run below command from your Jenkins Job -- > Execute Shell to deploy the tomcat web service. 
+2. Run below command from your Jenkins Job to deploy the Apache-tomcat web service -- > Execute Shell 
    ```
+   #/bin/bash
+
    BUILD_ID=dontKillMe sh deploy-webservice.sh
    ```
 
-The application will be available on `http://localhost:9090` locally or `http://PUBLIC-IP:9090` publicly. Please change the port as per the deploy command.
+   The application will be available on `http://localhost:9090` locally or `http://PUBLIC-IP:9090` publicly. Please change the port as per the deployment.
 
 3. Test
    ```
    curl -kv http://YOUR-JENKINS-PUBLIC-IP:PORT-NO
    ```
-
-4. How to deploy a jar manually on Jfrog
-   ```
-   curl -X PUT -u username:password -T target/dependency/webapp-runner.jar https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/webapp-runner.jar
-   ```
-
-5. How to pull a jar manually on Jfrog
-   ```
-   curl -u "user:password" -X GET https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/webapp-runner-8.5.11.3.jar -H 'Content-Type:application/json' -o webapp-runner-8.5.11.3.jar
-   ```
-6. Run the app using JAVA Docker image
+4. Run the app using JAVA Docker image
    ```
    docker run -it --name java -p 9999:9999 -v /var/lib/jenkins/workspace/java-maven-test/target:/app/target bitnami/java:latest java -jar /app/target/dependency/webapp-runner.jar /app/target/java-maven-tomcat-example.war --port 9999 &
    ```
 
-7. Run the app using centos:centos7 custom Docker image ([Please refer Dockerfile](https://gitlab.com/andromeda99/ maven-project/-/blob/java-test/Dockerfile)  )
+5. Run the app using custom Docker image. Please refer Dockerfile ([here](https://gitlab.com/andromeda99/webserver-docker/-/blob/master/Dockerfile)  )
    ```
    docker run -it --name javaApp -p 9999:8080  java-jdk-13:latest &
    ```
-   The image is available on my ([dockerhub](https://hub.docker.com/r/aamirs/java-jdk-13)  )
+   The image is available on my ([dockerhub account](https://hub.docker.com/r/aamirs/java-jdk-13)  )
 
 ## How This Was Built
 

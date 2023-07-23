@@ -24,7 +24,6 @@
     </snapshotRepository>
   </distributionManagement>
 
-  
   <build>
     <finalName>java-maven-tomcat-example</finalName>
     <plugins>
@@ -35,7 +34,7 @@
         <executions>
           <execution>
             <phase>package</phase>
-            <goals><goal>publish</goal></goals>
+            <goals><goal>copy</goal></goals>
             <configuration>
               <artifactItems>
                 <artifactItem>
@@ -51,5 +50,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>

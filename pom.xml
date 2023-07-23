@@ -22,9 +22,9 @@
     <snapshotRepository>
         <id>snapshots</id>
         <name>a0lmtzamoqbm9-artifactory-primary-0-snapshots</name>
-        <url>https://radicaljune2023.jfrog.io/artifactory/radical-libs-snapshot-local</url>
+        <url>https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot</url>
     </snapshotRepository>
- </distributionManagement>
+  </distributionManagement>
 
   <modules>
     <module>webapp</module>

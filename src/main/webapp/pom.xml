@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.radical.june</groupId>
-    <artifactId>maven-project</artifactId>
-    <version>java-maven-tomcat-example</version>
+    <groupId>com.github.jsimone</groupId>
+    <artifactId>webapp-runner</artifactId>
+    <version>8.5.11.3</version>
     <relativePath>../webapp-runner.jar</relativePath>
   </parent>
 

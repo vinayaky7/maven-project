@@ -12,7 +12,7 @@
   <artifactId>webapp-runner</artifactId>
   <packaging>war</packaging>
   <name>webapp-runner</name>
-  <description>Webapp.</description>
+  <description>web-app</description>
 
   <build>
     <finalName>${project.artifactId}</finalName>

@@ -50,6 +50,11 @@ The application will be available on `http://localhost:9090` locally or `http://
    ```
    curl -u "user:password" -X GET https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/webapp-runner-8.5.11.3.jar -H 'Content-Type:application/json' -o webapp-runner-8.5.11.3.jar
    ```
+6. Run the same app using docker image
+   ```
+   docker run -it --name java -p 9999:9999 -v /var/lib/jenkins/workspace/java-maven-test/target:/app/target bitnami/java:latest java -jar /app/target/dependency/webapp-runner.jar /app/target/java-maven-tomcat-example.war --port 9999 &
+   ```
+   
 
 ## How This Was Built
 

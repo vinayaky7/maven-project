@@ -25,10 +25,12 @@ This is a ready-to-deploy java web application built for Tomcat using Maven and 
 ## Push the target folder as an artifact to Repository Manager(Jfrog) manually.
    ```
    Create the artifact with tar command 
-
+   ```
+   ```
    tar -czvf target.tar.gz target
-
-   curl -X PUT -u username:password -T target/dependency/webapp-runner.jar https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/target.tar.gz
+   ```
+   ```
+   curl -X PUT -u username:password -T target.tar.gz https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/target.tar.gz
    ```
   
 ## Running through Jenkins(Build/Automation Server)
@@ -48,22 +50,21 @@ This is a ready-to-deploy java web application built for Tomcat using Maven and 
    The application will be available on `http://localhost:9090` locally or `http://PUBLIC-IP:9090` publicly. Please change the port as per the deployment.
 
 3. Test the above app on Testing server.
-   1. Create a new VM with Amazon AMI2. 
+   1. Create a new Linux VM on Amazon. 
    2. Install java-jdk-13. For installation ([Refer my Jenkins Blog](https://iamlinops.blogspot.com/2018/02/installing-jenkins.html)  )
    3. Pull the target folder from Jfrog which you pushed as an artifact in the previous step.
       ```
       curl -L -u "user:pass" -X GET https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/target.tar.gz -o target.tar.gz
       ```
-   5. tar -xvf target.tar.gz
-   6. Copy the target folder into /tmp/target
-   
-   ```
-   #/bin/bash
+   4. tar -xvf target.tar.gz
+   5. Copy the target folder into /tmp/target
+      ```
+      #/bin/bash
 
-   cd /tmp
+      cd /tmp
 
-   java -jar target/dependency/webapp-runner.jar --port 9090 target/java-maven-tomcat-example.war &
-   ```
+      java -jar target/dependency/webapp-runner.jar --port 9090 target/java-maven-tomcat-example.war &
+      ```
 
 4. Test
    ```

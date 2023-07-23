@@ -55,7 +55,7 @@ The application will be available on `http://localhost:9090` locally or `http://
    docker run -it --name java -p 9999:9999 -v /var/lib/jenkins/workspace/java-maven-test/target:/app/target bitnami/java:latest java -jar /app/target/dependency/webapp-runner.jar /app/target/java-maven-tomcat-example.war --port 9999 &
    ```
 
-7. Run the app using centos:centos7 custom Docker image ([Please refer Dockerfile](https://gitlab.com/andromeda99/maven-project/-/tree/java-test)  )
+7. Run the app using centos:centos7 custom Docker image ([Please refer Dockerfile](https://gitlab.com/andromeda99/maven-project/-/blob/java-test/Dockerfile)  )
    ```
    docker run -it --name java -p 9999:8080  java:latest &
    ```

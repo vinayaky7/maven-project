@@ -42,7 +42,7 @@ This is a ready-to-deploy java web application built for Tomcat using Maven and 
    ```
    curl -kv http://YOUR-JENKINS-PUBLIC-IP:PORT-NO
    ```
-4. Run the app using JAVA Docker image
+4. Run the app using official bitnami/java:latest docker image. ([Refer](https://hub.docker.com/r/bitnami/java)  )
    ```
    docker run -it --name java -p 9999:9999 -v /var/lib/jenkins/workspace/java-maven-test/target:/app/target bitnami/java:latest java -jar /app/target/dependency/webapp-runner.jar /app/target/java-maven-tomcat-example.war --port 9999 &
    ```

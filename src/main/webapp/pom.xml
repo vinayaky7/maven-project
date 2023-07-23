@@ -6,7 +6,7 @@
     <groupId>com.github.jsimone</groupId>
     <artifactId>webapp-runner</artifactId>
     <version>8.5.11.3</version>
-    <relativePath>../webapp-runner.jar</relativePath>
+    <relativePath>webapp-runner-8.5.11.3.jar</relativePath>
   </parent>
 
   <artifactId>webapp-runner</artifactId>

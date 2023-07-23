@@ -42,7 +42,7 @@ This is a ready-to-deploy java web application built for Tomcat using Maven and 
    ```
    #/bin/bash
 
-   BUILD_ID=dontKillMe sh deploy-webservice.sh
+   BUILD_ID=dontKillMe sh deploy-webservice.sh 9090
    ```
 
    The application will be available on `http://localhost:9090` locally or `http://PUBLIC-IP:9090` publicly. Please change the port as per the deployment.

@@ -22,7 +22,7 @@
       <artifactId>webapp-runner</artifactId>
       <version>8.5.11.3</version>
       <scope>system</scope>
-      <systemPath>/var/lib/jenkins/.m2/repository/com/github/jsimone/webapp-runner/8.5.11.3/webapp-runner.jar</systemPath>
+      <systemPath>/var/lib/jenkins/.m2/repository/com/github/jsimone/webapp-runner/8.5.11.3/webapp-runner-8.5.11.3.jar</systemPath>
   </dependency>
 
   </dependencies>

@@ -35,11 +35,78 @@ pipeline {
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
-                        //sh 'exit 1'   
+                        sh 'exit 1'   
                         }
 
                 }
                 
+            }
+        }
+
+        stage('Testing Env & local Variables') {
+            steps {
+                script {
+                    try {
+                        sh "whoami"
+                        def test1 = "radical1"
+                        echo "${var1}"
+                        echo "${test1}"
+                        echo "${string1}"
+                        echo "${Node_IP}"
+                        
+
+                    } catch (Exception e) {
+                        echo "Exception received because of --- " + e.toString()
+                        sh 'exit 1'   
+                        }
+
+                }
+                
+                }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    try {
+                    
+                        sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
+                        
+
+                    } catch (Exception e) {
+                        echo "Exception received because of --- " + e.toString()
+                        sh 'exit 1'   
+                        } 
+                }
+
+            }
+        }
+
+        stage('Scanning') {
+            steps {
+                echo 'Scanning in progress.'
+            }
+        }
+
+        stage('Testing') {
+            steps {
+                echo 'Testing..'
+                sh 'pwd'
+                sh 'sudo sh testing.sh'
+            }
+        }
+
+        stage('JFrog Upload') {
+            steps {
+                script {
+                    try {
+                        sh 'tar -czvf webapp-target.tar.gz webapp/target'
+                        sh 'curl -X PUT -u radicaldemodevopsprerequisite@gmail.com:cmVmdGtuOjAxOjE3MjE2MzI1Nzc6ZE8zcVlRRFpsVkt4SXRiUDVtanZZbFBreFNT -T webapp-target.tar.gz https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/webapp-target.tar.gz'
+                    } catch (Exception e) {
+                        echo "Exception received " + e.toString()
+                        sh 'exit 1'
+                    }
+                }
             }
         }
 

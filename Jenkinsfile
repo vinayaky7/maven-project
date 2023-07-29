@@ -15,13 +15,13 @@ pipeline {
 
     stages {
 
-        stage('Git Checkout') {
+        /*stage('Git Checkout') {
             steps {
                 git branch: 'dev-local-deploy',
                     credentialsId: 'git-https-creds',
                     url: 'https://gitlab.com/andromeda99/maven-project.git'
                 }
-        }
+        }*/
 
         stage('Testing Jenkins Global Variables') {
             steps {

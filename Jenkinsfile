@@ -88,11 +88,20 @@ pipeline {
             }
         }
 
-        stage('Testing') {
+        stage('Unit Testing') {
             steps {
-                echo 'Testing..'
-                sh 'pwd'
-                sh 'sudo sh testing.sh'
+                script {
+                    try {
+
+                        echo 'Testing..'
+                        sh 'pwd'
+                        sh 'sudo sh unit-test.sh'
+
+                    } catch (Exception e) {
+                        echo "Exception received " + e.toString()
+                        sh 'exit 1'
+                    }
+                }
             }
         }
 
@@ -107,6 +116,25 @@ pipeline {
                         sh 'exit 1'
                     }
                 }
+            }
+        }
+
+        stage('Deployment') {
+            steps {
+                script {
+                    echo 'Deployment..'
+                    sh 'sudo yum install httpd -y'
+                    sh 'sudo yum install elinks -y'
+                    sh 'sudo systemctl start httpd'
+                    sh 'sudo systemctl enable httpd'
+                    sh 'sudo rm -rf /var/www/html/*'
+                    sh 'sudo rsync -avt webapp/target/webapp /var/www/html'
+                    sh 'sudo elinks  http://${Node_IP}/webapp/'
+                    sh 'sudo elinks  http://${Node_IP}/webapp/index_dev.jsp'
+                    sh 'sudo elinks  http://${Node_IP}/webapp/index.html'
+                    sh 'sudo curl -kv http://${Node_IP}/webapp/index_dev.jsp'
+                }
+
             }
         }
 

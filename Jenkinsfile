@@ -40,13 +40,15 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                try {
-                    sh 'echo ${image_name}'
-                    sh "sudo docker build -t $image_name:$docker_tag ."
-                    sh 'sudo docker images'
-                } catch (Exception e) {
-                    echo "Exception received because of --- " + e.toString()
-                    sh 'exit 1'
+                script {
+                    try {
+                        sh 'echo ${image_name}'
+                        sh "sudo docker build -t $image_name:$docker_tag ."
+                        sh 'sudo docker images'
+                    } catch (Exception e) {
+                        echo "Exception received because of --- " + e.toString()
+                        sh 'exit 1'
+                    }
                 }
             }
         }

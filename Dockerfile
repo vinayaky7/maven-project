@@ -4,9 +4,9 @@ ADD https://download.java.net/java/GA/jdk13/5b8a42f3905b406298b72d750b6919f6/33/
 
 RUN tar -xvf /tmp/openjdk-13_linux-x64_bin.tar.gz
 
-RUN echo "export JAVA_HOME=/home/$user/jdk-13/" >> /root/.bashrc
+RUN echo "export JAVA_HOME=/tmp/jdk-13/" >> /root/.bashrc
 
-RUN echo "export PATH=$PATH:/home/$user/jdk-13/bin" >> /root/.bashrc
+RUN echo "export PATH=$PATH:/tmp/jdk-13/bin" >> /root/.bashrc
 
 RUN source /root/.bashrc
 

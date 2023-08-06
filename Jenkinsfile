@@ -15,11 +15,17 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh '/usr/local/src/apache-maven/bin/mvn clean install'
-                sh 'ls -la'
+                script {
+                    try {
+                        sh '/usr/local/src/apache-maven/bin/mvn clean install'
+                        sh 'ls -la'
+                    } catch (Exception e) {
+                        echo "Exception received because of --- " + e.toString()
+                        sh 'exit 1'
+                    }
+                }
             }
         }
-
         // This will start your CD part (Continuous Delivery/Deployment)
     
         /*stage('Installing Docker & tools') {
@@ -34,9 +40,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'echo ${image_name}'
-                sh "sudo docker build -t $image_name:$docker_tag ."
-                sh 'sudo docker images'
+                try {
+                    sh 'echo ${image_name}'
+                    sh "sudo docker build -t $image_name:$docker_tag ."
+                    sh 'sudo docker images'
+                } catch (Exception e) {
+                    echo "Exception received because of --- " + e.toString()
+                    sh 'exit 1'
+                }
             }
         }
 
@@ -53,7 +64,7 @@ pipeline {
                 script {
                     try {
                         sh 'sudo docker network create --driver=bridge --subnet=${DOCKER_SUBNET} ${DOCKER_NETWORK}'
-                    } catch (e) {
+                    } catch (Exception  e) {
                         //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
                         sh 'exit 0'
                     }
@@ -73,11 +84,11 @@ pipeline {
 
                         sh 'sudo docker ps | grep webserver300${BUILD_NUMBER}'
 
-                        sh "curl -kv http://$IP:300${BUILD_NUMBER}"
-                        sh "elinks http://$IP:300${BUILD_NUMBER}"
+                        sh 'sleep 7'
+
                         sh "elinks http://$IP:300${BUILD_NUMBER}"
 
-                    } catch (e) {
+                    } catch (Exception e) {
                        //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
                        echo "Please check the IP of your build server --- " + e.toString()
                        echo "Testing failed..."
@@ -90,16 +101,28 @@ pipeline {
         stage('login to dockerhub') {
             steps {
                 script {
-                    sh 'echo $DOCKERHUB_PSW | sudo docker login -u $DOCKERHUB_USR --password-stdin'
-                    // https://thetechdarts.com/deploy-to-dockerhub-using-jenkins-declarative-pipeline/
+                    try {
+                        sh 'echo $DOCKERHUB_PSW | sudo docker login -u $DOCKERHUB_USR --password-stdin'
+                        // https://thetechdarts.com/deploy-to-dockerhub-using-jenkins-declarative-pipeline/
+                    } catch (Exception e) {
+                        echo "Exception received because of --- " + e.toString()
+                        sh 'exit 1'
+                    }
                 }
             }
         }
 
         stage('Push image to dockerhub') {
             steps {
-                sh 'sudo docker tag ${image_name}:${docker_tag} ${DockerHub_repo}:${docker_tag}'
-                sh 'sudo docker push ${DockerHub_repo}:${docker_tag}'
+                script {
+                    try {
+                        sh 'sudo docker tag ${image_name}:${docker_tag} ${DockerHub_repo}:${docker_tag}'
+                        sh 'sudo docker push ${DockerHub_repo}:${docker_tag}'
+                    } catch (Exception e) {
+                        echo "Exception received because of --- " + e.toString()
+                        sh 'exit 1'
+                    }
+                }
             }
         }
 

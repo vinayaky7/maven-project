@@ -22,12 +22,12 @@ RUN echo $JAVA_HOME
 
 RUN /home/$user/jdk-13/bin/java -version
 
-copy target /home/$user/target
+COPY target /home/$user/target
 
 RUN chown -R $user:$user /home/$user/
 
 RUN chmod -R 755 /home/$user/
 
-#USER $user
+USER $user
 
 ENTRYPOINT ["/home/appuser/jdk-13/bin/java", "-jar", "target/dependency/webapp-runner.jar", "target/java-maven-tomcat-example.war"]

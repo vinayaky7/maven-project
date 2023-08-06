@@ -28,6 +28,6 @@ RUN chown -R $user:$user /home/$user/
 
 RUN chmod -R 755 /home/$user/
 
-#USER $user
+USER $user
 
 ENTRYPOINT ["/home/appuser/jdk-13/bin/java", "-jar", "target/dependency/webapp-runner.jar", "target/java-maven-tomcat-example.war"]

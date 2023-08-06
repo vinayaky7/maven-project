@@ -1,3 +1,5 @@
+#This file is in use for Docker locally
+
 FROM centos:centos7
 
 ARG user=appuser

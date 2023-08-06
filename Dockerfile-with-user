@@ -14,21 +14,21 @@ ADD https://download.java.net/java/GA/jdk13/5b8a42f3905b406298b72d750b6919f6/33/
 
 RUN tar -xvf openjdk-13_linux-x64_bin.tar.gz
 
-RUN echo "export JAVA_HOME=/home/$user/jdk-13/" >> /home/$user/.bashrc
+# RUN echo "export JAVA_HOME=/home/$user/jdk-13/" >> /home/$user/.bashrc
 
-RUN echo "export PATH=$PATH:/home/$user/jdk-13/bin" >> /home/$user/.bashrc
+# RUN echo "export PATH=$PATH:/home/$user/jdk-13/bin" >> /home/$user/.bashrc
 
-RUN source /home/$user/.bashrc
+# RUN source /home/$user/.bashrc
 
-RUN echo $JAVA_HOME
+# RUN echo $JAVA_HOME
 
-RUN /home/$user/jdk-13/bin/java -version
+# RUN /home/$user/jdk-13/bin/java -version
 
-COPY target /home/$user/target
+COPY target target
 
-RUN chown -R $user:$user /home/$user/
+#RUN chown -R $user:$user /home/$user/
 
-RUN chmod -R 755 /home/$user/
+#RUN chmod -R 755 /home/$user/
 
 USER $user
 

@@ -77,7 +77,7 @@ pipeline {
                         sh "curl -kv http://$IP:300${BUILD_NUMBER}"
                         sh "elinks http://$IP:300${BUILD_NUMBER}"
                         sh "elinks http://$IP:300${BUILD_NUMBER}"
-                        
+
                     } catch (e) {
                        //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
                        echo "Please check the IP of your build server --- " + e.toString()

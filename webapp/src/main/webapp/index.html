@@ -8,7 +8,7 @@
 <br />
 <br />
 
-<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate"> CICD with Docker Rel version 3.0 !!!</h1></marquee>
+<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate"> CICD with Docker Dev version 1.0 !!!</h1></marquee>
 
 
 

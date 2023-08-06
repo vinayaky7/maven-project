@@ -2,14 +2,14 @@ pipeline {
     agent {label 'master'}
 
     environment {
-        def image_name="radical-april-2023"
-        def docker_tag="dev-2.0"
-        def IP="34.210.70.10" // This should be your jenkins slave IP
+        def image_name="radical-june-2023"
+        def docker_tag="dev-1.0"
+        def IP="54.213.198.2" // This should be your jenkins slave IP
         def DOCKER_NETWORK="dev"
-        def DOCKER_SUBNET="10.10.0.0/24"
+        def DOCKER_SUBNET="172.31.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')
         DockerHub_repo = "aamirs/radical-private-repo"
-        Docker_user = "jordan"
+        Docker_user = "radical_june"
     }
     
     stages {
@@ -41,13 +41,13 @@ pipeline {
             }
         }
 
-        stage('Creating Docker Volume for containers') {
+        /*stage('Creating Docker Volume for containers') {
             steps {
 		        sh 'echo ${image_name}'
                 sh 'ls -la'
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
-        }
+        }*/
 
         stage('Creating a Docker Network') {
             steps {
@@ -67,7 +67,7 @@ pipeline {
                 script {
                     try {
                         echo 'Testing..'
-                        sh 'sudo docker run -itd --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v /tmp/myefs/docker_volume/:/tmp ${image_name}:${docker_tag}'
+                        sh 'sudo docker run -itd --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v myvol:/tmp ${image_name}:${docker_tag}'
 
                         sh 'sudo docker run -itd  --network=${DOCKER_NETWORK} --name mycentos300${BUILD_NUMBER} centos:centos7'
 

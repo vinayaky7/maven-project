@@ -2,25 +2,25 @@ pipeline {
     agent {label 'master'}
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('myawscreds')
-        AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
+        //AWS_ACCESS_KEY_ID = credentials('myawscreds')
+        //AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
         //JFrog_repo = "radicaloct2022weekday.jfrog.io"
         //JFrog_docker_folder = "radical-docker-local"
         //Jfrog_image = "radical-private-repo"
         //Jfrog_image_tag = "3.0.0"
         //bastion_ip = "10.0.1.111"
-        namespace = "dev"
-        eks_cluster = "myeks"
-        aws_region="us-west-2"
-        IMAGE = "radical-april-pre-prod-2023"
+        //namespace = "dev"
+        //eks_cluster = "myeks"
+        //aws_region="us-west-2"
+        IMAGE = "radical-june-dev-2023"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
-        bastion_ip = "192.168.1.111"
+        //bastion_ip = "192.168.1.111"
         //bastion_ip = "192.168.1.94"
         JOB = "${env.JOB_NAME}"
-        tag = "1.2.${env.BUILD_ID}"
-        bastion_host = "radical-bastion"
-        //bastion_host = "ansibleclient1"
+        tag = "1.0.${env.BUILD_ID}"
+        //bastion_host = "radical-bastion"
+        bastion_host = "ansibleclient1"
         
     }
 
@@ -41,12 +41,12 @@ pipeline {
             }
         }
 
-        stage('Preparing volume for Docker Containers & EKS') {
+        /*stage('Preparing volume for Docker Containers & EKS') {
             steps {
 
                 sh 'sudo cp -rf ${WORKSPACE}/webapp/target/webapp /tmp/myefs/docker_volume/'
             }
-        }
+        }*/
 
         /*stage('Installing Docker') {
             steps {
@@ -76,7 +76,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -101,7 +101,7 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
         stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {

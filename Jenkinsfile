@@ -70,8 +70,7 @@ pipeline {
 
         stage('Building latest Docker image using latest artifact & pushing to DockerHub') {
             steps {
-                
-                sh 'ansible-playbook ansible/docker_image_build.yml'
+                    sh 'ansible-playbook ansible/docker_image_build.yml'
             }
         }
 
@@ -105,8 +104,7 @@ pipeline {
 
         stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
-                
-                  sh 'ansible-playbook ansible/deployment-sanity-test.yml'
+               sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
         }
 

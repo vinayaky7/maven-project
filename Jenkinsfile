@@ -118,11 +118,11 @@ pipeline {
             }
         }*/
 
-        stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
+        /*stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }
+        }*/
     }
     
     post {

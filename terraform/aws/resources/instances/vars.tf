@@ -1,9 +1,9 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIAYJIL42ROTMNXXEBA"
+	default = "AKIAYJIL42ROW66PXU56"
 }
 
 variable "AWS_SECRET_KEY" {
-	default = "4H9zPSyv4vYNz3JuOE/xQZ2G7RYPpJ8xmwtC5qWt"
+	default = "mbCmwujfWKVJqj9N394aDhzHySCB7a2cKpk7fIyt"
 }
 
 variable "mykey" {

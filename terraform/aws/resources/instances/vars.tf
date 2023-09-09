@@ -1,14 +1,14 @@
 variable "AWS_ACCESS_KEY" {
-	default = "AKIASYBOLO3G5CVNDG5A"
+	default = "AKIAYJIL42ROTMNXXEBA"
 }
 
 variable "AWS_SECRET_KEY" {
-	default = "4QJvaCxsmKrg6CAjC+rQ4HK2vahei/eE95uU9rRT"
+	default = "4H9zPSyv4vYNz3JuOE/xQZ2G7RYPpJ8xmwtC5qWt"
 }
 
 variable "mykey" {
 	type = string
-	default = "radical-april-2023-10am"
+	default = "radical-june-2023-random"
 	
 }
 

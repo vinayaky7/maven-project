@@ -14,4 +14,3 @@ resource "aws_instance" "testvm" {
   }
 
 }
-

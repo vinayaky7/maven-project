@@ -1,7 +1,7 @@
 resource "aws_network_interface" "radical_interface" {
   subnet_id   = lookup(var.subnets, var.subnet, "")
   security_groups = var.security-group["mysg"]
-  private_ips = ["192.168.1.111"]
+  private_ips = ["10.0.1.111"]
 
   tags = {
     Name = "radical_bastion_network_interface"

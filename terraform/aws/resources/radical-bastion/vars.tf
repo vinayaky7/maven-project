@@ -19,7 +19,7 @@ variable "subnet" {
 variable "security-group" {
 	type = map(list(string))
 	default = {
-		"mysg" = ["sg-0e9c8799152d2054a"]
+		"Demo-SG" = ["sg-0e9c8799152d2054a"]
 		
 	}
 }

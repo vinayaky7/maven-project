@@ -8,7 +8,7 @@ pipeline {
         //JFrog_docker_folder = "radical-docker-local"
         //Jfrog_image = "radical-private-repo"
         //Jfrog_image_tag = "3.0.0"
-        //bastion_ip = "10.0.1.111"
+        bastion_ip = "10.0.1.111"
         //namespace = "dev"
         //eks_cluster = "myeks"
         //aws_region="us-west-2"
@@ -20,7 +20,7 @@ pipeline {
         JOB = "${env.JOB_NAME}"
         tag = "1.0.${env.BUILD_ID}"
         //bastion_host = "radical-bastion"
-        bastion_host = "ansibleclient1"
+        bastion_host = "radical-bastion"
         
     }
 

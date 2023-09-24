@@ -1,6 +1,6 @@
 ---
 - name: This sets up a Docker server
-  h#osts: localhost
+  #hosts: localhost
   hosts: "{{ lookup('env', 'bastion_host') }}"
   remote_user: ec2-user
   become: true

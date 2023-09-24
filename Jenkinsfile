@@ -57,7 +57,7 @@ pipeline {
             }
         }*/
 
-        stage('Installing Ansible') {
+        /*stage('Installing Ansible') {
             steps {
                 sh 'sudo amazon-linux-extras install epel -y'
                 sh 'sudo yum install jq -y'
@@ -66,7 +66,7 @@ pipeline {
                 sh 'sudo chmod 777 /etc/ansible/*'
                 sh 'sudo chmod 777 /etc/hosts'
             }
-        }
+        }*/
 
         stage('Building latest Docker image using latest artifact & pushing to DockerHub') {
             steps {

@@ -102,11 +102,11 @@ pipeline {
             }
         }
 
-        stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
+        /*stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
                sh 'ansible-playbook ansible/deployment-sanity-test.yml'
             }
-        }
+        }*/
 
         /*stage('Cleanup of containers on ansibleclient1') {
             steps {

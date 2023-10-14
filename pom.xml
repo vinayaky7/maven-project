@@ -21,8 +21,8 @@
   <distributionManagement>
     <snapshotRepository>
         <id>snapshots</id>
-        <name>a0lmtzamoqbm9-artifactory-primary-0-snapshots</name>
-        <url>https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot</url>
+        <name>a0dq3soucncgg-artifactory-primary-0-snapshots</name>
+        <url>https://radicalseptember2023.jfrog.io/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
   </distributionManagement>
 

@@ -31,7 +31,8 @@ pipeline {
                        echo "${BUILD_DISPLAY_NAME}"
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
-                       ech "${JENKINS_HOME}"
+                       echo "${JENKINS_HOME1}"
+                       sh "ipconfig"
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()

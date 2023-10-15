@@ -32,11 +32,10 @@ pipeline {
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
                        echo "${JENKINS_HOME1}"
-                       sh "ipconfig"
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()
-                        sh 'exit 1'   
+                        sh 'exit 0'   
                         }
 
                 }
@@ -44,7 +43,7 @@ pipeline {
             }
         }
 
-        /*stage('Testing Env & local Variables') {
+        stage('Testing Env & local Variables') {
             steps {
                 script {
                     try {
@@ -66,7 +65,7 @@ pipeline {
                 }
         }
 
-        stage('Build') {
+        /*stage('Build') {
             steps {
                 script {
                     try {

@@ -31,7 +31,7 @@ pipeline {
                        echo "${BUILD_DISPLAY_NAME}"
                        echo "${WORKSPACE}"
                        echo "${JOB_NAME}"
-                       echo "${JENKINS_HOME}"
+                       ech "${JENKINS_HOME}"
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()

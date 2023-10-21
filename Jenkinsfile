@@ -72,7 +72,7 @@ pipeline {
                 script {
                     try {
                     
-                        sh '/usr/local/src/apache-maven/bin/mvn clean deploy'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean deploy -s .m2/settings.xml'
                         
 
                     } catch (Exception e) {

@@ -8,9 +8,10 @@ pipeline {
     }
     
     environment {
-        Node_IP = ""
+        Node_IP = "18.236.175.152"
         var1 = "Radical"
         string1 = "Webhook created from pipline job"
+        ENV = "dev"
     }
 
     stages {

@@ -9,9 +9,6 @@
 <br />
 
 <h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate"> Testing sample code ver 3.0 </h1></marquee>
-!!</h1></marquee>
-
-
 
 </body>
 </html>

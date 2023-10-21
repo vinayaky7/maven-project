@@ -67,7 +67,7 @@ pipeline {
                 }
         }
 
-        /*stage('Build') {
+        stage('Build') {
             steps {
                 script {
                     try {
@@ -84,7 +84,7 @@ pipeline {
             }
         }
 
-        stage('Scanning') {
+        /*stage('Scanning') {
             steps {
                 echo 'Scanning in progress.'
             }

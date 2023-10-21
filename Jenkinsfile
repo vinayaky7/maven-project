@@ -8,7 +8,7 @@ pipeline {
     }
     
     environment {
-        Node_IP = "54.213.198.2"
+        Node_IP = ""
         var1 = "Radical"
         string1 = "Webhook created from pipline job"
     }
@@ -53,7 +53,7 @@ pipeline {
                         echo "${test1}"
                         echo "${string1}"
                         echo "${Node_IP}"
-                        
+                        echo "${ENV}"
 
                     } catch (Exception e) {
                         echo "Exception received because of --- " + e.toString()

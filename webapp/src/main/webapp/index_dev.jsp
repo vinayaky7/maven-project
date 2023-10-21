@@ -8,7 +8,7 @@
 <br />
 <br />
 
-<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate"> Testing CICD using Jenkinsfile ver 1. </h1></marquee>
+<h1 style="color:white; font-family:verdana; text-align:center; font-size:400%"><marquee behavior="alternate"> Testing CICD + AutoTrigger Jenkins Ver 10.0 </h1></marquee>
 
 </body>
 </html>

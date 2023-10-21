@@ -84,7 +84,7 @@ pipeline {
             }
         }
 
-        /*stage('Scanning') {
+        stage('Scanning') {
             steps {
                 echo 'Scanning in progress.'
             }
@@ -111,8 +111,11 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'tar -czvf webapp-target.tar.gz webapp/target'
-                        sh 'curl -X PUT -u radicaldemodevopsprerequisite@gmail.com:cmVmdGtuOjAxOjE3MjE2MzI1Nzc6ZE8zcVlRRFpsVkt4SXRiUDVtanZZbFBreFNT -T webapp-target.tar.gz https://radicaljune2023.jfrog.io/artifactory/test-libs-snapshot/com/radical/june/java-maven-tomcat-example/4.0-SNAPSHOT/webapp-target.tar.gz'
+                        
+                        //sh 'tar -czvf webapp-target.tar.gz webapp/target'
+        
+                        sh 'curl -X PUT -u radicalsep2023weekend@gmail.com:cmVmdGtuOjAxOjE3Mjg3OTczMTk6RFNUYUxMN1BkQ053TDBJRUdBUktCWGVGblZH -T .m2/settings.xml https://radicalseptember2023.jfrog.io/artifactory/libs-snapshot-local/com/radical/sept/maven-project/3.0-SNAPSHOT/settings.xml'
+
                     } catch (Exception e) {
                         echo "Exception received " + e.toString()
                         sh 'exit 1'
@@ -138,7 +141,7 @@ pipeline {
                 }
 
             }
-        }*/
+        }
 
     }
 

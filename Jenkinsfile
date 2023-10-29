@@ -7,8 +7,8 @@ pipeline {
         def IP="54.218.66.235" // This should be your jenkins slave IP
         def DOCKER_NETWORK="dev"
         def DOCKER_SUBNET="172.31.0.0/24"
-        #def DOCKERHUB = credentials('DOCKERHUB_CREDS')
-        #DockerHub_repo = "aamirs/radical-private-repo"
+        //def DOCKERHUB = credentials('DOCKERHUB_CREDS')
+        //DockerHub_repo = "aamirs/radical-private-repo"
         Docker_user = "radical_sep"
     }
     

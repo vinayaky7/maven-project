@@ -62,7 +62,7 @@ pipeline {
             }
         }
 
-        /*stage('Testing') {
+        stage('Testing') {
             steps {
                 script {
                     try {
@@ -86,7 +86,7 @@ pipeline {
             }
         }
 
-        stage('login to dockerhub') {
+        /*stage('login to dockerhub') {
             steps {
                 script {
                     sh 'echo $DOCKERHUB_PSW | sudo docker login -u $DOCKERHUB_USR --password-stdin'

@@ -125,7 +125,8 @@ pipeline {
 
         post {
         always {
-            archiveArtifacts artifacts: 'webapp/target/*.war', 'webapp/target/webapp/index.html',
+            //archiveArtifacts artifacts: 'webapp/target/*.war', 'webapp/target/webapp/index.html',
+            archiveArtifacts artifacts: 'webapp/target/webapp/*.xml',
             onlyIfSuccessful: true
         }
         }

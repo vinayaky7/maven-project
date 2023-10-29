@@ -121,13 +121,12 @@ pipeline {
                 echo 'Deployment..'
             }
         }
-
+    }
+    
         post {
         always {
             archiveArtifacts artifacts: 'webapp/target/*.war', 
             onlyIfSuccessful: true
         }
         }
-
-    }
 }

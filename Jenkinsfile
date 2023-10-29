@@ -67,9 +67,9 @@ pipeline {
                 script {
                     try {
                         echo 'Testing..'
-                        sh 'sudo docker run -itd --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v myvol:/tmp ${image_name}:${docker_tag}'
+                        sh 'sudo docker run -itd --network=${DOCKER_NETWORK} --name webserver300${BUILD_NUMBER} -p 300${BUILD_NUMBER}:80 -v myvol:/tmp ${image_name}:${docker_tag}'
 
-                        sh 'sudo docker run -itd  --network=${DOCKER_NETWORK} --name mycentos300${BUILD_NUMBER} centos:centos7'
+                        sh 'sudo docker run -itd --network=${DOCKER_NETWORK} --name mycentos300${BUILD_NUMBER} centos:centos7'
 
                         sh 'sudo docker ps'
                         sh 'sudo docker images'

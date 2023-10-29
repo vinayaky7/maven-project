@@ -122,10 +122,10 @@ pipeline {
             }
         }
     }
-    
+
         post {
         always {
-            archiveArtifacts artifacts: 'webapp/target/*.war', 
+            archiveArtifacts artifacts: 'webapp/target/*.war', 'webapp/target/webapp/index.html',
             onlyIfSuccessful: true
         }
         }

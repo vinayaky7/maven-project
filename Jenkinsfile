@@ -7,8 +7,8 @@ pipeline {
         def IP="18.246.216.154" // This should be your jenkins slave IP
         def DOCKER_NETWORK="dev"
         def DOCKER_SUBNET="172.31.0.0/24"
-        //def DOCKERHUB = credentials('DOCKERHUB_CREDS')
-        //DockerHub_repo = "aamirs/radical-private-repo"
+        def DOCKERHUB = credentials('DOCKERHUB_CREDS')
+        DockerHub_repo = "aamirs/radical-private-repo"
         Docker_user = "radical_sep"
     }
     
@@ -86,7 +86,7 @@ pipeline {
             }
         }
 
-        /*stage('login to dockerhub') {
+        stage('login to dockerhub') {
             steps {
                 script {
                     sh 'echo $DOCKERHUB_PSW | sudo docker login -u $DOCKERHUB_USR --password-stdin'
@@ -100,7 +100,7 @@ pipeline {
                 sh 'sudo docker tag ${image_name}:${docker_tag} ${DockerHub_repo}:${docker_tag}'
                 sh 'sudo docker push ${DockerHub_repo}:${docker_tag}'
             }
-        }*/
+        }
 
         /*stage('Cleanup') {
             steps {

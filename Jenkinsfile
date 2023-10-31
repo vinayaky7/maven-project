@@ -72,7 +72,9 @@ pipeline {
                 script {
                     try {
                     
-                        sh '/usr/local/src/apache-maven/bin/mvn clean install -s .m2/settings.xml'
+                        sh '/usr/local/src/apache-maven/bin/mvn clean compile'
+                        sh '/usr/local/src/apache-maven/bin/mvn package'
+                        sh '/usr/local/src/apache-maven/bin/mvn test'
                         
 
                     } catch (Exception e) {
@@ -146,6 +148,15 @@ pipeline {
         }*/
 
     }
+
+    /*post {
+        always {
+            //archiveArtifacts artifacts: 'webapp/target/*.war', 'webapp/target/webapp/index.html',
+            archiveArtifacts artifacts: 'webapp/target/webapp/*.xml',
+            onlyIfSuccessful: true
+        }
+        }*/
+
 
 
 }

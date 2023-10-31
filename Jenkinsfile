@@ -67,7 +67,6 @@ pipeline {
                         sh '/usr/local/src/apache-maven/bin/mvn clean compile'
                         sh '/usr/local/src/apache-maven/bin/mvn package'
                         sh '/usr/local/src/apache-maven/bin/mvn test'
-                        sh 'ls -la webapp/target'
                         
 
                     } catch (Exception e) {

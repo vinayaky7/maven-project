@@ -8,7 +8,7 @@ pipeline {
     }
     
     environment {
-        Node_IP = "18.236.175.152"
+        Node_IP = "54.218.73.243"
         var1 = "Radical"
         string1 = "Webhook created from pipline job"
         ENV = "dev"
@@ -24,7 +24,7 @@ pipeline {
                 }
         }
 
-        stage('Testing Jenkins Global Variables') {
+        /*stage('Testing Jenkins Global Variables') {
             steps {
                 script {
                     try {
@@ -65,7 +65,7 @@ pipeline {
                 }
                 
                 }
-        }
+        }*/
 
         stage('Build') {
             steps {
@@ -75,6 +75,7 @@ pipeline {
                         sh '/usr/local/src/apache-maven/bin/mvn clean compile'
                         sh '/usr/local/src/apache-maven/bin/mvn package'
                         sh '/usr/local/src/apache-maven/bin/mvn test'
+                        sh 'ls -la webapp/target'
                         
 
                     } catch (Exception e) {

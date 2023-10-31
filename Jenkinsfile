@@ -84,7 +84,7 @@ pipeline {
             }
         }
 
-        stage('Scanning') {
+        /*stage('Scanning') {
             steps {
                 echo 'Scanning in progress.'
             }
@@ -143,7 +143,7 @@ pipeline {
                 }
 
             }
-        }
+        }*/
 
     }
 

@@ -19,10 +19,6 @@
         <maven.compiler.release>11</maven.compiler.release>
   </properties>
 
-  <modules>
-    <module>src</module>
-  </modules>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

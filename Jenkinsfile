@@ -4,7 +4,7 @@ pipeline {
     environment {
         def image_name="radical-sep-2023"
         def docker_tag="radical-sep-2023-v1.0"
-        def IP="18.246.216.154" // This should be your jenkins slave IP
+        def Jenkins_IP="54.187.44.194" // This should be your jenkins slave IP
         def DOCKER_NETWORK="dev"
         def DOCKER_SUBNET="172.31.0.0/24"
         def DOCKERHUB = credentials('DOCKERHUB_CREDS')
@@ -73,9 +73,9 @@ pipeline {
 
                         sh 'sudo docker ps'
                         sh 'sudo docker images'
-                        sh "curl -kv http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
-                        sh "elinks http://$IP:300${BUILD_NUMBER}/index_dev.jsp"
-                        sh "elinks http://$IP:300${BUILD_NUMBER}/index.html"
+                        sh "curl -kv http://$Jenkins_IP:300${BUILD_NUMBER}/index_dev.jsp"
+                        sh "elinks http://$Jenkins_IP:300${BUILD_NUMBER}/index_dev.jsp"
+                        sh "elinks http://$Jenkins_IP:300${BUILD_NUMBER}/index.html"
                     } catch (e) {
                        //Below exit 0 will continue even if the stage fails or the exit code of the command is not equal to zero
                        echo "Please check the IP of your build server --- " + e.toString()

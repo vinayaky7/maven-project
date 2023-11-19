@@ -18,7 +18,7 @@ pipeline {
         //bastion_ip = "192.168.1.111"
         //bastion_ip = "192.168.1.94"
         JOB = "${env.JOB_NAME}"
-        tag = "1.0.${env.BUILD_ID}"
+        tag = "2.0.${env.BUILD_ID}"
         //bastion_host = "radical-bastion"
         bastion_host = "ansibleclient1"
         

@@ -2,17 +2,17 @@ pipeline {
     agent {label 'master'}
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('myawscreds')
-        AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
+        //AWS_ACCESS_KEY_ID = credentials('myawscreds')
+        //AWS_SECRET_ACCESS_KEY = credentials('myawscreds')
         //JFrog_repo = "radicaloct2022weekday.jfrog.io"
         //JFrog_docker_folder = "radical-docker-local"
         //Jfrog_image = "radical-private-repo"
         //Jfrog_image_tag = "3.0.0"
-        bastion_ip = "10.0.2.111"
-        namespace = "uat"
-        eks_cluster = "myeks"
-        aws_region="us-east-1"
-        IMAGE = "radical-june-dev-2023"
+        //bastion_ip = "10.0.2.111"
+        //namespace = "uat"
+        //eks_cluster = "myeks"
+        //aws_region="us-east-1"
+        IMAGE = "radical-nov-dev-2023"
         VER = "${env.JOB_NAME}-${env.BUILD_ID}"
         DockerHub_repo = "aamirs/radical-private-repo"
         //bastion_ip = "192.168.1.111"
@@ -20,7 +20,7 @@ pipeline {
         JOB = "${env.JOB_NAME}"
         tag = "1.0.${env.BUILD_ID}"
         //bastion_host = "radical-bastion"
-        bastion_host = "radical-bastion"
+        bastion_host = "ansibleclient1"
         
     }
 
@@ -55,9 +55,9 @@ pipeline {
                 sh 'sudo systemctl start docker'
                 sh 'sudo systemctl enable docker'
             }
-        }*/
+        }
 
-        /*stage('Installing Ansible') {
+        stage('Installing Ansible') {
             steps {
                 sh 'sudo amazon-linux-extras install epel -y'
                 sh 'sudo yum install jq -y'
@@ -75,7 +75,7 @@ pipeline {
         }
 
         // CD(Continuous Deployment) starts Here ... !!!
-        stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
+        /*stage('Deploying IAC(Infrastructure as a code) on AWS via Terraform') {
             steps {
                 script {
                     sh "pwd"
@@ -88,9 +88,9 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
-        stage('Configuring Bastion as an Ansible Host') {
+        /*stage('Configuring Bastion as an Ansible Host') {
             steps {
                 script {
                     
@@ -100,7 +100,7 @@ pipeline {
                       
                 }
             }
-        }
+        }*/
 
         stage('Deployment - Sanity test on Radical-bastion VM using Docker') {
             steps {
@@ -116,11 +116,11 @@ pipeline {
             }
         }*/
 
-        stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
+        /*stage('Deployment on AWS EKS(Elastic Kubernetes Service)') {
             steps {
                 sh 'ansible-playbook ansible/roles/bastion-provision/bastion-provision.yml --vault-password-file  pass.txt'
             }
-        }
+        }*/
     }
     
     post {

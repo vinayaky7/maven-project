@@ -40,4 +40,3 @@ Please read & understand above project & description before mentioning it in the
 
 Please practise all above. Thanks for the consideration.
 
-Aamir Shaikh
